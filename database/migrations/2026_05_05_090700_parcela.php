@@ -6,12 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        //
+        Schema::create('parcelas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 20);
+            $table->string('shelly', 4);
+            $table->integer('id_camping')->index();
+            $table->integer('canal', 4);
+            $table->boolean('shelly_on');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('parcelas');
     }
 };

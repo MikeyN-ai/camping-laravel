@@ -29,4 +29,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // El usuario pertenece a un idioma
+    public function idioma()
+    {
+        return $this->belongsTo('App\Models\Idioma::class');
+    }
+
+    // El usuario pertenece a un camping
+    public function camping()
+    {
+        return $this->belongsTo('App\Models\Camping::class');
+    }
 }

@@ -6,12 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        //
+        Schema::create('tarifas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 100);
+            $table->enum('tipo', ['por_kilovatio', 'por_amperio'])->default('por_kilovatio');
+            $table->decimal('precio_dia')->index();
+            $table->decimal('precio_kilovatio', 4);
+            $table->decimal('kwh_gratuitos');
+            $table->integer('limite_watts');
+            $table->boolean('limite_amperios');
+            $table->integer('id_camping')->index();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('tarifas');
     }
 };
