@@ -12,7 +12,8 @@ class TarifaController extends Controller
      */
     public function index()
     {
-        //
+        $tarifa = Tarifa::orderBy('updated_at', 'desc')->paginate(5);
+        return view('tarifa.index', compact('tarifa'));
     }
 
     /**

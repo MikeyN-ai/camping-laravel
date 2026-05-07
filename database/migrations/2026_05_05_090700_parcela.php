@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nombre', 20);
             $table->string('shelly', 4);
             $table->integer('id_camping')->index();
-            $table->integer('canal', 4);
+            $table->integer('canal');
             $table->boolean('shelly_on');
             $table->timestamps();
         });

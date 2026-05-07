@@ -10,6 +10,10 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+.fondo {
+    background-color: #e8f1f9 !important;
+}
+
 .logo_app {
     width: 90px;
 }

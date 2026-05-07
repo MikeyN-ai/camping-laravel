@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', 'Checkin')
+@section('titulo', 'Gestión de checkins')
 
 @section('contenido')
 

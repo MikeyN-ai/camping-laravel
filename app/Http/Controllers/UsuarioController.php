@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Idiomas;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class IdiomasController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $idiomas = Idiomas::orderBy('updated_at', 'desc')->paginate(5);
-        return view('idiomas.index', compact('idiomas'));
+        $usuario = User::orderBy('updated_at', 'desc')->paginate(5);
+        return view('usuario.index', compact('usuario'));
     }
 
     /**
@@ -35,7 +35,7 @@ class IdiomasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Idiomas $idiomas)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +43,7 @@ class IdiomasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Idiomas $idiomas)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +51,7 @@ class IdiomasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Idiomas $idiomas)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +59,7 @@ class IdiomasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Idiomas $idiomas)
+    public function destroy(string $id)
     {
         //
     }

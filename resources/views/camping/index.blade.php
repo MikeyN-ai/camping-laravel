@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', 'Gestión de parcelas')
+@section('titulo', 'Gestión de campings')
 
 @section('contenido')
 

@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', 'Idioma')
+@section('titulo', 'Gestión de idiomas')
 
 @section('contenido')
 

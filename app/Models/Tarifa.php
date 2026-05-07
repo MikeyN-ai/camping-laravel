@@ -9,8 +9,12 @@ class Tarifa extends Model
     // Una tarifa pertenece a un camping
     public function camping()
     {
-        return $this->belongsTo('App\Models\Camping:class');
+        return $this->belongsTo(Camping::class, 'id_camping');
     }
 
-    // Unir con Checkin
+    // Una tarifa puede tener muchos checkins
+    public function checkins()
+    {
+        return $this->hasMany(Checkin::class, 'id_tarifa');
+    }
 }

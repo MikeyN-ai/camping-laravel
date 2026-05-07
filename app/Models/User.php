@@ -17,6 +17,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'usuarios';
+
     /**
      * Get the attributes that should be cast.
      *
@@ -33,12 +35,12 @@ class User extends Authenticatable
     // El usuario pertenece a un idioma
     public function idioma()
     {
-        return $this->belongsTo('App\Models\Idioma::class');
+        return $this->belongsTo(Idiomas::class, 'id_idioma');
     }
 
     // El usuario pertenece a un camping
     public function camping()
     {
-        return $this->belongsTo('App\Models\Camping::class');
+        return $this->belongsTo(Camping::class, 'id_camping');
     }
 }

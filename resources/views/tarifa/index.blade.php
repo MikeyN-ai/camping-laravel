@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', 'Tarifa')
+@section('titulo', 'Gestión de tarifas')
 
 @section('contenido')
 

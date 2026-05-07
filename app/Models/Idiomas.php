@@ -9,6 +9,6 @@ class Idiomas extends Model
     // Un idioma lo pueden tener muchos usuarios
     public function usuarios()
     {
-        return $this->hasMany('App\Models\User::class');
+        return $this->hasMany(User::class, 'id_idioma');
     }
 }

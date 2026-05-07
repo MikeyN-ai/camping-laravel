@@ -12,7 +12,8 @@ class CampingController extends Controller
      */
     public function index()
     {
-        //
+        $camping = Camping::orderBy('updated_at', 'desc')->paginate(5);
+        return view('camping.index', compact('camping'));
     }
 
     /**
