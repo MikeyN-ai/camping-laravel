@@ -9,3 +9,16 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.logo_app {
+    width: 90px;
+}
+
+.menu_lateral:hover {
+    background-color: #4c5257 !important;
+}
+
+.seleccionado {
+    background-color: #4c5257 !important;
+    font-size: bold;
+}
