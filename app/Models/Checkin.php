@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Checkin extends Model
 {
+    use HasFactory;
+
     // Un checkin pertenece a un cliente
     public function cliente()
     {

@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tarifa extends Model
 {
+    use HasFactory;
+
     // Una tarifa pertenece a un camping
     public function camping()
     {

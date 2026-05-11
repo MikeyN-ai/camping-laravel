@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Parcela extends Model
 {
+    use HasFactory;
+
     // Una parcela pertenece a un camping
     public function camping()
     {

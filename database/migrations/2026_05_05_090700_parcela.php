@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('parcelas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 20);
-            $table->string('shelly', 4);
+            $table->string('shelly', 20);
             $table->integer('id_camping')->index();
             $table->integer('canal');
             $table->boolean('shelly_on');

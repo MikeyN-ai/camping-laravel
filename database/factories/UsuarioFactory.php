@@ -1,5 +1,5 @@
 <?php
-/*
+
 namespace Database\Factories;
 
 use App\Models\Usuario;
@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 /**
  * @extends Factory<Usuario>
  */
-class UserFactory extends Factory
+class UsuarioFactory extends Factory
 {
     /**
      * The current password being used by the factory.
@@ -26,14 +26,14 @@ class UserFactory extends Factory
     {
 
         $login = $this->faker->name;
+
         return [
-            'login' => $login,
-            'password' => bcrypt($login),
-            'rol' => "editor",
             'email' => 'admin@gmail.com',
-            'usuario' => 'admin',
+            'usuario' => $login,
             'id_camping' => 1,
             'id_idioma' => 1,
+            'rol' => 'admin',
+            'password' => bcrypt($login),
         ];
 
 

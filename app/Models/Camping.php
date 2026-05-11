@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Camping extends Model
 {
+    use HasFactory;
+
     // Un camping tiene muchas tarifas
     public function tarifas()
     {
@@ -15,7 +18,7 @@ class Camping extends Model
     // El camping tiene muchos usuarios
     public function usuarios()
     {
-        return $this->hasMany(User::class, 'id_camping');
+        return $this->hasMany(Usuario::class, 'id_camping');
     }
 
     // Un camping tiene muchos clientes

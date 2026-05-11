@@ -13,10 +13,10 @@ return new class extends Migration {
         Schema::create('campings', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 40);
-            $table->string('direccion', 50);
-            $table->string('persona_contacto', 20);
+            $table->string('direccion', 100);
+            $table->string('persona_contacto', 100);
             $table->string('telefono_contacto', 20);
-            $table->string('correo_contacto', 30);
+            $table->string('correo_contacto', 100);
             $table->timestamps();
         });
     }

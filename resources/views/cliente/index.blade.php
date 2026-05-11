@@ -24,36 +24,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Efren Sanchez González</td>
-                        <td>efren213@gmail.com</td>
-                        <td>56879856A</td>
-                        <td>656 67 67 67</td>
-                        <td>0957KJK</td>
-                    </tr>
+                    @foreach ($cliente as $c)
+                        <tr>
+                            <td>{{ $c->id }}</td>
+                            <td>{{ $c->nombre . " " . $c->apellidos }}</td>
+                            <td>{{ $c->correo }}</td>
+                            <td>{{ $c->nif }}</td>
+                            <td>{{ $c->telefono }}</td>
+                            <td>{{ $c->matricula }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         <div class="card-footer">
-            <!--<div class="d-flex justify-content-center py-2">
-                    {{ $cliente->links('pagination::bootstrap-5') }}
-                </div>-->
-            <nav aria-label="...">
-                <ul class="pagination pt-3 d-flex justify-content-center align-items-center">
-                    <li class="page-item disabled">
-                        <a class="page-link text-dark">Anterior</a>
-                    </li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                    <li class="page-item">
-                        <a class="page-link bg-dark text-white" href="#" aria-current="page">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link text-dark" href="#">Siguiente</a>
-                    </li>
-                </ul>
-            </nav>
+            {{ $cliente->links('vendor.pagination.custom') }}
         </div>
     </div>
 @endsection
