@@ -16,7 +16,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre + Apellidos</th>
+                        <th>Nombre</th>
                         <th>Correo</th>
                         <th>NIF</th>
                         <th>Teléfono</th>

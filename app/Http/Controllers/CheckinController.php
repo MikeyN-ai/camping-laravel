@@ -12,7 +12,7 @@ class CheckinController extends Controller
      */
     public function index()
     {
-        $checkin = Checkin::orderBy('updated_at', 'desc')->paginate(5);
+        $checkin = Checkin::orderBy('updated_at', 'desc')->paginate(12);
         return view('checkin.index', compact('checkin'));
     }
 

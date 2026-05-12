@@ -22,14 +22,17 @@
                 @include('partials.header')
             </div>
         </div>
-        <div class="row">
-            <div class="d-none d-md-block col-md-2 m-0 p-0">
+        <div class="row vh-100">
+            <div class="d-none d-lg-block col-md-2 m-0 p-0">
                 @include('partials.menu_lateral')
             </div>
-            <div class="col-12 col-md-10 fondo px-0">
+            <div class="col-12 col-lg-10 fondo px-0">
                 <div class="bg-primary-subtle px-4 py-3 d-flex justify-content-between align-items-center">
                     <h3>@yield('titulo')</h3>
-                    <span class="fs-5"><small>Lunes 12 de Enero de 2026</small></span>
+                    <span class="fs-5">
+                        <small class="d-flex d-md-none">{{fechaCorta(null, now())}}</small>
+                        <small class="d-none d-md-flex">{{fechaLarga(null, now())}}</small>
+                    </span>
                 </div>
 
                 <div class="px-4">

@@ -12,7 +12,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $cliente = Cliente::orderBy('created_at', 'desc')->paginate(10);
+        $cliente = Cliente::orderBy('created_at', 'desc')->paginate(12);
         return view('cliente.index', compact('cliente'));
     }
 

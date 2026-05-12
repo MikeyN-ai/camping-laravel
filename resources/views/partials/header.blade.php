@@ -8,66 +8,73 @@
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="d-none d-md-flex justify-content-end align-items-center w-100 pe-0 pe-md-4">
+        <div class="d-none d-lg-flex justify-content-end align-items-center w-100 pe-0 pe-md-4">
             <span class="pe-3 fs-5 fst-normal border-end border-secondary">Miguel Prueba</span>
             <a href="#" class="text-decoration-none fs-3 ps-3">
                 <i class="bi bi-box-arrow-right text-dark"></i>
             </a>
         </div>
-        <div class="collapse navbar-collapse bg-dark m-0 p-0" id="navbarTogglerDemo02">
-            <div class="list-group border-0 fs-5 d-md-none">
+        <div class="collapse navbar-collapse bg-dark m-0 p-0 position-relative z-1" id="navbarTogglerDemo02">
+            <div class="list-group border-0 fs-5 d-lg-none position-relative z-1">
                 <a href="{{ route('inicio')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('inicio') ? 'seleccionado' : '' }}
+                        {{ setActivo('inicio') }}
                     ">
                     <i class="bi bi-house pe-2"></i>
                     Inicio
                 </a>
                 <a href="{{ route('camping.index')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('camping.index') ? 'seleccionado' : '' }}
+                        {{ setActivo('camping.index') }}
                     ">
                     <i class="bi bi-signpost-2 pe-2"></i>
                     Campings
                 </a>
                 <a href="{{ route('parcela.index')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('parcela.index') ? 'seleccionado' : '' }}
+                        {{ setActivo('parcela.index') }}
                      ">
                     <i class="bi bi-houses pe-2"></i>
                     Parcelas
                 </a>
                 <a href="{{ route('cliente.index')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('cliente.index') ? 'seleccionado' : '' }}
+                        {{ setActivo('cliente.index')}}
                     ">
                     <i class="bi bi-person-badge pe-2"></i>
                     Clientes
                 </a>
                 <a href="{{ route('checkin.index')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('checkin.index') ? 'seleccionado' : '' }}
+                        {{ setActivo('checkin.index') }}
                     ">
                     <i class="bi bi-clipboard2-check pe-2"></i>
                     Checkins
                 </a>
                 <a href="{{ route('tarifa.index')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('tarifa.index') ? 'seleccionado' : '' }}
+                        {{ setActivo('tarifa.index') }}
                     ">
                     <i class="bi bi-wallet2 pe-2"></i>
                     Tarifas
                 </a>
+                <a href="{{ route('idioma.index')}}"
+                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                        {{ setActivo('idioma.index')}}
+                    ">
+                    <i class="bi bi-translate pe-2"></i>
+                    Idioma
+                </a>
                 <a href="{{ route('usuario.index')}}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('usuario.index') ? 'seleccionado' : '' }}
+                        {{ setActivo('usuario.index') }}
                     ">
                     <i class="bi bi-people pe-2"></i>
                     Usuarios
                 </a>
                 <a href="#"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ request()->routeIs('') ? 'seleccionado' : '' }}
+                        {{ setActivo('') }}
                     ">
                     <i class="bi bi-box-arrow-right pe-2"></i>
                     Cerrar sesión
