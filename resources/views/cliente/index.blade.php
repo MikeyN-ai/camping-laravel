@@ -12,7 +12,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover border">
+            <table class="table table-striped table-hover border" id="taula">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -27,12 +27,12 @@
                 <tbody>
                     @foreach ($cliente as $c)
                         <tr>
-                            <td>{{ $c->id }}</td>
-                            <td>{{ $c->nombre . " " . $c->apellidos }}</td>
-                            <td>{{ $c->correo }}</td>
-                            <td>{{ $c->nif }}</td>
-                            <td>{{ $c->telefono }}</td>
-                            <td>{{ $c->matricula }}</td>
+                            <td class="align-middle">{{ $c->id }}</td>
+                            <td class="align-middle">{{ $c->nombre . " " . $c->apellidos }}</td>
+                            <td class="align-middle">{{ $c->correo }}</td>
+                            <td class="align-middle">{{ $c->nif }}</td>
+                            <td class="align-middle">{{ $c->telefono }}</td>
+                            <td class="align-middle">{{ $c->matricula }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{route('cliente.edit', $c)}}" class="btn btn-warning fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>

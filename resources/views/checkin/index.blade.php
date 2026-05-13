@@ -13,7 +13,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover border">
+            <table class="table table-striped table-hover border" id="taula">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -28,12 +28,12 @@
                 <tbody>
                     @foreach ($checkin as $c)
                         <tr>
-                            <td>{{ $c->id }}</td>
-                            <td>{{ $c->fecha_entrada }}</td>
-                            <td>{{ $c->fecha_salida }}</td>
-                            <td>{{ $c->parcela->nombre }}</td>
-                            <td>{{ $c->cliente->nombre }}</td>
-                            <td>{{ $c->tarifa->nombre }}</td>
+                            <td class="align-middle">{{ $c->id }}</td>
+                            <td class="align-middle">{{ $c->fecha_entrada }}</td>
+                            <td class="align-middle">{{ $c->fecha_salida }}</td>
+                            <td class="align-middle">{{ $c->parcela->nombre }}</td>
+                            <td class="align-middle">{{ $c->cliente->nombre }}</td>
+                            <td class="align-middle">{{ $c->tarifa->nombre }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{route('checkin.edit', $c)}}" class="btn btn-warning fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>

@@ -53,6 +53,32 @@
     filter: brightness(0.95);
 }
 
+.icono_sin_datos {
+    font-size: 5em;
+}
+
+/* Si l'ample de la pantalla es menor o igual a 767px
+@media only screen and (max-width: 767px) {
+
+    #taula thead th {
+        display: none;
+    }
+
+    #taula td {
+        display: block;
+    }
+
+    #taula td::before {
+        content: attr(data-cell) "";
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    #taula td[data-no-colon="true"]::before {
+        content: "";
+    }
+}*/
+
 @media (max-width: 768px) {
 
     .logo_app {

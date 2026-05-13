@@ -11,7 +11,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover border">
+            <table class="table table-striped table-hover border" id="taula">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -28,14 +28,14 @@
                 <tbody>
                     @foreach ($tarifa as $t)
                         <tr>
-                            <td>{{ $t->id }}</td>
-                            <td>{{ $t->nombre }}</td>
-                            <td>{{ $t->tipo }}</td>
-                            <td>{{ $t->precio_dia ?? 'N/A' }}</td>
-                            <td>{{ $t->precio_kilovatio ?? 'N/A' }}</td>
-                            <td>{{ $t->kwh_gratuitos ?? 'N/A' }}</td>
-                            <td>{{ $t->limite_watts }}</td>
-                            <td>{{ $t->limite_amperios }}</td>
+                            <td class="align-middle">{{ $t->id }}</td>
+                            <td class="align-middle">{{ $t->nombre }}</td>
+                            <td class="align-middle">{{ $t->tipo }}</td>
+                            <td class="align-middle">{{ $t->precio_dia ?? 'N/A' }}</td>
+                            <td class="align-middle">{{ $t->precio_kilovatio ?? 'N/A' }}</td>
+                            <td class="align-middle">{{ $t->kwh_gratuitos ?? 'N/A' }}</td>
+                            <td class="align-middle">{{ $t->limite_watts }}</td>
+                            <td class="align-middle">{{ $t->limite_amperios }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{route('tarifa.edit', $t)}}" class="btn btn-warning fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>

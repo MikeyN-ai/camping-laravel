@@ -12,7 +12,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover border">
+            <table class="table table-striped table-hover border" id="taula">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -27,12 +27,12 @@
                 <tbody>
                     @foreach ($camping as $c)
                         <tr>
-                            <td>{{ $c->id }}</td>
-                            <td>{{ $c->nombre }}</td>
-                            <td>{{ $c->direccion }}</td>
-                            <td>{{ $c->persona_contacto }}</td>
-                            <td>{{ $c->telefono_contacto }}</td>
-                            <td>{{ $c->correo_contacto }}</td>
+                            <td class="align-middle">{{ $c->id }}</td>
+                            <td class="align-middle">{{ $c->nombre }}</td>
+                            <td class="align-middle">{{ $c->direccion }}</td>
+                            <td class="align-middle">{{ $c->persona_contacto }}</td>
+                            <td class="align-middle">{{ $c->telefono_contacto }}</td>
+                            <td class="align-middle">{{ $c->correo_contacto }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{route('camping.edit', $c)}}" class="btn btn-warning fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>

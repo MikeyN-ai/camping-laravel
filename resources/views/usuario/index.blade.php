@@ -11,7 +11,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover border">
+            <table class="table table-striped table-hover border" id="taula">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -25,11 +25,11 @@
                 <tbody>
                     @foreach ($usuario as $u)
                         <tr>
-                            <td>{{ $u->id }}</td>
-                            <td>{{ $u->usuario }}</td>
-                            <td>{{ $u->camping->nombre }}</td>
-                            <td>{{ $u->idioma->idioma }}</td>
-                            <td>{{ $u->rol }}</td>
+                            <td class="align-middle">{{ $u->id }}</td>
+                            <td class="align-middle">{{ $u->usuario }}</td>
+                            <td class="align-middle">{{ $u->camping->nombre }}</td>
+                            <td class="align-middle">{{ $u->idioma->idioma }}</td>
+                            <td class="align-middle">{{ $u->rol }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{route('usuario.edit', $u)}}" class="btn btn-warning fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>

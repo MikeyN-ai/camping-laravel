@@ -18,22 +18,32 @@
                         <form action="{{ route('parcela.store') }}" method="POST">
                             @csrf
                             <div class="py-3">
-                                <label for="idioma" class="form-label fw-bold">Idioma</label>
-                                <input type="text" class="form-control border border-dark-subtle" id="idioma"
-                                    placeholder="Ex: Inglés" value="{{ old('idioma') }}">
-                                @if ($errors->has('idioma'))
+                                <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                <input type="text" class="form-control border border-dark-subtle" id="nombre"
+                                    placeholder="Ex: Parcela 1" value="{{ old('nombre') }}">
+                                @if ($errors->has('nombre'))
                                     <p class="text-danger py-2">
-                                        {{ $errors->first('idioma') }}
+                                        {{ $errors->first('nombre') }}
                                     </p>
                                 @endif
                             </div>
                             <div class="pb-3">
-                                <label for="abreviatura" class="form-label fw-bold">Abreviatura</label>
-                                <input type="text" class="form-control border border-dark-subtle" id="abreviatura"
-                                    placeholder="Ex: EN" value="{{ old('abreviatura') }}">
-                                @if ($errors->has('abreviatura'))
+                                <label for="shelly" class="form-label fw-bold">Dispositivo Shelly</label>
+                                <input type="text" class="form-control border border-dark-subtle" id="shelly"
+                                    placeholder="Ex: shelly-00001" value="{{ old('shelly') }}">
+                                @if ($errors->has('shelly'))
                                     <p class="text-danger py-2">
-                                        {{ $errors->first('abreviatura') }}
+                                        {{ $errors->first('shelly') }}
+                                    </p>
+                                @endif
+                            </div>
+                            <div class="pb-3">
+                                <label for="canal" class="form-label fw-bold">Canal</label>
+                                <input type="text" class="form-control border border-dark-subtle" id="canal"
+                                    placeholder="Ex: 0" value="{{ old('canal') }}">
+                                @if ($errors->has('canal'))
+                                    <p class="text-danger py-2">
+                                        {{ $errors->first('canal') }}
                                     </p>
                                 @endif
                             </div>

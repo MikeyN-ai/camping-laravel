@@ -12,7 +12,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped table-hover border">
+            <table class="table table-striped table-hover border" id="taula">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -24,9 +24,9 @@
                 <tbody>
                     @foreach ($idioma as $i)
                         <tr>
-                            <td>{{ $i->id }}</td>
-                            <td>{{ $i->idioma }}</td>
-                            <td>{{ $i->abreviatura }}</td>
+                            <td class="align-middle">{{ $i->id }}</td>
+                            <td class="align-middle">{{ $i->idioma }}</td>
+                            <td class="align-middle">{{ $i->abreviatura }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{route('idioma.edit', $i)}}" class="btn btn-warning fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
