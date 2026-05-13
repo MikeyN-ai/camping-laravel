@@ -4,10 +4,10 @@
 
 @section('contenido')
     <div class="text-end p-3">
-        <button class="btn btn-dark btn-lg border">
+        <a href="{{route('tarifa.create')}}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
-        </button>
+        </a>
     </div>
     <div class="card">
         <div class="card-body">
@@ -36,8 +36,13 @@
                             <td>{{ $t->kwh_gratuitos ?? 'N/A' }}</td>
                             <td>{{ $t->limite_watts }}</td>
                             <td>{{ $t->limite_amperios }}</td>
-                            <td>
-                                
+                            <td class="d-flex gap-2">
+                                <a href="{{route('tarifa.edit', $t)}}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{{route('tarifa.destroy', $t)}}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <i class="bi bi-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

@@ -1,20 +1,24 @@
 <?php
 
+use Carbon\Carbon;
+
 function setActivo($nombreRuta)
 {
     return request()->routeIs($nombreRuta) ? 'seleccionado' : '';
 }
 
-function fechaLarga ($idioma = 'ES', $fecha)
+function fechaLarga($fecha, $idioma = 'es')
 {
+    Carbon::setLocale($idioma);
 
-    app()->setLocale(strtolower($idioma));
-    return $fecha->isoFormat('LLLL');
+    return ucfirst(
+        $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY')
+    );
 }
 
-function fechaCorta ($idioma = 'ES', $fecha)
+function fechaCorta($fecha, $idioma = 'es')
 {
+    Carbon::setLocale($idioma);
 
-    app()->setLocale(strtolower($idioma));
     return $fecha->isoFormat('L');
 }

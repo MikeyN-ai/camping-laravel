@@ -21,7 +21,7 @@ class TarifaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarifa.create');
     }
 
     /**
@@ -45,7 +45,8 @@ class TarifaController extends Controller
      */
     public function edit(Tarifa $tarifa)
     {
-        //
+        $tarifa = Tarifa::orderBy('updated_at', 'desc')->paginate(12);
+        return view('tarifa.index', compact('tarifa'));
     }
 
     /**

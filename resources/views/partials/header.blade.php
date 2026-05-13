@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid px-0">
         <a href="{{ route('inicio')}}" class="px-2">
-            <img src="camping2.webp" alt="Logo camping" class="logo_app">
+            <img src="{{ asset('camping2.webp') }}" alt="Logo camping" class="logo_app">
         </a>
         <a class="navbar-brand ps-3" href="{{ route('inicio')}}"> Tamarit Beach Resort </a>
         <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"

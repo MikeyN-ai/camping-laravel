@@ -21,7 +21,7 @@ class ParcelaController extends Controller
      */
     public function create()
     {
-        //
+        return view('parcela.create');
     }
 
     /**

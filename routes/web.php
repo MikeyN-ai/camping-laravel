@@ -13,10 +13,10 @@ Route::get('/', function () {
     return view('index');
 })->name('inicio');
 
-Route::resource('camping', CampingController::class)->only(['index', 'show']);
-Route::resource('checkin', CheckinController::class)->only(['index', 'show']);
-Route::resource('cliente', ClienteController::class)->only(['index', 'show']);
-Route::resource('idioma', IdiomasController::class)->only(['index', 'show']);
-Route::resource('parcela', ParcelaController::class)->only(['index', 'show']);
-Route::resource('tarifa', TarifaController::class)->only(['index', 'show']);
-Route::resource('usuario', UsuarioController::class)->only(['index', 'show']);
+Route::resource('camping', CampingController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('checkin', CheckinController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('cliente', ClienteController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('idioma', IdiomasController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('parcela', ParcelaController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('tarifa', TarifaController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('usuario', UsuarioController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);

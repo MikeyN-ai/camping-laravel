@@ -21,7 +21,7 @@ class CampingController extends Controller
      */
     public function create()
     {
-        //
+        return view('camping.create');
     }
 
     /**

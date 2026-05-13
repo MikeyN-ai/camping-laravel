@@ -1,15 +1,15 @@
 @extends('plantilla')
 
-@section('titulo', 'Gestión de checkins')
+@section('titulo', 'Gestión de check-in')
 
 
 @section('contenido')
 
     <div class="text-end p-3">
-        <button class="btn btn-dark btn-lg border">
+        <a href="{{route('checkin.create')}}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
-        </button>
+        </a>
     </div>
     <div class="card">
         <div class="card-body">
@@ -22,6 +22,7 @@
                         <th>Parcela</th>
                         <th>Cliente</th>
                         <th>Tarifa</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,14 @@
                             <td>{{ $c->parcela->nombre }}</td>
                             <td>{{ $c->cliente->nombre }}</td>
                             <td>{{ $c->tarifa->nombre }}</td>
+                            <td class="d-flex gap-2">
+                                <a href="{{route('checkin.edit', $c)}}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{{route('checkin.destroy', $c)}}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
