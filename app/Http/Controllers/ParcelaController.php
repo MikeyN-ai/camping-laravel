@@ -12,7 +12,7 @@ class ParcelaController extends Controller
      */
     public function index()
     {
-        $parcela = Parcela::orderBy('updated_at', 'desc')->paginate(12);
+        $parcela = Parcela::orderBy('id', 'asc')->paginate(10);
         return view('parcela.index', compact('parcela'));
     }
 

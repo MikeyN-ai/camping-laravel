@@ -12,7 +12,7 @@ class IdiomasController extends Controller
      */
     public function index()
     {
-        $idioma = Idiomas::orderBy('updated_at', 'desc')->paginate(12);
+        $idioma = Idiomas::orderBy('id', 'asc')->paginate(10);
         return view('idioma.index', compact('idioma'));
     }
 

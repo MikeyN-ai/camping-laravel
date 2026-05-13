@@ -12,7 +12,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuario = Usuario::orderBy('updated_at', 'desc')->paginate(12);
+        $usuario = Usuario::orderBy('id', 'asc')->paginate(10);
         return view('usuario.index', compact('usuario'));
     }
 

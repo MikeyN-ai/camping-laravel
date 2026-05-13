@@ -18,7 +18,22 @@ class CampingFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->firstName,
+            'nombre' => $this->faker->randomElement([
+                'Tamarit Beach Resort',
+                'La Marina Camping & Resort',
+                'Playa Montroig Camping Resort',
+                'Sangulí Salou',
+                'Cambrils Park Resort',
+                'Vilanova Park',
+                'Alannia Costa Blanca',
+                'Alannia Guardamar',
+                'El Portús Camping',
+                'Camping La Siesta',
+                'Camping Internacional de Calonge',
+                'Camping & Resort Sangulí',
+                'Playa Tropicana',
+                'Camping Castell Montgrí'
+            ]),
             'direccion' => $this->faker->address,
             'persona_contacto' => $this->faker->firstName . " " . $this->faker->lastName . " " . $this->faker->lastName,
             'telefono_contacto' => $this->faker->phoneNumber,
