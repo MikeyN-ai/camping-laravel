@@ -2,9 +2,9 @@
 
 use Carbon\Carbon;
 
-function setActivo($nombreRuta)
+function setActivo($modulo)
 {
-    return request()->routeIs($nombreRuta) ? 'seleccionado' : '';
+    return request()->routeIs($modulo . '.*') ? 'seleccionado' : '';
 }
 
 function fechaLarga($fecha, $idioma = 'es')

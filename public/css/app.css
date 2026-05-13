@@ -57,6 +57,10 @@
     font-size: 5em;
 }
 
+.tarjeta_vacio {
+    width: 50%;
+}
+
 /* Si l'ample de la pantalla es menor o igual a 767px
 @media only screen and (max-width: 767px) {
 
@@ -79,9 +83,21 @@
     }
 }*/
 
+.contenido {
+    height: 90vh;
+}
+
+.altura_menu_lateral {
+    min-height: calc(100vh - 106px);
+}
+
 @media (max-width: 768px) {
 
     .logo_app {
         width: 75px;
+    }
+
+    .tarjeta_vacio {
+        width: 100%;
     }
 }

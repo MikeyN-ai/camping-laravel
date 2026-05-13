@@ -10,12 +10,12 @@
         </a>
     </div>
 
-    @if (!$parcela)
+    @if ($parcela->isEmpty())
         <div class="d-flex justify-content-center">
-            <div class="card w-50 bg-primary-subtle py-5 shadow">
+            <div class="card tarjeta_vacio bg-primary-subtle py-4 py-md-5 shadow">
                 <div class="card-body text-center">
                     <i class="bi bi-house mb-3 text-info icono_sin_datos"></i>
-                    <p class="white-text fs-5 mb-1 fw-bold">No hay parcelas disponibles</p>
+                    <p class="white-text fs-5 my-2 fw-bold">No hay parcelas disponibles</p>
                     <small class="">
                         Actualmente no hay parcelas registradas
                     </small>
@@ -67,7 +67,7 @@
                 </table>
             </div>
 
-            <div class="card-body d-block d-lg-none py-2">
+            <div class="card-body d-block d-lg-none py-1">
                 @foreach ($parcela as $p)
                     <div class="card my-3">
                         <div class="card-header"><span class="">{{ $p->nombre }}</span></div>

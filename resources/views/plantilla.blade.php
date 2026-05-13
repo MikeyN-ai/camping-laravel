@@ -21,7 +21,7 @@
                 @include('partials.header')
             </div>
         </div>
-        <div class="row vh-100">
+        <div class="row altura_menu_lateral">
             <div class="d-none d-lg-block col-md-2 m-0 p-0">
                 @include('partials.menu_lateral')
             </div>
