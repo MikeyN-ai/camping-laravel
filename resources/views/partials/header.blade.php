@@ -1,78 +1,86 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid px-0">
-        <a href="{{ route('inicio')}}" class="px-2">
+        <a href="{{ route('inicio') }}" class="px-2">
             <img src="{{ asset('camping2.webp') }}" alt="Logo camping" class="logo_app">
         </a>
-        <a class="navbar-brand ps-3" href="{{ route('inicio')}}"> Tamarit Beach Resort </a>
-        <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand ps-3" href="{{ route('inicio') }}">{{ auth()->user()?->camping?->nombre ?? 'Camping' }}</a>
+        <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="d-none d-lg-flex justify-content-end align-items-center w-100 pe-0 pe-md-4">
-            <span class="pe-3 fs-5 fst-normal border-end border-secondary">Miguel Prueba</span>
-            <a href="#" class="text-decoration-none fs-3 ps-3">
-                <i class="bi bi-box-arrow-right text-dark"></i>
-            </a>
-        </div>
-        <div class="collapse navbar-collapse bg-dark m-0 p-0 position-absolute w-100 start-0 top-100 z-3" id="navbarTogglerDemo02">
+        @if (auth()->check())
+            <div class="d-none d-lg-flex justify-content-end align-items-center w-100 pe-0 pe-md-4">
+                <span class="pe-3 fs-5 fst-normal border-end border-secondary">{{ auth()->user()->usuario }}</span>
+                <a href="{{ route('logout') }}" class="text-decoration-none fs-3 ps-3">
+                    <i class="bi bi-box-arrow-right text-dark"></i>
+                </a>
+            </div>
+        @endif
+        <div class="collapse navbar-collapse bg-dark m-0 p-0 position-absolute w-100 start-0 top-100 z-3"
+            id="navbarTogglerDemo02">
             <div class="list-group border-0 fs-5 d-lg-none">
-                <a href="{{ route('inicio')}}"
+                <a href="{{ route('inicio') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('inicio') }}
                     ">
                     <i class="bi bi-house pe-2"></i>
                     Inicio
                 </a>
-                <a href="{{ route('camping.index')}}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                @if (auth()->user()?->rol === 'admin')
+                    <a href="{{ route('camping.index') }}"
+                        class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('camping') }}
                     ">
-                    <i class="bi bi-signpost-2 pe-2"></i>
-                    Campings
-                </a>
-                <a href="{{ route('parcela.index')}}"
+                        <i class="bi bi-signpost-2 pe-2"></i>
+                        Campings
+                    </a>
+                @endif
+                <a href="{{ route('parcela.index') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('parcela') }}
                      ">
                     <i class="bi bi-houses pe-2"></i>
                     Parcelas
                 </a>
-                <a href="{{ route('cliente.index')}}"
+                <a href="{{ route('cliente.index') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ setActivo('cliente')}}
+                        {{ setActivo('cliente') }}
                     ">
                     <i class="bi bi-person-badge pe-2"></i>
                     Clientes
                 </a>
-                <a href="{{ route('checkin.index')}}"
+                <a href="{{ route('checkin.index') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('checkin') }}
                     ">
                     <i class="bi bi-clipboard2-check pe-2"></i>
                     Checkins
                 </a>
-                <a href="{{ route('tarifa.index')}}"
+                <a href="{{ route('tarifa.index') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('tarifa') }}
                     ">
                     <i class="bi bi-wallet2 pe-2"></i>
                     Tarifas
                 </a>
-                <a href="{{ route('idioma.index')}}"
+                <a href="{{ route('idioma.index') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ setActivo('idioma')}}
+                        {{ setActivo('idioma') }}
                     ">
                     <i class="bi bi-translate pe-2"></i>
                     Idioma
                 </a>
-                <a href="{{ route('usuario.index')}}"
+                @if (auth()->user()?->rol === 'admin')
+                <a href="{{ route('usuario.index') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('usuario') }}
                     ">
                     <i class="bi bi-people pe-2"></i>
                     Usuarios
                 </a>
-                <a href="#"
+                @endif
+                <a href="{{ route('logout') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('') }}
                     ">

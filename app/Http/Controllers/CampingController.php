@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 class CampingController extends Controller
 {
-    /**
+
+   /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $camping = Camping::orderBy('id', 'asc')->paginate(10);
+
         return view('camping.index', compact('camping'));
     }
 

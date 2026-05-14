@@ -19,27 +19,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 m-0 p-0">
-                @include('partials.header')
-            </div>
-        </div>
-        <div class="row altura_menu_lateral">
-            <div class="d-none d-lg-block col-md-2 m-0 p-0">
-                @include('partials.menu_lateral')
-            </div>
-            <div class="col-12 col-lg-10 fondo px-0">
-                <div class="bg-primary-subtle px-4 py-3 d-flex justify-content-between align-items-center">
-                    <h3>@yield('titulo')</h3>
-                    <span class="fs-5">
-                        <small class="d-flex d-md-none">{{ fechaCorta(now()) }}</small>
-                        <small class="d-none d-md-flex">{{ fechaLarga(now()) }}</small>
-                    </span>
-                </div>
-
-                <div class="px-4">
+                <div class="w-100 vh-100 d-flex justify-content-center align-items-center px-4">
                     @yield('contenido')
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
