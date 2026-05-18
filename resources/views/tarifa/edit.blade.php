@@ -18,18 +18,19 @@
             <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4">
                 <div class="card w-100">
                     <div class="card-header">
-                        <h3 class="card-title mb-0 py-1">Crear tarifa</h3>
+                        <h3 class="card-title mb-0 py-1">Editar tarifa</h3>
                     </div>
                     <div class="card-body py-0">
-                        <form action="{{ route('tarifa.store') }}" method="POST">
+                        <form action="{{ route('tarifa.update', $tarifa->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
 
                             <div class="container-fluid py-2">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="nombre" name="nombre"
-                                            placeholder="Ex: Temporada alta" value="{{ old('nombre') }}">
+                                            placeholder="Ex: Temporada alta" value="{{ old('nombre', $tarifa->nombre) }}">
                                         @if ($errors->has('nombre'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('nombre') }}
@@ -44,7 +45,7 @@
 
                                             @foreach ($tipos as $tipo)
                                                 <option value="{{ $tipo }}"
-                                                    {{ old('tipo') == $tipo ? 'selected' : '' }}>
+                                                    {{ old('tipo', $tarifa->tipo) == $tipo ? 'selected' : '' }}>
                                                     {{ ucfirst(str_replace('_', ' ', $tipo)) }}
                                                 </option>
                                             @endforeach
@@ -60,7 +61,7 @@
                                     <div class="col-12 mb-3">
                                         <label for="precio_dia" class="form-label fw-bold">Precio Día</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="precio_dia" name="precio_dia"
-                                            placeholder="Ex: 8.00" value="{{ old('precio_dia') }}">
+                                            placeholder="Ex: 8.00" value="{{ old('precio_dia', $tarifa->precio_dia) }}">
                                         @if ($errors->has('precio_dia'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('precio_dia') }}
@@ -71,7 +72,7 @@
                                     <div class="col-12 mb-3">
                                         <label for="precio_kilovatio" class="form-label fw-bold">Precio Kilovatio</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="precio_kilovatio" name="precio_kilovatio"
-                                            placeholder="Ex: 0.75" value="{{ old('precio_kilovatio') }}">
+                                            placeholder="Ex: 0.75" value="{{ old('precio_kilovatio', $tarifa->precio_kilovatio) }}">
                                         @if ($errors->has('precio_kilovatio'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('precio_kilovatio') }}
@@ -82,7 +83,7 @@
                                     <div class="col-12 mb-3">
                                         <label for="kwh_gratuitos" class="form-label fw-bold">KWh gratuitos</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="kwh_gratuitos" name="kwh_gratuitos"
-                                            placeholder="Ex: 2.00" value="{{ old('kwh_gratuitos') }}">
+                                            placeholder="Ex: 2.00" value="{{ old('kwh_gratuitos', $tarifa->kwh_gratuitos) }}">
                                         @if ($errors->has('kwh_gratuitos'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('kwh_gratuitos') }}
@@ -93,7 +94,7 @@
                                     <div class="col-6 mb-3">
                                         <label for="limite_watts" class="form-label fw-bold">Limite de watts</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="limite_watts" name="limite_watts"
-                                            placeholder="Ex: 2450" value="{{ old('limite_watts') }}">
+                                            placeholder="Ex: 2450" value="{{ old('limite_watts', $tarifa->limite_watts) }}">
                                         @if ($errors->has('limite_watts'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('limite_watts') }}
@@ -108,7 +109,7 @@
 
                                             @foreach ($amperios as $amp )
                                                 <option value="{{ $amp }}"
-                                                    {{ old('limite_amperios') == $amp ? 'selected' : '' }}>
+                                                    {{ old('limite_amperios', $tarifa->limite_amperios) == $amp ? 'selected' : '' }}>
                                                     {{ $amp  . " A" }}
                                                 </option>
                                             @endforeach
@@ -123,7 +124,7 @@
                                     </div>
 
                                     <div class="col-12 pt-2">
-                                        <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Crear</button>
+                                        <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Actualizar</button>
                                     </div>
                                 </div>
                             </div>

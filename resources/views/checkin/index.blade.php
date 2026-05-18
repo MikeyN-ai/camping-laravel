@@ -41,8 +41,8 @@
                         @foreach ($checkin as $c)
                             <tr>
                                 <td class="align-middle">{{ $c->id }}</td>
-                                <td class="align-middle">{{ $c->fecha_entrada }}</td>
-                                <td class="align-middle">{{ $c->fecha_salida }}</td>
+                                <td class="align-middle">{{ fechaCorta($c->fecha_entrada) }}</td>
+                                <td class="align-middle">{{ fechaCorta($c->fecha_salida) }}</td>
                                 <td class="align-middle">{{ $c->parcela->nombre }}</td>
                                 <td class="align-middle">{{ $c->cliente->nombre }}</td>
                                 <td class="align-middle">{{ $c->tarifa->nombre }}</td>
@@ -66,8 +66,8 @@
                         <div class="card-header"><span class="fw-bold">{{ $c->cliente->nombre }}</span></div>
                         <div class="card-body">
                             <p><span class="fw-bold">ID : </span> {{ $c->id }}</p>
-                            <p><span class="fw-bold">Fecha Entrada : </span> {{ $c->fecha_entrada }}</p>
-                            <p><span class="fw-bold">Fecha Salida : </span> {{ $c->fecha_salida }}</p>
+                            <p><span class="fw-bold">Fecha Entrada : </span> {{ fechaCorta($c->fecha_entrada) }}</p>
+                            <p><span class="fw-bold">Fecha Salida : </span> {{ fechaCorta($c->fecha_salida) }}</p>
                             <p><span class="fw-bold">Parcela : </span> {{ $c->parcela->nombre }}</p>
                             <p><span class="fw-bold">Cliente : </span> {{ $c->cliente->nombre }}</p>
                             <p><span class="fw-bold">Tarifa : </span> {{ $c->tarifa->nombre }}</p>

@@ -12,17 +12,19 @@
             <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4">
                 <div class="card w-100">
                     <div class="card-header">
-                        <h3 class="card-title mb-0 py-1">Crear idioma</h3>
+                        <h3 class="card-title mb-0 py-1">Editar idioma</h3>
                     </div>
                     <div class="card-body py-0">
-                        <form action="{{ route('idioma.store') }}" method="POST">
+                        <form action="{{ route('idioma.update', $idioma->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
+                            
                             <div class="container-fluid pb-2 pt-3">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="idioma" class="form-label fw-bold">Idioma</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="idioma"
-                                            placeholder="Ex: Inglés" value="{{ old('idioma') }}">
+                                            placeholder="Ex: Inglés" value="{{ old('idioma', $idioma->idioma) }}">
                                         @if ($errors->has('idioma'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('idioma') }}
@@ -33,7 +35,7 @@
                                     <div class="col-12 mb-3">
                                         <label for="abreviatura" class="form-label fw-bold">Abreviatura</label>
                                         <input type="text" class="form-control border border-dark-subtle"
-                                            id="abreviatura" placeholder="Ex: EN" value="{{ old('abreviatura') }}">
+                                            id="abreviatura" placeholder="Ex: EN" value="{{ old('abreviatura', $idioma->abreviatura) }}">
                                         @if ($errors->has('abreviatura'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('abreviatura') }}
@@ -41,7 +43,7 @@
                                         @endif
                                     </div>
                                     <div class="col-12 pt-2">
-                                        <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Crear</button>
+                                        <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Actualizar</button>
                                     </div>
                                 </div>
                             </div>

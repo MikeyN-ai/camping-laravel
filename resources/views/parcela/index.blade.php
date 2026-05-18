@@ -51,13 +51,13 @@
                                     @endif
                                 </td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{route('tarifa.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
+                                    <a href="{{route('parcela.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{route('tarifa.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
+                                    <a href="{{route('parcela.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{route('tarifa.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
+                                    <a href="{{route('parcela.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>

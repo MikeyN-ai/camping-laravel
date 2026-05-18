@@ -13,6 +13,7 @@ class IdiomasController extends Controller
     public function index()
     {
         $idioma = Idiomas::orderBy('id', 'asc')->paginate(10);
+
         return view('idioma.index', compact('idioma'));
     }
 
@@ -43,15 +44,15 @@ class IdiomasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Idiomas $idiomas)
+    public function edit(Idiomas $idioma)
     {
-        //
+        return view('idioma.edit', compact('idioma'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Idiomas $idiomas)
+    public function update(Request $request, Idiomas $idioma)
     {
         //
     }

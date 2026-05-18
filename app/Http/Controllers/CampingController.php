@@ -47,7 +47,7 @@ class CampingController extends Controller
      */
     public function edit(Camping $camping)
     {
-        //
+        return view('camping.edit', compact('camping'));
     }
 
     /**

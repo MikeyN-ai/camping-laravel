@@ -12,11 +12,13 @@
             <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4">
                 <div class="card w-100">
                     <div class="card-header">
-                        <h3 class="card-title mb-0 py-1">Crear check-in</h3>
+                        <h3 class="card-title mb-0 py-1">Editar check-in</h3>
                     </div>
                     <div class="card-body py-0">
-                        <form action="{{ route('checkin.store') }}" method="POST">
+                        <form action="{{ route('checkin.update', $checkin->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
+
                             <div class="container-fluid pt-3 pb-2">
                                 <div class="row">
                                     <div class="col-12 mb-3">
@@ -28,7 +30,7 @@
                                             </option>
                                             @foreach ($cliente as $c)
                                                 <option value="{{ $c->id }}"
-                                                    {{ old('id_cliente') == $c->id ? 'selected' : '' }}>
+                                                    {{ old('id_cliente', $checkin->id_cliente) == $c->id ? 'selected' : '' }}>
                                                     {{ $c->nombre . ' ' . $c->apellidos }}
                                                 </option>
                                             @endforeach
@@ -49,7 +51,7 @@
                                             </option>
                                             @foreach ($parcela as $p)
                                                 <option value="{{ $p->id }}"
-                                                    {{ old('id_familia') == $p->id ? 'selected' : '' }}>
+                                                    {{ old('id_parcela', $checkin->id_parcela) == $p->id ? 'selected' : '' }}>
                                                     {{ $p->nombre }}
                                                 </option>
                                             @endforeach
@@ -70,7 +72,7 @@
                                             </option>
                                             @foreach ($tarifa as $t)
                                                 <option value="{{ $t->id }}"
-                                                    {{ old('id_tarifa') == $t->id ? 'selected' : '' }}>
+                                                    {{ old('id_tarifa', $checkin->id_tarifa) == $t->id ? 'selected' : '' }}>
                                                     {{ $t->nombre }}
                                                 </option>
                                             @endforeach
@@ -82,10 +84,10 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-12 col-md-6 mb-3">
+                                    <div class="col-6 mb-3">
                                         <label for="fecha_entrada" class="form-label fw-bold">Fecha entrada</label>
                                         <input type="date" class="form-control border border-dark-subtle"
-                                            id="fecha_entrada" value="{{ old('fecha_entrada') }}">
+                                            id="fecha_entrada" value="{{ old('fecha_entrada', $checkin->fecha_entrada) }}">
                                         @if ($errors->has('fecha_entrada'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('fecha_entrada') }}
@@ -93,10 +95,10 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-12 col-md-6 mb-3">
+                                    <div class="col-6 mb-3">
                                         <label for="fecha_salida" class="form-label fw-bold">Fecha salida</label>
                                         <input type="date" class="form-control border border-dark-subtle"
-                                            id="fecha_salida" value="{{ old('fecha_salida') }}">
+                                            id="fecha_salida" value="{{ old('fecha_salida', $checkin->fecha_salida) }}">
                                         @if ($errors->has('fecha_salida'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('fecha_salida') }}
@@ -105,7 +107,7 @@
                                     </div>
 
                                     <div class="col-12 pt-2">
-                                        <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Crear</button>
+                                        <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Actualizar</button>
                                     </div>
                                 </div>
                             </div>

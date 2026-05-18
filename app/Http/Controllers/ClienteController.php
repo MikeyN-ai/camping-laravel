@@ -12,7 +12,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $cliente = Cliente::orderBy('id', 'asc')->paginate(10);
+        $cliente = Cliente::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
         return view('cliente.index', compact('cliente'));
     }
 
@@ -45,7 +45,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('cliente.edit', compact('cliente'));
     }
 
     /**

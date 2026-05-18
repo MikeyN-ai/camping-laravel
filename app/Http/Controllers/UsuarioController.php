@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Camping;
 use App\Models\Usuario;
+use App\Models\Idiomas;
+use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
@@ -13,6 +15,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuario = Usuario::orderBy('id', 'asc')->paginate(10);
+
         return view('usuario.index', compact('usuario'));
     }
 
@@ -21,7 +24,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+        $camping = Camping::orderBy('id', 'asc')->get();
+        $idioma = Idiomas::orderBy('id', 'asc')->get();
+        return view('usuario.create', compact('camping', 'idioma'));
     }
 
     /**
@@ -35,7 +40,7 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Usuario $usuario)
     {
         //
     }
@@ -43,9 +48,11 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Usuario $usuario)
     {
-        //
+        $camping = Camping::orderBy('id', 'asc')->get();
+        $idioma = Idiomas::orderBy('id', 'asc')->get();
+        return view('usuario.edit', compact('usuario', 'camping', 'idioma'));
     }
 
     /**

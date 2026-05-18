@@ -31,6 +31,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Usuario</th>
+                            <th>Correo</th>
                             <th>Camping</th>
                             <th>Idioma</th>
                             <th>Rol</th>
@@ -42,6 +43,7 @@
                             <tr>
                                 <td class="align-middle">{{ $u->id }}</td>
                                 <td class="align-middle">{{ $u->usuario }}</td>
+                                <td class="align-middle">{{ $u->correo }}</td>
                                 <td class="align-middle">{{ $u->camping->nombre }}</td>
                                 <td class="align-middle">{{ $u->idioma->idioma }}</td>
                                 <td class="align-middle">{{ $u->rol }}</td>
@@ -66,6 +68,7 @@
                         <div class="card-body">
                             <p><span class="fw-bold">ID : </span> {{ $u->id }}</p>
                             <p><span class="fw-bold">Usuario : </span> {{ $u->usuario }}</p>
+                            <p><span class="fw-bold">Correo : </span> {{ $u->correo }}</p>
                             <p><span class="fw-bold">Camping : </span> {{ $u->camping->nombre }}</p>
                             <p><span class="fw-bold">Idioma : </span> {{ $u->idioma->idioma }}</p>
                             <p><span class="fw-bold">Rol : </span> {{ $u->rol }}</p>

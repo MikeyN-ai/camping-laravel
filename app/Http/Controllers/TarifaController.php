@@ -12,7 +12,7 @@ class TarifaController extends Controller
      */
     public function index()
     {
-        $tarifa = Tarifa::orderBy('id', 'asc')->paginate(10);
+        $tarifa = Tarifa::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
         return view('tarifa.index', compact('tarifa'));
     }
 
@@ -45,8 +45,7 @@ class TarifaController extends Controller
      */
     public function edit(Tarifa $tarifa)
     {
-        $tarifa = Tarifa::orderBy('id', 'asc')->paginate(10);
-        return view('tarifa.index', compact('tarifa'));
+        return view('tarifa.edit', compact('tarifa'));
     }
 
     /**

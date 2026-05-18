@@ -12,7 +12,7 @@ class ParcelaController extends Controller
      */
     public function index()
     {
-        $parcela = Parcela::orderBy('id', 'asc')->paginate(10);
+        $parcela = Parcela::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
         return view('parcela.index', compact('parcela'));
     }
 
@@ -45,7 +45,7 @@ class ParcelaController extends Controller
      */
     public function edit(Parcela $parcela)
     {
-        //
+        return view('parcela.edit', compact('parcela'));
     }
 
     /**

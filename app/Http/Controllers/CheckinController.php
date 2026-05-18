@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checkin;
+use App\Models\Cliente;
+use App\Models\Parcela;
+use App\Models\Tarifa;
 use Illuminate\Http\Request;
 
 class CheckinController extends Controller
@@ -12,7 +15,9 @@ class CheckinController extends Controller
      */
     public function index()
     {
-        $checkin = Checkin::orderBy('id', 'asc')->paginate(10);
+        $parcela = Parcela::where('id_camping', getCampingUsuario())->get();
+        $checkin = Checkin::whereIn('id_parcela', $parcela->pluck('id'))->orderBy('id', 'asc')->paginate(10);
+
         return view('checkin.index', compact('checkin'));
     }
 
@@ -21,7 +26,11 @@ class CheckinController extends Controller
      */
     public function create()
     {
-        return view('checkin.create');
+        $tarifa = Tarifa::orderBy('nombre', 'asc')->where('id_camping', getCampingUsuario())->get();
+        $cliente = Cliente::orderBy('nombre', 'asc')->where('id_camping', getCampingUsuario())->get();
+        $parcela = Parcela::orderBy('nombre', 'asc')->where('id_camping', getCampingUsuario())->get();
+
+        return view('checkin.create', compact('tarifa', 'cliente', 'parcela'));
     }
 
     /**
@@ -45,7 +54,11 @@ class CheckinController extends Controller
      */
     public function edit(Checkin $checkin)
     {
-        //
+        $tarifa = Tarifa::orderBy('nombre', 'asc')->where('id_camping', getCampingUsuario())->get();
+        $cliente = Cliente::orderBy('nombre', 'asc')->where('id_camping', getCampingUsuario())->get();
+        $parcela = Parcela::orderBy('nombre', 'asc')->where('id_camping', getCampingUsuario())->get();
+
+        return view('checkin.edit', compact('tarifa', 'cliente', 'parcela', 'checkin'));
     }
 
     /**
