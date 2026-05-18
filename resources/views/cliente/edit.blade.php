@@ -18,7 +18,7 @@
                         <form action="{{ route('cliente.update', $cliente->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            
+
                             <div class="container-fluid pb-2 pt-3">
                                 <div class="row">
                                     <div class="col-12 mb-3">

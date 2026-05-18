@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Parcela extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'shelly',
+        'id_camping',
+        'canal',
+        'shelly_on',
+    ];
 
     // Una parcela pertenece a un camping
     public function camping()

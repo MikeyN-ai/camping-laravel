@@ -4,11 +4,30 @@
 
 @section('contenido')
 
-    <div class="text-end p-3">
-        <a href="{{ route('camping.create') }}" class="btn btn-dark btn-lg border btn-3d">
-            <i class="bi bi-plus-circle pe-1"></i>
-            Crear
-        </a>
+    <div class="d-flex justify-content-between align-items-center">
+        @if (session('success'))
+            <div id="liveToast" class="toast align-items-center text-bg-success border-0">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ session('success') }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    new bootstrap.Toast(document.getElementById('liveToast')).show();
+                });
+            </script>
+        @endif
+
+        <div class="w-100 text-end p-3">
+            <a href="{{ route('camping.create') }}" class="btn btn-dark btn-lg border btn-3d">
+                <i class="bi bi-plus-circle pe-1"></i>
+                Crear
+            </a>
+        </div>
     </div>
 
     @if ($camping->isEmpty())

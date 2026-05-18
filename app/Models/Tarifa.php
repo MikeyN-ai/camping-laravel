@@ -9,6 +9,17 @@ class Tarifa extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'tipo',
+        'precio_dia',
+        'precio_kilovatio',
+        'kwh_gratuitos',
+        'limite_watts',
+        'limite_amperios',
+        'id_camping',
+    ];
+
     // Una tarifa pertenece a un camping
     public function camping()
     {

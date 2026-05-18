@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
-use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -13,6 +13,7 @@ class ClienteController extends Controller
     public function index()
     {
         $cliente = Cliente::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
+
         return view('cliente.index', compact('cliente'));
     }
 
@@ -27,9 +28,16 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        Cliente::create($data);
+
+        return redirect()->route('cliente.index')
+            ->with('success', 'Cliente creado correctamente');
     }
 
     /**
@@ -51,9 +59,12 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        //
+        $cliente->update($request->validated());
+
+        return redirect()->route('cliente.index')
+            ->with('success', 'Cliente actualizado correctamente');
     }
 
     /**

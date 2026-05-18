@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CampingRequest;
 use App\Models\Camping;
-use Illuminate\Http\Request;
 
 class CampingController extends Controller
 {
-
-   /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -29,9 +28,12 @@ class CampingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CampingRequest $request)
     {
-        //
+        Camping::create($request->validated());
+
+        return redirect()->route('camping.index')
+            ->with('success', 'Camping creado correctamente');
     }
 
     /**
@@ -53,9 +55,12 @@ class CampingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Camping $camping)
+    public function update(CampingRequest $request, Camping $camping)
     {
-        //
+        $camping->update($request->validated());
+
+        return redirect()->route('camping.index')
+            ->with('success', 'Camping actualizado correctamente');
     }
 
     /**

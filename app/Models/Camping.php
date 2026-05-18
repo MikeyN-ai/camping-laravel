@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Camping extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nombre',
+        'direccion',
+        'persona_contacto',
+        'telefono_contacto',
+        'correo_contacto',
+    ];
 
     // Un camping tiene muchas tarifas
     public function tarifas()
