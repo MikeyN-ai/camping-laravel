@@ -16,7 +16,7 @@
                 <div class="card-body text-center">
                     <i class="bi bi-house mb-3 text-info icono_sin_datos"></i>
                     <p class="white-text fs-5 my-2 fw-bold">No hay parcelas disponibles</p>
-                    <small class="">
+                    <small>
                         Actualmente no hay parcelas registradas
                     </small>
                 </div>
@@ -75,7 +75,7 @@
                             <p><span class="fw-bold">ID : </span> {{ $p->id }}</p>
                             <p><span class="fw-bold">Nombre : </span> {{ $p->nombre }}</p>
                             <p><span class="fw-bold">Dispositivo Shelly : </span> {{ $p->shelly }}</p>
-                            <p><span class="fw-bold">Canal : </span> {{ $p->canal }}
+                            <p><span class="fw-bold">Canal : </span> {{ $p->canal }}</p>
                             <p><span class="fw-bold">Shelly_on : </span>
                                 @if($p->shelly_on)
                                     <span class="badge text-bg-success">Encendido</span>

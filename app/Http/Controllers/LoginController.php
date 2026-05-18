@@ -19,7 +19,7 @@ class LoginController extends Controller
             // Autenticación exitosa
             return redirect()->intended(route('inicio'));
         } else {
-            $error = 'Usuario incorrecto';
+            $error = 'Credenciales incorrectas';
 
             return view('auth.login', compact('error'));
         }
