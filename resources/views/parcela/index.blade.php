@@ -23,7 +23,7 @@
             </div>
         </div>
     @else
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -70,7 +70,7 @@
             <div class="card-body d-block d-lg-none py-1">
                 @foreach ($parcela as $p)
                     <div class="card my-3">
-                        <div class="card-header"><span class="">{{ $p->nombre }}</span></div>
+                        <div class="card-header"><span class="fw-bold">{{ $p->nombre }}</span></div>
                         <div class="card-body">
                             <p><span class="fw-bold">ID : </span> {{ $p->id }}</p>
                             <p><span class="fw-bold">Nombre : </span> {{ $p->nombre }}</p>
@@ -84,7 +84,7 @@
                                 @endif
                             </p>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
                                 <a href="{{route('tarifa.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
                                     <i class="bi bi-eye"></i>
@@ -100,7 +100,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="card-footer">
+            <div class="card-footer py-0">
                 {{ $parcela->links('vendor.pagination.custom') }}
             </div>
         </div>

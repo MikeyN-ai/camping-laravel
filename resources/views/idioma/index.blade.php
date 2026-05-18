@@ -5,7 +5,7 @@
 @section('contenido')
 
     <div class="text-end p-3">
-        <a href="{{route('idioma.create')}}" class="btn btn-dark btn-lg border btn-3d">
+        <a href="{{ route('idioma.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
         </a>
@@ -18,13 +18,13 @@
                     <i class="bi bi-translate mb-3 text-info icono_sin_datos"></i>
                     <p class="white-text fs-5 my-2 fw-bold">No hay idiomas disponibles</p>
                     <small>
-                        Actualmente no hay idiomas registradas
+                        Actualmente no hay idiomas registrados
                     </small>
                 </div>
             </div>
         </div>
     @else
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -42,10 +42,10 @@
                                 <td class="align-middle">{{ $i->idioma }}</td>
                                 <td class="align-middle">{{ $i->abreviatura }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{route('idioma.edit', $i)}}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{route('idioma.destroy', $i)}}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <a href="{{ route('idioma.destroy', $i) }}" class="btn btn-danger fs-6 p-2 btn-3d">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>
@@ -56,40 +56,27 @@
             </div>
 
             <div class="card-body d-block d-lg-none py-1">
-                @foreach ($parcela as $p)
+                @foreach ($idioma as $i)
                     <div class="card my-3">
-                        <div class="card-header"><span class="">{{ $p->nombre }}</span></div>
+                        <div class="card-header"><span class="">{{ $i->idioma }}</span></div>
                         <div class="card-body">
-                            <p><span class="fw-bold">ID : </span> {{ $p->id }}</p>
-                            <p><span class="fw-bold">Nombre : </span> {{ $p->nombre }}</p>
-                            <p><span class="fw-bold">Dispositivo Shelly : </span> {{ $p->shelly }}</p>
-                            <p><span class="fw-bold">Canal : </span> {{ $p->canal }}
-                            <p><span class="fw-bold">Shelly_on : </span>
-                                @if($p->shelly_on)
-                                    <span class="badge text-bg-success">Encendido</span>
-                                @else
-                                    <span class="badge text-bg-secondary">Apagado</span>
-                                @endif
-                            </p>
+                            <p><span class="fw-bold">ID : </span> {{ $i->id }}</p>
+                            <p><span class="fw-bold">Idioma : </span> {{ $i->idioma }}</p>
+                            <p><span class="fw-bold">Abreviatura : </span> {{ $i->abreviatura }}</p>
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex gap-2">
-                                <a href="{{route('tarifa.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="{{route('tarifa.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="{{route('tarifa.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </div>
+                        <div class="card-footer d-flex gap-2 justify-content-end">
+                            <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="{{ route('idioma.destroy', $i) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <i class="bi bi-trash"></i>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             </div>
 
-            <div class="card-footer">
+            <div class="card-footer py-0">
                 {{ $idioma->links('vendor.pagination.custom') }}
             </div>
         </div>

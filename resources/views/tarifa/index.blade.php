@@ -24,7 +24,7 @@
             </div>
         </div>
     @else
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -66,31 +66,24 @@
             </div>
 
             <div class="card-body d-block d-lg-none py-1">
-                @foreach ($parcela as $p)
+                @foreach ($tarifa as $t)
                     <div class="card my-3">
-                        <div class="card-header"><span class="">{{ $p->nombre }}</span></div>
+                        <div class="card-header"><span class="fw-bold">{{ $t->nombre }}</span></div>
                         <div class="card-body">
-                            <p><span class="fw-bold">ID : </span> {{ $p->id }}</p>
-                            <p><span class="fw-bold">Nombre : </span> {{ $p->nombre }}</p>
-                            <p><span class="fw-bold">Dispositivo Shelly : </span> {{ $p->shelly }}</p>
-                            <p><span class="fw-bold">Canal : </span> {{ $p->canal }}
-                            <p><span class="fw-bold">Shelly_on : </span>
-                                @if($p->shelly_on)
-                                    <span class="badge text-bg-success">Encendido</span>
-                                @else
-                                    <span class="badge text-bg-secondary">Apagado</span>
-                                @endif
-                            </p>
+                            <p><span class="fw-bold">ID : </span> {{ $t->id }}</p>
+                            <p><span class="fw-bold">Nombre : </span> {{ $t->nombre }}</p>
+                            <p><span class="fw-bold">Tipo : </span> {{ $t->tipo }}</p>
+                            <p><span class="fw-bold">Precio Día : </span> {{ $t->precio_dia ?? 'N/A' }}</p>
+                            <p><span class="fw-bold">Precio Kilovatio : </span> {{ $t->precio_kilovatio ?? 'N/A' }}</p>
+                            <p><span class="fw-bold">KWh Gratuitos : </span> {{ $t->kwh_gratuitos ?? 'N/A' }}</p>
+                            <p><span class="fw-bold">Limite Watts : </span> {{ $t->limite_watts }}</p>
+                            <p><span class="fw-bold">Limite Amperios : </span> {{ $t->limite_amperios }}</p>
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex gap-2">
-                                <a href="{{route('tarifa.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="{{route('tarifa.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
+                        <div class="card-footer d-flex gap-2 justify-content-end">
+                                <a href="{{route('tarifa.edit', $t)}}" class="btn btn-warning btn-3d fs-6 p-2">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{route('tarifa.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <a href="{{route('tarifa.destroy', $t)}}" class="btn btn-danger btn-3d fs-6 p-2">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>
@@ -99,7 +92,7 @@
                 @endforeach
             </div>
 
-            <div class="card-footer">
+            <div class="card-footer py-0">
                 {{ $tarifa->links('vendor.pagination.custom') }}
             </div>
         </div>

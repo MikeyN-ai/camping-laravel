@@ -23,7 +23,7 @@
             </div>
         </div>
     @else
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -59,33 +59,25 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="card-body d-block d-lg-none py-1">
-                @foreach ($parcela as $p)
+                @foreach ($checkin as $c)
                     <div class="card my-3">
-                        <div class="card-header"><span class="">{{ $p->nombre }}</span></div>
+                        <div class="card-header"><span class="fw-bold">{{ $c->cliente->nombre }}</span></div>
                         <div class="card-body">
-                            <p><span class="fw-bold">ID : </span> {{ $p->id }}</p>
-                            <p><span class="fw-bold">Nombre : </span> {{ $p->nombre }}</p>
-                            <p><span class="fw-bold">Dispositivo Shelly : </span> {{ $p->shelly }}</p>
-                            <p><span class="fw-bold">Canal : </span> {{ $p->canal }}
-                            <p><span class="fw-bold">Shelly_on : </span>
-                                @if($p->shelly_on)
-                                    <span class="badge text-bg-success">Encendido</span>
-                                @else
-                                    <span class="badge text-bg-secondary">Apagado</span>
-                                @endif
-                            </p>
+                            <p><span class="fw-bold">ID : </span> {{ $c->id }}</p>
+                            <p><span class="fw-bold">Fecha Entrada : </span> {{ $c->fecha_entrada }}</p>
+                            <p><span class="fw-bold">Fecha Salida : </span> {{ $c->fecha_salida }}</p>
+                            <p><span class="fw-bold">Parcela : </span> {{ $c->parcela->nombre }}</p>
+                            <p><span class="fw-bold">Cliente : </span> {{ $c->cliente->nombre }}</p>
+                            <p><span class="fw-bold">Tarifa : </span> {{ $c->tarifa->nombre }}</p>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
-                                <a href="{{route('tarifa.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a href="{{route('tarifa.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <a href="{{route('checkin.edit', $c)}}" class="btn btn-warning btn-3d fs-6 p-2">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{route('tarifa.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <a href="{{route('checkin.destroy', $c)}}" class="btn btn-danger btn-3d fs-6 p-2">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>
@@ -94,7 +86,7 @@
                 @endforeach
             </div>
 
-            <div class="card-footer">
+            <div class="card-footer py-0">
                 {{ $checkin->links('vendor.pagination.custom') }}
             </div>
         </div>

@@ -5,7 +5,7 @@
 @section('contenido')
 
     <div class="text-end p-3">
-        <a href="{{route('camping.create')}}" class="btn btn-dark btn-lg border btn-3d">
+        <a href="{{ route('camping.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
         </a>
@@ -24,7 +24,7 @@
             </div>
         </div>
     @else
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -48,10 +48,10 @@
                                 <td class="align-middle">{{ $c->telefono_contacto }}</td>
                                 <td class="align-middle">{{ $c->correo_contacto }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{route('camping.edit', $c)}}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('camping.edit', $c) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{route('camping.destroy', $c)}}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <a href="{{ route('camping.destroy', $c) }}" class="btn btn-danger fs-6 p-2 btn-3d">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>
@@ -63,7 +63,7 @@
             <div class="card-body d-block d-lg-none py-1">
                 @foreach ($camping as $c)
                     <div class="card my-3">
-                        <div class="card-header"><span class="">{{ $c->nombre }}</span></div>
+                        <div class="card-header"><span class="fw-bold">{{ $c->nombre }}</span></div>
                         <div class="card-body">
                             <p><span class="fw-bold">ID : </span> {{ $c->id }}</p>
                             <p><span class="fw-bold">Nombre : </span> {{ $c->nombre }}</p>
@@ -73,21 +73,21 @@
                             <p><span class="fw-bold">Correo de Contacto : </span> {{ $c->correo_contacto }}</p>
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
-                                <a href="{{route('camping.edit', $c)}}" class="btn btn-warning btn-3d fs-6 p-2">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="{{route('camping.destroy', $c)}}" class="btn btn-danger btn-3d fs-6 p-2">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </div>
+                            <a href="{{ route('camping.edit', $c) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="{{ route('camping.destroy', $c) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <i class="bi bi-trash"></i>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             </div>
+        </div>
 
-            <div class="card-footer">
-                {{ $camping->links('vendor.pagination.custom') }}
-            </div>
+        <div class="card-footer py-0">
+            {{ $camping->links('vendor.pagination.custom') }}
+        </div>
         </div>
     @endif
 @endsection
