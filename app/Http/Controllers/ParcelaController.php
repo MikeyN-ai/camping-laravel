@@ -68,6 +68,8 @@ class ParcelaController extends Controller
 
         $data['id_camping'] = auth()->user()->id_camping;
 
+        $data['shelly_on'] = $request->has('shelly_on');
+
         $parcela->update($data);
 
         return redirect()

@@ -23,7 +23,7 @@ class ParcelaRequest extends FormRequest
                 Rule::unique('parcelas', 'shelly')->ignore($this->parcela),
             ],
             'canal'      => 'required|integer|min:0',
-            'shelly_on'  => 'required|boolean',
+            'shelly_on'  => 'sometimes',
         ];
     }
 
@@ -39,8 +39,8 @@ class ParcelaRequest extends FormRequest
             'canal.required'      => 'El canal es obligatorio',
             'canal.integer'       => 'El canal debe ser un número entero',
             'canal.min'           => 'El canal no puede ser un valor negativo',
-            'shelly_on.required'  => 'El estado del Shelly es obligatorio',
-            'shelly_on.boolean'   => 'El estado del Shelly debe ser verdadero o falso',
+            //'shelly_on.required'  => 'El estado del Shelly es obligatorio',
+            //'shelly_on.boolean'   => 'El estado del Shelly debe ser verdadero o falso',
         ];
     }
 }

@@ -22,8 +22,8 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="nombre" name="nombre"
-                                            placeholder="Ex: Parcela 1" value="{{ old('nombre') }}">
+                                        <input type="text" class="form-control border border-dark-subtle" id="nombre"
+                                            name="nombre" placeholder="Ex: Parcela 1" value="{{ old('nombre') }}">
                                         @if ($errors->has('nombre'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('nombre') }}
@@ -33,8 +33,8 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="shelly" class="form-label fw-bold">Dispositivo Shelly</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="shelly" name="shelly"
-                                            placeholder="Ex: shelly-00001" value="{{ old('shelly') }}">
+                                        <input type="text" class="form-control border border-dark-subtle" id="shelly"
+                                            name="shelly" placeholder="Ex: shelly-00001" value="{{ old('shelly') }}">
                                         @if ($errors->has('shelly'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('shelly') }}
@@ -44,8 +44,8 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="canal" class="form-label fw-bold">Canal</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="canal" name="canal"
-                                            placeholder="Ex: 0" value="{{ old('canal') }}">
+                                        <input type="text" class="form-control border border-dark-subtle" id="canal"
+                                            name="canal" placeholder="Ex: 0" value="{{ old('canal') }}">
                                         @if ($errors->has('canal'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('canal') }}
@@ -53,11 +53,9 @@
                                         @endif
                                     </div>
 
-                                    <input type="hidden" name="shelly_on" value="0">
-
                                     <div class="col-12 d-flex align-items-center gap-2 py-2">
-                                        <input type="checkbox" class="form-check-input border border-dark-subtle" id="shelly_on" name="shelly_on"
-                                            {{ old('shelly_on') ? 'checked' : '' }}>
+                                        <input type="checkbox" class="form-check-input" id="shelly_on" name="shelly_on"
+                                            value="1" {{ old('shelly_on', $parcela->shelly_on) ? 'checked' : '' }}>
 
                                         <label class="form-check-label fw-bold" for="shelly_on">
                                             <span id="estadoShelly"
