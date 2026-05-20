@@ -7,17 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Authenticate
+class IsAdmin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::check()) {
-            return redirect('login'); // redirige si el usuario no esta autenticado
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        if (Auth::user()->rol !== 'admin') {
+            return redirect('/');
         }
 
         return $next($request);

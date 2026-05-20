@@ -3,7 +3,7 @@
     <div class="list-group border-0 fs-5">
         <a href="{{ route('inicio') }}"
             class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
-            {{ setActivo('inicio') }}
+            {{ setActivo('inicio') || request()->routeIs('inicio') ? 'seleccionado' : '' }}
         ">
             <i class="bi bi-house pe-2"></i>
             Inicio
@@ -45,13 +45,15 @@
             <i class="bi bi-wallet2 pe-2"></i>
             Tarifas
         </a>
-        <a href="{{ route('idioma.index') }}"
-            class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+        @if (auth()->user()?->rol === 'admin')
+            <a href="{{ route('idioma.index') }}"
+                class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
             {{ setActivo('idioma') }}
         ">
-            <i class="bi bi-translate pe-2"></i>
-            Idioma
-        </a>
+                <i class="bi bi-translate pe-2"></i>
+                Idioma
+            </a>
+        @endif
         @if (auth()->user()?->rol === 'admin')
             <a href="{{ route('usuario.index') }}"
                 class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral

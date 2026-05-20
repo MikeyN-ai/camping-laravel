@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TarifaRequest;
 use App\Models\Tarifa;
-use Illuminate\Http\Request;
 
 class TarifaController extends Controller
 {
@@ -13,6 +13,7 @@ class TarifaController extends Controller
     public function index()
     {
         $tarifa = Tarifa::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
+
         return view('tarifa.index', compact('tarifa'));
     }
 
@@ -27,9 +28,16 @@ class TarifaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TarifaRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        Tarifa::create($data);
+
+        return redirect()->route('tarifa.index')
+            ->with('success', 'Tarifa creada correctamente');
     }
 
     /**
@@ -51,9 +59,16 @@ class TarifaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tarifa $tarifa)
+    public function update(TarifaRequest $request, Tarifa $tarifa)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        $tarifa->update($data);
+
+        return redirect()->route('tarifa.index')
+            ->with('success', 'Tarifa actualizada correctamente');
     }
 
     /**

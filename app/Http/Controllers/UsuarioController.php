@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsuarioRequest;
 use App\Models\Camping;
-use App\Models\Usuario;
 use App\Models\Idiomas;
-use Illuminate\Http\Request;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -26,15 +26,23 @@ class UsuarioController extends Controller
     {
         $camping = Camping::orderBy('id', 'asc')->get();
         $idioma = Idiomas::orderBy('id', 'asc')->get();
+
         return view('usuario.create', compact('camping', 'idioma'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        Usuario::create($data);
+
+        return redirect()->route('usuario.index')
+            ->with('success', 'Usuario creada correctamente');
     }
 
     /**
@@ -52,21 +60,35 @@ class UsuarioController extends Controller
     {
         $camping = Camping::orderBy('id', 'asc')->get();
         $idioma = Idiomas::orderBy('id', 'asc')->get();
+
         return view('usuario.edit', compact('usuario', 'camping', 'idioma'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UsuarioRequest $request, Usuario $usuario)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        // Si no cambia contraseña, no la tocamos
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        $usuario->update($data);
+
+        return redirect()
+            ->route('usuario.index')
+            ->with('success', 'Usuario actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Usuario $usuario)
     {
         //
     }

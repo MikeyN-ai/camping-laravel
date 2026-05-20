@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ParcelaRequest;
+use App\Models\Checkin;
 use App\Models\Parcela;
-use Illuminate\Http\Request;
 
 class ParcelaController extends Controller
 {
@@ -13,6 +14,7 @@ class ParcelaController extends Controller
     public function index()
     {
         $parcela = Parcela::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
+
         return view('parcela.index', compact('parcela'));
     }
 
@@ -27,9 +29,16 @@ class ParcelaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ParcelaRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        Parcela::create($data);
+
+        return redirect()->route('parcela.index')
+            ->with('success', 'Parcela creada correctamente');
     }
 
     /**
@@ -37,7 +46,9 @@ class ParcelaController extends Controller
      */
     public function show(Parcela $parcela)
     {
-        //
+        $checkin = Checkin::where('id_parcela', $parcela->id)->orderBy('id', 'asc')->paginate(10);
+
+        return view('parcela.show', compact('parcela', 'checkin'));
     }
 
     /**
@@ -51,9 +62,17 @@ class ParcelaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Parcela $parcela)
+    public function update(ParcelaRequest $request, Parcela $parcela)
     {
-        //
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        $parcela->update($data);
+
+        return redirect()
+            ->route('parcela.index')
+            ->with('success', 'Parcela actualizada correctamente');
     }
 
     /**

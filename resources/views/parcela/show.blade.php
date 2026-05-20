@@ -1,40 +1,24 @@
 @extends('plantilla')
 
-@section('titulo', 'Gestión de check-in')
+@section('titulo', 'Check-ins ' . $parcela->nombre)
 
 @section('contenido')
 
     <div class="text-end p-3">
-        <a href="{{ route('checkin.create') }}" class="btn btn-dark btn-lg border btn-3d">
-            <i class="bi bi-plus-circle pe-1"></i>
-            Crear
+        <a href="{{route('parcela.index')}}" class="btn btn-secondary btn-lg border btn-3d">
+            <i class="bi bi-arrow-90deg-left pe-1"></i>
+            Volver
         </a>
     </div>
-
-    @if (session('success'))
-        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-
-        <script>
-            setTimeout(() => {
-                const el = document.getElementById('liveToast');
-                if (el) {
-                    new bootstrap.Alert(el).close();
-                }
-            }, 5000);
-        </script>
-    @endif
 
     @if ($checkin->isEmpty())
         <div class="d-flex justify-content-center">
             <div class="card tarjeta_vacio bg-primary-subtle py-4 py-md-5 shadow">
                 <div class="card-body text-center">
                     <i class="bi bi-clipboard2-check mb-3 text-info icono_sin_datos"></i>
-                    <p class="white-text fs-5 my-2 fw-bold">No hay check-ins disponibles</p>
+                    <p class="white-text fs-5 my-2 fw-bold">No hay check-ins disponibles de {{ $parcela->nombre }}</p>
                     <small>
-                        Actualmente no hay check-ins registrados
+                        Actualmente no hay check-ins registrados de {{ $parcela->nombre }}
                     </small>
                 </div>
             </div>
@@ -48,10 +32,8 @@
                             <th>ID</th>
                             <th>Fecha Entrada</th>
                             <th>Fecha Salida</th>
-                            <th>Parcela</th>
                             <th>Cliente</th>
                             <th>Tarifa</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,17 +42,8 @@
                                 <td class="align-middle">{{ $c->id }}</td>
                                 <td class="align-middle">{{ fechaCorta($c->fecha_entrada) }}</td>
                                 <td class="align-middle">{{ fechaCorta($c->fecha_salida) }}</td>
-                                <td class="align-middle">{{ $c->parcela->nombre }}</td>
                                 <td class="align-middle">{{ $c->cliente->nombre }}</td>
                                 <td class="align-middle">{{ $c->tarifa->nombre }}</td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('checkin.edit', $c) }}" class="btn btn-warning fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a href="{{ route('checkin.destroy', $c) }}" class="btn btn-danger fs-6 p-2 btn-3d">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -85,19 +58,8 @@
                             <p><span class="fw-bold">ID : </span> {{ $c->id }}</p>
                             <p><span class="fw-bold">Fecha Entrada : </span> {{ fechaCorta($c->fecha_entrada) }}</p>
                             <p><span class="fw-bold">Fecha Salida : </span> {{ fechaCorta($c->fecha_salida) }}</p>
-                            <p><span class="fw-bold">Parcela : </span> {{ $c->parcela->nombre }}</p>
                             <p><span class="fw-bold">Cliente : </span> {{ $c->cliente->nombre }}</p>
                             <p><span class="fw-bold">Tarifa : </span> {{ $c->tarifa->nombre }}</p>
-                        </div>
-                        <div class="card-footer d-flex gap-2 justify-content-end">
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('checkin.edit', $c) }}" class="btn btn-warning btn-3d fs-6 p-2">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="{{ route('checkin.destroy', $c) }}" class="btn btn-danger btn-3d fs-6 p-2">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 @endforeach

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdiomaRequest;
 use App\Models\Idiomas;
-use Illuminate\Http\Request;
 
 class IdiomasController extends Controller
 {
@@ -28,9 +28,12 @@ class IdiomasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(IdiomaRequest $request)
     {
-        //
+        Idiomas::create($request->validated());
+
+        return redirect()->route('idioma.index')
+            ->with('success', 'Idioma creado correctamente');
     }
 
     /**
@@ -52,9 +55,12 @@ class IdiomasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Idiomas $idioma)
+    public function update(IdiomaRequest $request, Idiomas $idioma)
     {
-        //
+        $idioma->update($request->validated());
+
+        return redirect()->route('idioma.index')
+            ->with('success', 'Idioma actualizado correctamente');
     }
 
     /**

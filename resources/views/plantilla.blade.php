@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +33,7 @@
             </div>
             <div class="col-12 col-lg-10 fondo px-0">
                 <div class="bg-primary-subtle px-4 py-3 d-flex justify-content-between align-items-center">
-                    <h3>@yield('titulo')</h3>
+                    <h3 class="fw-semibold">@yield('titulo')</h3>
                     <span class="fs-5">
                         <small class="d-flex d-md-none">{{ fechaCorta(now()) }}</small>
                         <small class="d-none d-md-flex">{{ fechaLarga(now()) }}</small>

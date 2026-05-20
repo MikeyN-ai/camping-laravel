@@ -5,11 +5,27 @@
 @section('contenido')
 
     <div class="text-end p-3">
-        <a href="{{route('tarifa.create')}}" class="btn btn-dark btn-lg border btn-3d">
+        <a href="{{ route('tarifa.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
         </a>
     </div>
+
+    @if (session('success'))
+        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const el = document.getElementById('liveToast');
+                if (el) {
+                    new bootstrap.Alert(el).close();
+                }
+            }, 5000);
+        </script>
+    @endif
 
     @if ($tarifa->isEmpty())
         <div class="d-flex justify-content-center">
@@ -24,7 +40,7 @@
             </div>
         </div>
     @else
-        <div class="card mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -52,10 +68,10 @@
                                 <td class="align-middle">{{ $t->limite_watts }}</td>
                                 <td class="align-middle">{{ $t->limite_amperios }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{route('tarifa.edit', $t)}}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('tarifa.edit', $t) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{route('tarifa.destroy', $t)}}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <a href="{{ route('tarifa.destroy', $t) }}" class="btn btn-danger fs-6 p-2 btn-3d">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>
@@ -80,21 +96,21 @@
                             <p><span class="fw-bold">Limite Amperios : </span> {{ $t->limite_amperios }}</p>
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
-                                <a href="{{route('tarifa.edit', $t)}}" class="btn btn-warning btn-3d fs-6 p-2">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="{{route('tarifa.destroy', $t)}}" class="btn btn-danger btn-3d fs-6 p-2">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </div>
+                            <a href="{{ route('tarifa.edit', $t) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="{{ route('tarifa.destroy', $t) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <i class="bi bi-trash"></i>
+                            </a>
                         </div>
                     </div>
-                @endforeach
             </div>
+    @endforeach
+    </div>
 
-            <div class="card-footer py-0">
-                {{ $tarifa->links('vendor.pagination.custom') }}
-            </div>
-        </div>
+    <div class="card-footer py-0">
+        {{ $tarifa->links('vendor.pagination.custom') }}
+    </div>
+    </div>
     @endif
 @endsection

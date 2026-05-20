@@ -28,7 +28,7 @@ class UsuarioFactory extends Factory
         $login = $this->faker->name;
 
         return [
-            'email' => 'admin@gmail.com',
+            'correo' => 'admin@gmail.com',
             'usuario' => $login,
             'id_camping' => 1,
             'id_idioma' => 1,

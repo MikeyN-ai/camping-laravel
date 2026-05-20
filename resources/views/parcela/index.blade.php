@@ -4,11 +4,27 @@
 
 @section('contenido')
     <div class="text-end p-3">
-        <a href="{{route('parcela.create')}}" class="btn btn-dark btn-lg border btn-3d">
+        <a href="{{ route('parcela.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
         </a>
     </div>
+
+    @if (session('success'))
+        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const el = document.getElementById('liveToast');
+                if (el) {
+                    new bootstrap.Alert(el).close();
+                }
+            }, 5000);
+        </script>
+    @endif
 
     @if ($parcela->isEmpty())
         <div class="d-flex justify-content-center">
@@ -23,7 +39,7 @@
             </div>
         </div>
     @else
-        <div class="card mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>
@@ -44,20 +60,20 @@
                                 <td class="align-middle">{{ $p->shelly }}</td>
                                 <td class="align-middle">{{ $p->canal }}</td>
                                 <td class="align-middle">
-                                    @if($p->shelly_on)
+                                    @if ($p->shelly_on)
                                         <span class="badge text-bg-success">Encendido</span>
                                     @else
                                         <span class="badge text-bg-secondary">Apagado</span>
                                     @endif
                                 </td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{route('parcela.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
+                                    <a href="{{ route('parcela.show', $p) }}" class="btn btn-primary btn-3d fs-6 p-2">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{route('parcela.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
+                                    <a href="{{ route('parcela.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{route('parcela.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
+                                    <a href="{{ route('parcela.destroy', $p) }}" class="btn btn-danger btn-3d fs-6 p-2">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>
@@ -77,7 +93,7 @@
                             <p><span class="fw-bold">Dispositivo Shelly : </span> {{ $p->shelly }}</p>
                             <p><span class="fw-bold">Canal : </span> {{ $p->canal }}</p>
                             <p><span class="fw-bold">Shelly_on : </span>
-                                @if($p->shelly_on)
+                                @if ($p->shelly_on)
                                     <span class="badge text-bg-success">Encendido</span>
                                 @else
                                     <span class="badge text-bg-secondary">Apagado</span>
@@ -86,13 +102,13 @@
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
-                                <a href="{{route('tarifa.show', $p)}}" class="btn btn-primary btn-3d fs-6 p-2">
+                                <a href="{{ route('tarifa.show', $p) }}" class="btn btn-primary btn-3d fs-6 p-2">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{route('tarifa.edit', $p)}}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <a href="{{ route('tarifa.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{route('tarifa.destroy', $p)}}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <a href="{{ route('tarifa.destroy', $p) }}" class="btn btn-danger btn-3d fs-6 p-2">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>

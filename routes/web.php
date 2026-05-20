@@ -10,10 +10,16 @@ use App\Http\Controllers\TarifaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LoginController;
 
+// --------------------------
+// LOGIN
+// --------------------------
 Route::get('login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+// --------------------------
+// RUTAS PROTEGIDAS
+// --------------------------
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('index');
@@ -26,4 +32,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('parcela', ParcelaController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('tarifa', TarifaController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('usuario', UsuarioController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+});
+
+// --------------------------
+// ADMIN
+// --------------------------
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::resource('camping', CampingController::class);
+    Route::resource('idioma', IdiomasController::class);
+    Route::resource('usuario', UsuarioController::class);
+
 });

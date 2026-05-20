@@ -1,34 +1,31 @@
 @extends('plantilla')
 
-@section('titulo', 'Gestión de campings')
+@section('titulo', 'Gestión de camping')
 
 @section('contenido')
 
-    <div class="d-flex justify-content-between align-items-center">
-        @if (session('success'))
-            <div id="liveToast" class="toast align-items-center text-bg-success border-0">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {{ session('success') }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    new bootstrap.Toast(document.getElementById('liveToast')).show();
-                });
-            </script>
-        @endif
-
-        <div class="w-100 text-end p-3">
-            <a href="{{ route('camping.create') }}" class="btn btn-dark btn-lg border btn-3d">
-                <i class="bi bi-plus-circle pe-1"></i>
-                Crear
-            </a>
-        </div>
+    <div class="text-end p-3">
+        <a href="{{ route('camping.create') }}" class="btn btn-dark btn-lg border btn-3d">
+            <i class="bi bi-plus-circle pe-1"></i>
+            Crear
+        </a>
     </div>
+
+    @if (session('success'))
+        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const el = document.getElementById('liveToast');
+                if (el) {
+                    new bootstrap.Alert(el).close();
+                }
+            }, 5000);
+        </script>
+    @endif
 
     @if ($camping->isEmpty())
         <div class="d-flex justify-content-center">
@@ -43,7 +40,7 @@
             </div>
         </div>
     @else
-        <div class="card mb-4">
+        <div class="card mb-4 shadow shadow">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>

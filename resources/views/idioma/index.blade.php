@@ -11,6 +11,22 @@
         </a>
     </div>
 
+    @if (session('success'))
+        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const el = document.getElementById('liveToast');
+                if (el) {
+                    new bootstrap.Alert(el).close();
+                }
+            }, 5000);
+        </script>
+    @endif
+
     @if ($idioma->isEmpty())
         <div class="d-flex justify-content-center">
             <div class="card tarjeta_vacio bg-primary-subtle py-4 py-md-5 shadow">
@@ -24,7 +40,7 @@
             </div>
         </div>
     @else
-        <div class="card mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>

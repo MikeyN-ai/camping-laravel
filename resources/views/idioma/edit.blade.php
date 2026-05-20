@@ -18,12 +18,12 @@
                         <form action="{{ route('idioma.update', $idioma->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            
+
                             <div class="container-fluid pb-2 pt-3">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="idioma" class="form-label fw-bold">Idioma</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="idioma"
+                                        <input type="text" class="form-control border border-dark-subtle" id="idioma" name="idioma"
                                             placeholder="Ex: Inglés" value="{{ old('idioma', $idioma->idioma) }}">
                                         @if ($errors->has('idioma'))
                                             <p class="text-danger py-2">
@@ -35,7 +35,7 @@
                                     <div class="col-12 mb-3">
                                         <label for="abreviatura" class="form-label fw-bold">Abreviatura</label>
                                         <input type="text" class="form-control border border-dark-subtle"
-                                            id="abreviatura" placeholder="Ex: EN" value="{{ old('abreviatura', $idioma->abreviatura) }}">
+                                            id="abreviatura" name="abreviatura" placeholder="Ex: EN" value="{{ old('abreviatura', $idioma->abreviatura) }}">
                                         @if ($errors->has('abreviatura'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('abreviatura') }}

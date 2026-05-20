@@ -112,13 +112,30 @@
                                     <div class="col-12 mb-3">
                                         <label for="password" class="form-label fw-bold">Contraseña</label>
                                         <input type="password" class="form-control border border-dark-subtle" id="password"
-                                            name="password" placeholder="Ingrese su contraseña" value="{{ old('password') }}">
+                                            name="password" placeholder="Ingrese su contraseña"
+                                            value="{{ old('password') }}">
                                         @if ($errors->has('password'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('password') }}
                                             </p>
                                         @endif
-                                    </div> <!-- placeholder="Ex: gF2aD422s.1?" -->
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label for="password_confirmation" class="form-label fw-bold">
+                                            Confirmar contraseña
+                                        </label>
+
+                                        <input type="password" class="form-control border border-dark-subtle"
+                                            id="password_confirmation" name="password_confirmation"
+                                            placeholder="Repite la contraseña">
+
+                                        @if ($errors->has('password_confirmation'))
+                                            <p class="text-danger py-2">
+                                                {{ $errors->first('password_confirmation') }}
+                                            </p>
+                                        @endif
+                                    </div>
 
                                     <div class="col-12 pt-2">
                                         <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Crear</button>

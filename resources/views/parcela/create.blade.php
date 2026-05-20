@@ -53,6 +53,8 @@
                                         @endif
                                     </div>
 
+                                    <input type="hidden" name="shelly_on" value="0">
+
                                     <div class="col-12 d-flex align-items-center gap-2 py-2">
                                         <input type="checkbox" class="form-check-input border border-dark-subtle" id="shelly_on" name="shelly_on"
                                             {{ old('shelly_on') ? 'checked' : '' }}>

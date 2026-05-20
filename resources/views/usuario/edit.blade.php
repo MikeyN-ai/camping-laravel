@@ -20,7 +20,7 @@
                         <h3 class="card-title mb-0 py-1">Editar usuario</h3>
                     </div>
                     <div class="card-body py-0">
-                        <form action="{{ route('usuario.store', $usuario->id) }}" method="POST">
+                        <form action="{{ route('usuario.update', $usuario->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -29,7 +29,8 @@
                                     <div class="col-12 mb-3">
                                         <label for="usuario" class="form-label fw-bold">Usuario</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="usuario"
-                                            name="usuario" placeholder="Ex: editor" value="{{ old('usuario', $usuario->usuario) }}">
+                                            name="usuario" placeholder="Ex: editor"
+                                            value="{{ old('usuario', $usuario->usuario) }}">
                                         @if ($errors->has('usuario'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('usuario') }}
@@ -40,7 +41,8 @@
                                     <div class="col-12 mb-3">
                                         <label for="correo" class="form-label fw-bold">Correo</label>
                                         <input type="email" class="form-control border border-dark-subtle" id="correo"
-                                            name="correo" placeholder="Ex: example@gmail.com" value="{{ old('correo', $usuario->correo) }}">
+                                            name="correo" placeholder="Ex: example@gmail.com"
+                                            value="{{ old('correo', $usuario->correo) }}">
                                         @if ($errors->has('correo'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('correo') }}
@@ -93,7 +95,10 @@
                                     <div class="col-12 mb-3">
                                         <label for="rol" class="form-label fw-bold">Rol</label>
                                         <select name="rol" class="form-select border border-dark-subtle">
-                                            <option disabled selected>Selecciona un rol</option>
+                                            <option value="" disabled
+                                                {{ old('rol', $usuario->rol) ? '' : 'selected' }}>
+                                                Selecciona un rol
+                                            </option>
 
                                             @foreach ($rol as $r)
                                                 <option value="{{ $r }}"
@@ -113,13 +118,29 @@
                                     <div class="col-12 mb-3">
                                         <label for="password" class="form-label fw-bold">Cambiar contraseña</label>
                                         <input type="password" class="form-control border border-dark-subtle" id="password"
-                                            name="password" placeholder="Ingrese su contraseña" value="{{ old('password') }}">
+                                            name="password" placeholder="Dejar vacío si no quieres cambiarla">
                                         @if ($errors->has('password'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('password') }}
                                             </p>
                                         @endif
-                                    </div> <!-- placeholder="Ex: gF2aD422s.1?" -->
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label for="password_confirmation" class="form-label fw-bold">
+                                            Confirmar contraseña
+                                        </label>
+
+                                        <input type="password" class="form-control border border-dark-subtle"
+                                            id="password_confirmation" name="password_confirmation"
+                                            placeholder="Repite la contraseña">
+
+                                        @if ($errors->has('password_confirmation'))
+                                            <p class="text-danger py-2">
+                                                {{ $errors->first('password_confirmation') }}
+                                            </p>
+                                        @endif
+                                    </div>
 
                                     <div class="col-12 pt-2">
                                         <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Actualizar</button>

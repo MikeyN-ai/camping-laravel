@@ -61,7 +61,11 @@ class ClienteController extends Controller
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $cliente->update($request->validated());
+        $data = $request->validated();
+
+        $data['id_camping'] = auth()->user()->id_camping;
+
+        $cliente->update($data);
 
         return redirect()->route('cliente.index')
             ->with('success', 'Cliente actualizado correctamente');

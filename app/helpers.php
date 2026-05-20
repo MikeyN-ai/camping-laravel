@@ -1,7 +1,7 @@
 <?php
 
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Funcion que permite comprobar si la routa actual concide con la que hemos enviado
@@ -43,4 +43,8 @@ function fechaCorta($fecha, $idioma = 'es')
  */
 function getCampingUsuario () {
     return auth()->user()?->camping?->id;
+}
+function isAdmin()
+{
+    return Auth::check() && Auth::user()->role === 'admin';
 }

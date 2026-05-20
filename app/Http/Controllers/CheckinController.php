@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckinRequest;
 use App\Models\Checkin;
 use App\Models\Cliente;
 use App\Models\Parcela;
@@ -36,9 +37,12 @@ class CheckinController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CheckinRequest $request)
     {
-        //
+        Checkin::create($request->validated());
+
+        return redirect()->route('checkin.index')
+            ->with('success', 'Checkin creado correctamente');
     }
 
     /**
@@ -64,9 +68,12 @@ class CheckinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Checkin $checkin)
+    public function update(CheckinRequest $request, Checkin $checkin)
     {
-        //
+        $checkin->update($request->validated());
+
+        return redirect()->route('checkin.index')
+            ->with('success', 'Checkin actualizado correctamente');
     }
 
     /**

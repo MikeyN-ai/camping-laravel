@@ -85,7 +85,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <label for="fecha_entrada" class="form-label fw-bold">Fecha entrada</label>
                                         <input type="date" class="form-control border border-dark-subtle"
-                                            id="fecha_entrada" value="{{ old('fecha_entrada') }}">
+                                           id="fecha_entrada" name="fecha_entrada"  value="{{ old('fecha_entrada') }}">
                                         @if ($errors->has('fecha_entrada'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('fecha_entrada') }}
@@ -96,7 +96,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <label for="fecha_salida" class="form-label fw-bold">Fecha salida</label>
                                         <input type="date" class="form-control border border-dark-subtle"
-                                            id="fecha_salida" value="{{ old('fecha_salida') }}">
+                                            id="fecha_salida" name="fecha_salida" value="{{ old('fecha_salida') }}">
                                         @if ($errors->has('fecha_salida'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('fecha_salida') }}

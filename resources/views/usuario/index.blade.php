@@ -4,12 +4,29 @@
 
 @section('contenido')
 
+
     <div class="text-end p-3">
         <a href="{{ route('usuario.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
             Crear
         </a>
     </div>
+
+    @if (session('success'))
+        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const el = document.getElementById('liveToast');
+                if (el) {
+                    new bootstrap.Alert(el).close();
+                }
+            }, 5000);
+        </script>
+    @endif
 
     @if ($usuario->isEmpty())
         <div class="d-flex justify-content-center">
@@ -24,7 +41,7 @@
             </div>
         </div>
     @else
-        <div class="card mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body d-none d-lg-block">
                 <table class="table table-striped table-hover border" id="taula">
                     <thead>

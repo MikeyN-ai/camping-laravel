@@ -14,12 +14,12 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credenciales = $request->only('email', 'password');
+        $credenciales = $request->only('correo', 'password');
         if (Auth::attempt($credenciales)) {
             // Autenticación exitosa
             return redirect()->intended(route('inicio'));
         } else {
-            $error = 'Credenciales incorrectas';
+            $error = 'Credenciales incorrectasaa';
 
             return view('auth.login', compact('error'));
         }

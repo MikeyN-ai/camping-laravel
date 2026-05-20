@@ -61,6 +61,10 @@
     width: 50%;
 }
 
+.dropdown-item:hover {
+    background: #f8f9fa;
+}
+
 /* Si l'ample de la pantalla es menor o igual a 767px
 @media only screen and (max-width: 767px) {
 

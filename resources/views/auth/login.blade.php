@@ -13,8 +13,8 @@
             <form action="{{ route('login') }}" method="POST" class="px-3">
                 @csrf
                 <div class="form-group">
-                    <label for="email" class="fw-bold py-2">Email:</label>
-                    <input type="email" class="form-control border border-dark-subtle" name="email" id="email" />
+                    <label for="correo" class="fw-bold py-2">Email:</label>
+                    <input type="correo" class="form-control border border-dark-subtle" name="correo" id="correo" />
                 </div>
                 <div class="form-group">
                     <label for="password" class="fw-bold py-2">Password:</label>

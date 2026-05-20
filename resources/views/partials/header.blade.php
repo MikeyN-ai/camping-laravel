@@ -3,26 +3,42 @@
         <a href="{{ route('inicio') }}" class="px-2">
             <img src="{{ asset('camping2.webp') }}" alt="Logo camping" class="logo_app">
         </a>
-        <a class="navbar-brand ps-3" href="{{ route('inicio') }}">{{ auth()->user()?->camping?->nombre ?? 'Camping' }}</a>
+        <a class="navbar-brand ps-3" href="{{ route('inicio') }}">
+            {{ auth()->user()?->camping?->nombre ?? 'Camping' }}
+        </a>
         <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        @if (auth()->check())
-            <div class="d-none d-lg-flex justify-content-end align-items-center w-100 pe-0 pe-md-4">
-                <span class="pe-3 fs-5 fst-normal border-end border-secondary">{{ auth()->user()->usuario }}</span>
-                <a href="{{ route('logout') }}" class="text-decoration-none fs-3 ps-3">
-                    <i class="bi bi-box-arrow-right text-dark"></i>
-                </a>
+
+        @if (auth()->user()->usuario)
+            {{-- Solo visible en escritorio --}}
+            <div class="d-none d-lg-flex justify-content-end align-items-center w-100 pe-4">
+                <div class="dropdown">
+                    <button class="btn btn-link text-dark fs-5 text-decoration-none" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle pe-1"></i>
+                        {{ auth()->user()->usuario }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item text-danger" href="{{ route('logout') }}">
+                                <i class="bi bi-box-arrow-right pe-1"></i>
+                                Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         @endif
+
         <div class="collapse navbar-collapse bg-dark m-0 p-0 position-absolute w-100 start-0 top-100 z-3"
             id="navbarTogglerDemo02">
             <div class="list-group border-0 fs-5 d-lg-none">
                 <a href="{{ route('inicio') }}"
                     class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
-                        {{ setActivo('inicio') }}
+                        {{ setActivo('inicio') || request()->routeIs('inicio') ? 'seleccionado' : '' }}
                     ">
                     <i class="bi bi-house pe-2"></i>
                     Inicio
@@ -64,26 +80,27 @@
                     <i class="bi bi-wallet2 pe-2"></i>
                     Tarifas
                 </a>
-                <a href="{{ route('idioma.index') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+
+                @if (auth()->user()?->rol === 'admin')
+                    <a href="{{ route('idioma.index') }}"
+                        class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('idioma') }}
                     ">
-                    <i class="bi bi-translate pe-2"></i>
-                    Idioma
-                </a>
+                        <i class="bi bi-translate pe-2"></i>
+                        Idioma
+                    </a>
+                @endif
                 @if (auth()->user()?->rol === 'admin')
-                <a href="{{ route('usuario.index') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                    <a href="{{ route('usuario.index') }}"
+                        class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('usuario') }}
                     ">
-                    <i class="bi bi-people pe-2"></i>
-                    Usuarios
-                </a>
+                        <i class="bi bi-people pe-2"></i>
+                        Usuarios
+                    </a>
                 @endif
                 <a href="{{ route('logout') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ setActivo('') }}
-                    ">
+                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral ">
                     <i class="bi bi-box-arrow-right pe-2"></i>
                     Cerrar sesión
                 </a>
