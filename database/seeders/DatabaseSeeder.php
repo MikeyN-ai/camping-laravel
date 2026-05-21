@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Usuario::factory()->create([
-            'email' => 'admin@gmail.com',
+            'correo' => 'admin@gmail.com',
             'usuario' => 'admin',
             'id_camping' => 1,
             'id_idioma' => 1,
