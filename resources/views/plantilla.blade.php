@@ -6,6 +6,8 @@
     <title>
         @yield('titulo')
     </title>
+    <meta name="description" content="Backoffice hecho en laravel para gestionar campings">
+    <meta name="keywords" content="cliente, camping, parcela, idioma, usuario, ">
     <link rel="icon" type="image/png" href="{{ asset('camping2.webp') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">

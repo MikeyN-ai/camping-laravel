@@ -55,7 +55,7 @@
 
                                     <div class="col-12 d-flex align-items-center gap-2 py-2">
                                         <input type="checkbox" class="form-check-input" id="shelly_on" name="shelly_on"
-                                            value="1" {{ old('shelly_on', $parcela->shelly_on) ? 'checked' : '' }}>
+                                            value="1" {{ old('shelly_on') ? 'checked' : '' }}>
 
                                         <label class="form-check-label fw-bold" for="shelly_on">
                                             <span id="estadoShelly"
