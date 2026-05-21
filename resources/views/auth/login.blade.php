@@ -20,6 +20,10 @@
                     <label for="password" class="fw-bold py-2">Password:</label>
                     <input type="password" class="form-control border border-dark-subtle" name="password" id="password" />
                 </div>
+                <div class="form-group">
+                    <label for="id_camping" class="fw-bold py-2">Camping:</label>
+                    <input type="text" class="form-control border border-dark-subtle" name="id_camping" id="id_camping" />
+                </div>
                 @if (!empty($error))
                     <div class="text-danger py-2">
                         {{ $error }}

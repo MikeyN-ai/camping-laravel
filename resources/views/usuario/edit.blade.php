@@ -60,7 +60,7 @@
                                             @foreach ($camping as $c)
                                                 <option value="{{ $c->id }}"
                                                     {{ old('id_camping', $usuario->id_camping) == $c->id ? 'selected' : '' }}>
-                                                    {{ $c->nombre }}
+                                                    {{ $c->id . " - " . $c->nombre }}
                                                 </option>
                                             @endforeach
                                         </select>

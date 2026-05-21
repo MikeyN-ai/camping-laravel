@@ -71,8 +71,6 @@ class UsuarioController extends Controller
     {
         $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
-
         // Si no cambia contraseña, no la tocamos
         if (empty($data['password'])) {
             unset($data['password']);

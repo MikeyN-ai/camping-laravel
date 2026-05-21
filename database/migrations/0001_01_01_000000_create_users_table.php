@@ -20,6 +20,8 @@ return new class extends Migration
             $table->enum('rol', ['admin', 'usuario'])->default('usuario');
             $table->string('password', 255);
             $table->timestamps();
+            $table->unique(['correo', 'id_camping']);
+            $table->unique(['usuario', 'id_camping']);
         });
 
         /*Schema::create('password_reset_tokens', function (Blueprint $table) {

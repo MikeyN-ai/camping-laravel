@@ -17,21 +17,41 @@ class UsuarioRequest extends FormRequest
         $usuario = $this->route('usuario'); // sirve para create y edit
 
         return [
+            /*'correo' => [
+                'required',
+                'email',
+                'max:100',
+                //Rule::unique('usuarios', 'correo')
+                    //->ignore($usuario?->id),
+            ],*/
+
             'correo' => [
                 'required',
                 'email',
                 'max:100',
-                Rule::unique('usuarios', 'correo')
-                    ->ignore($usuario?->id),
+                Rule::unique('usuarios')
+                    ->where(function ($query) {
+                        return $query->where('id_camping', $this->id_camping);
+                    }),
             ],
 
             'usuario' => [
                 'required',
                 'min:3',
                 'max:20',
-                Rule::unique('usuarios', 'usuario')
-                    ->ignore($usuario?->id),
+                Rule::unique('usuarios')
+                    ->where(function ($query) {
+                        return $query->where('id_camping', $this->id_camping);
+                    }),
             ],
+
+            /*'usuario' => [
+                'required',
+                'min:3',
+                'max:20',
+                // Rule::unique('usuarios', 'usuario')
+                // ->ignore($usuario?->id),
+            ],*/
 
             'id_idioma' => 'required|integer|exists:idiomas,id',
 
@@ -45,6 +65,8 @@ class UsuarioRequest extends FormRequest
                 'max:100',
                 'confirmed',
             ],
+
+            'id_camping' => 'required|integer|exists:campings,id',
         ];
     }
 
@@ -54,12 +76,12 @@ class UsuarioRequest extends FormRequest
             'correo.required' => 'El correo es obligatorio',
             'correo.email' => 'El correo no tiene formato válido',
             'correo.max' => 'Máximo 100 caracteres',
-            'correo.unique' => 'Ese correo ya está en uso',
+            'correo.unique' => 'Este correo ya está registrado en este camping',
 
             'usuario.required' => 'El usuario es obligatorio',
             'usuario.min' => 'Mínimo 3 caracteres',
             'usuario.max' => 'Máximo 20 caracteres',
-            'usuario.unique' => 'Ese usuario ya existe',
+            'usuario.unique' => 'Este usuario ya existe en este camping',
 
             'id_idioma.required' => 'El idioma es obligatorio',
             'id_idioma.exists' => 'El idioma no existe',

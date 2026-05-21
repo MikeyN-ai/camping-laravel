@@ -14,12 +14,16 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credenciales = $request->only('correo', 'password');
+        $credenciales = [
+            'correo' => $request->correo,
+            'password' => $request->password,
+            'id_camping' => $request->id_camping,
+        ];
         if (Auth::attempt($credenciales)) {
             // Autenticación exitosa
             return redirect()->intended(route('inicio'));
         } else {
-            $error = 'Credenciales incorrectasaa';
+            $error = 'Credenciales incorrectas';
 
             return view('auth.login', compact('error'));
         }
@@ -28,6 +32,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+
         return redirect()->intended(route('login'));
     }
 }
