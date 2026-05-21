@@ -61,9 +61,11 @@
                                     <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{ route('idioma.destroy', $i) }}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <button type="button" class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                        data-bs-target="#modalBorrar" data-id="{{ $i->id }}"
+                                        data-nombre="{{ $i->idioma }}">
                                         <i class="bi bi-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -84,9 +86,12 @@
                             <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <a href="{{ route('idioma.destroy', $i) }}" class="btn btn-danger btn-3d fs-6 p-2">
+
+                            <button type="button" class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                data-bs-target="#modalBorrar" data-id="{{ $i->id }}"
+                                data-nombre="{{ $i->idioma }}">
                                 <i class="bi bi-trash"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -97,4 +102,46 @@
             </div>
         </div>
     @endif
+
+    {{-- Modal de confirmación --}}
+    {{-- Modal de confirmación --}}
+    <div class="modal fade" id="modalBorrar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>¿Seguro que quieres eliminar <span id="modalNombre" class="fw-bold"></span>?</p>
+                    <div class="alert alert-danger py-2 mb-0" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill pe-1"></i>
+                        Esta acción no se puede deshacer!
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="formBorrar" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('modalBorrar').addEventListener('show.bs.modal', function(e) {
+            const btn = e.relatedTarget;
+            document.getElementById('modalNombre').textContent = btn.getAttribute('data-nombre');
+            document.getElementById('formBorrar').action = '/idioma/' + btn.getAttribute('data-id');
+        });
+    </script>
 @endsection

@@ -66,8 +66,10 @@ class IdiomasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Idiomas $idiomas)
+    public function destroy(Idiomas $idioma)
     {
-        //
+        $idioma->delete();
+        return redirect()->route('idioma.index')
+            ->with('success', 'Idioma borrado correctamente');
     }
 }
