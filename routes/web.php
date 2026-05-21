@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CampingController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\IdiomasController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ParcelaController;
 use App\Http\Controllers\TarifaController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\LoginController;
+use App\Models\Parcela;
+use Illuminate\Support\Facades\Route;
 
 // --------------------------
 // LOGIN
@@ -22,7 +23,9 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 // --------------------------
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        return view('index');
+        $parcela = Parcela::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->get();
+
+        return view('index', compact('parcela'));
     })->name('inicio');
 
     Route::resource('camping', CampingController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
@@ -32,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('parcela', ParcelaController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('tarifa', TarifaController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('usuario', UsuarioController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+
+    Route::post('/parcela/{parcela}/toggle', [ParcelaController::class, 'toggle'])
+        ->name('parcela.toggle');
 });
 
 // --------------------------

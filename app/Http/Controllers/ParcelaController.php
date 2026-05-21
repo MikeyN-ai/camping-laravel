@@ -35,6 +35,8 @@ class ParcelaController extends Controller
 
         $data['id_camping'] = auth()->user()->id_camping;
 
+        $data['shelly_on'] = $request->has('shelly_on');
+
         Parcela::create($data);
 
         return redirect()->route('parcela.index')
@@ -83,5 +85,13 @@ class ParcelaController extends Controller
     public function destroy(Parcela $parcela)
     {
         //
+    }
+
+    public function toggle(Parcela $parcela)
+    {
+        $parcela->shelly_on = ! $parcela->shelly_on;
+        $parcela->save();
+
+        return back()->with('success', 'Estado actualizado correctamente');
     }
 }
