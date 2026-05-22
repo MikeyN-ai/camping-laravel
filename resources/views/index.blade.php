@@ -5,7 +5,7 @@
 @section('contenido')
     @if (session('success'))
         <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow mt-3 mb-0" role="alert">
-            {{ session('success') || session('error') }}
+            {{ session('success') ? session('success') : session('error')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -20,7 +20,7 @@
         <div class="row g-4">
 
             @foreach ($parcela as $p)
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
 
                     <div class="card border border-dark-subtle shadow-lg h-100 text-dark">
 
@@ -47,7 +47,7 @@
                                 <form method="POST" action="{{ route('parcela.toggle', $p) }}" class="m-0">
                                     @csrf
                                     <button type="submit"
-                                        class="btn {{ $p->shelly_on ? 'btn-success' : 'btn-danger' }} p-2 fs-5">
+                                        class="btn {{ $p->shelly_on ? 'btn-success' : 'btn-danger' }} p-2 fs-5 btn-3d">
                                         <i class="bi bi-power"></i>
                                     </button>
                                 </form>

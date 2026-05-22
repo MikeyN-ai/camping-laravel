@@ -28,7 +28,7 @@
     @endif
 
     @if (session('error-borrar'))
-        <x-modal-error-borrar :message="session('error-borrar')" />
+        <x-modal-error-borrar :tablas="session('error-borrar')" />
     @endif
 
     @if ($checkin->isEmpty())
@@ -65,7 +65,7 @@
                                 <td class="align-middle">{{ fechaCorta($c->fecha_entrada) }}</td>
                                 <td class="align-middle">{{ fechaCorta($c->fecha_salida) }}</td>
                                 <td class="align-middle">{{ $c->parcela->nombre }}</td>
-                                <td class="align-middle">{{ $c->cliente->nombre }}</td>
+                                <td class="align-middle">{{ $c->cliente->nombre . " " . $c->cliente->apellidos }}</td>
                                 <td class="align-middle">{{ $c->tarifa->nombre }}</td>
                                 <td class="d-flex gap-2">
                                     <a href="{{ route('checkin.edit', $c) }}" class="btn btn-warning fs-6 p-2 btn-3d">

@@ -10,7 +10,7 @@ class ModalErrorBorrar extends Component
 {
     public function __construct(
         public string $id = 'modalBorrarError',
-        public ?string $message = null,
+        public array $tablas = [],
         public bool $show = false,
     ) {}
 

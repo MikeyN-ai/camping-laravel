@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ParcelaRequest;
 use App\Models\Checkin;
 use App\Models\Parcela;
+use Illuminate\Database\QueryException;
 
 class ParcelaController extends Controller
 {
@@ -31,16 +32,24 @@ class ParcelaController extends Controller
      */
     public function store(ParcelaRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
+            $data['id_camping'] = auth()->user()->id_camping;
 
-        $data['shelly_on'] = $request->has('shelly_on');
+            $data['shelly_on'] = $request->has('shelly_on');
 
-        Parcela::create($data);
+            Parcela::create($data);
 
-        return redirect()->route('parcela.index')
-            ->with('success', 'Parcela creada correctamente');
+            return redirect()->route('parcela.index')
+                ->with('success', 'Parcela creada correctamente');
+
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('parcela.index')
+                ->with('error', 'Ha habido un error inesperado al crear la parcela');
+        }
     }
 
     /**
@@ -66,17 +75,26 @@ class ParcelaController extends Controller
      */
     public function update(ParcelaRequest $request, Parcela $parcela)
     {
-        $data = $request->validated();
+        try {
 
-        $data['id_camping'] = auth()->user()->id_camping;
+            $data = $request->validated();
 
-        $data['shelly_on'] = $request->has('shelly_on');
+            $data['id_camping'] = auth()->user()->id_camping;
 
-        $parcela->update($data);
+            $data['shelly_on'] = $request->has('shelly_on');
 
-        return redirect()
-            ->route('parcela.index')
-            ->with('success', 'Parcela actualizada correctamente');
+            $parcela->update($data);
+
+            return redirect()
+                ->route('parcela.index')
+                ->with('success', 'Parcela actualizada correctamente');
+
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('parcela.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar la parcela');
+        }
     }
 
     /**
@@ -84,16 +102,28 @@ class ParcelaController extends Controller
      */
     public function destroy(Parcela $parcela)
     {
-        $parcela->delete();
-        return redirect()->route('parcela.index')
-            ->with('success', 'Parcela borrada correctamente');
+        try {
+            $parcela->delete();
+
+            return redirect()->route('parcela.index')
+                ->with('success', 'Parcela borrada correctamente');
+
+        } catch (QueryException $e) {
+            return back()->with('error-borrar', ['Checkins']);
+        }
     }
 
     public function toggle(Parcela $parcela)
     {
-        $parcela->shelly_on = ! $parcela->shelly_on;
-        $parcela->save();
+        try {
+            $parcela->shelly_on = ! $parcela->shelly_on;
+            $parcela->save();
 
-        return back()->with('success', 'Estado actualizado correctamente');
+            return back()->with('success', $parcela->nombre . ' ' . ($parcela->shelly_on ? 'encendida' : 'apagada') . ' correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->with('error', 'Ha habido un error al intenta');
+        }
     }
 }

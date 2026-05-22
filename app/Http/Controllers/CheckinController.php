@@ -7,7 +7,6 @@ use App\Models\Checkin;
 use App\Models\Cliente;
 use App\Models\Parcela;
 use App\Models\Tarifa;
-use Illuminate\Http\Request;
 
 class CheckinController extends Controller
 {
@@ -39,10 +38,17 @@ class CheckinController extends Controller
      */
     public function store(CheckinRequest $request)
     {
-        Checkin::create($request->validated());
+        try {
+            Checkin::create($request->validated());
 
-        return redirect()->route('checkin.index')
-            ->with('success', 'Checkin creado correctamente');
+            return redirect()->route('checkin.index')
+                ->with('success', 'Checkin creado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('checkin.index')
+                ->with('error', 'Ha habido un error inesperado al crear el checkin');
+        }
     }
 
     /**
@@ -70,10 +76,17 @@ class CheckinController extends Controller
      */
     public function update(CheckinRequest $request, Checkin $checkin)
     {
-        $checkin->update($request->validated());
+        try {
+            $checkin->update($request->validated());
 
-        return redirect()->route('checkin.index')
-            ->with('success', 'Checkin actualizado correctamente');
+            return redirect()->route('checkin.index')
+                ->with('success', 'Checkin actualizado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('checkin.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar el checkin');
+        }
     }
 
     /**
@@ -81,8 +94,17 @@ class CheckinController extends Controller
      */
     public function destroy(Checkin $checkin)
     {
-        $checkin->delete();
-        return redirect()->route('checkin.index')
-            ->with('success', 'Checkin borrado correctamente');
+        try {
+            $checkin->delete();
+
+            return redirect()->route('checkin.index')
+                ->with('success', 'Checkin borrado correctamente');
+
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('checkin.index')
+                ->with('error', 'Ha habido un error inesperado al eliminar el checkin');
+        }
     }
 }

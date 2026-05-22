@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
+use Illuminate\Database\QueryException;
 
 class ClienteController extends Controller
 {
@@ -30,14 +31,21 @@ class ClienteController extends Controller
      */
     public function store(ClienteRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
+            $data['id_camping'] = auth()->user()->id_camping;
 
-        Cliente::create($data);
+            Cliente::create($data);
 
-        return redirect()->route('cliente.index')
-            ->with('success', 'Cliente creado correctamente');
+            return redirect()->route('cliente.index')
+                ->with('success', 'Cliente creado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('cliente.index')
+                ->with('error', 'Ha habido un error inesperado al crear el cliente');
+        }
     }
 
     /**
@@ -61,14 +69,21 @@ class ClienteController extends Controller
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
+            $data['id_camping'] = auth()->user()->id_camping;
 
-        $cliente->update($data);
+            $cliente->update($data);
 
-        return redirect()->route('cliente.index')
-            ->with('success', 'Cliente actualizado correctamente');
+            return redirect()->route('cliente.index')
+                ->with('success', 'Cliente actualizado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('cliente.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar el cliente');
+        }
     }
 
     /**
@@ -76,8 +91,13 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        $cliente->delete();
-        return redirect()->route('cliente.index')
-            ->with('success', 'Cliente borrado correctamente');
+        try {
+            $cliente->delete();
+
+            return redirect()->route('cliente.index')
+                ->with('success', 'Cliente borrado correctamente');
+        } catch (QueryException $e) {
+            return back()->with('error-borrar', ['Checkins']);
+        }
     }
 }

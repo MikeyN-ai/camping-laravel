@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TarifaRequest;
 use App\Models\Tarifa;
+use Illuminate\Database\QueryException;
 
 class TarifaController extends Controller
 {
@@ -30,14 +31,21 @@ class TarifaController extends Controller
      */
     public function store(TarifaRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
+            $data['id_camping'] = auth()->user()->id_camping;
 
-        Tarifa::create($data);
+            Tarifa::create($data);
 
-        return redirect()->route('tarifa.index')
-            ->with('success', 'Tarifa creada correctamente');
+            return redirect()->route('tarifa.index')
+                ->with('success', 'Tarifa creada correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('tarifa.index')
+                ->with('error', 'Ha habido un error inesperado al crear la tarifa');
+        }
     }
 
     /**
@@ -61,14 +69,21 @@ class TarifaController extends Controller
      */
     public function update(TarifaRequest $request, Tarifa $tarifa)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
+            $data['id_camping'] = auth()->user()->id_camping;
 
-        $tarifa->update($data);
+            $tarifa->update($data);
 
-        return redirect()->route('tarifa.index')
-            ->with('success', 'Tarifa actualizada correctamente');
+            return redirect()->route('tarifa.index')
+                ->with('success', 'Tarifa actualizada correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('tarifa.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar la tarifa');
+        }
     }
 
     /**
@@ -76,8 +91,13 @@ class TarifaController extends Controller
      */
     public function destroy(Tarifa $tarifa)
     {
-        $tarifa->delete();
-        return redirect()->route('tarifa.index')
-            ->with('success', 'Tarifa borrada correctamente');
+        try {
+            $tarifa->delete();
+
+            return redirect()->route('tarifa.index')
+                ->with('success', 'Tarifa borrada correctamente');
+        } catch (QueryException $e) {
+            return back()->with('error-borrar', ['Checkins']);
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IdiomaRequest;
 use App\Models\Idiomas;
+use Illuminate\Database\QueryException;
 
 class IdiomasController extends Controller
 {
@@ -30,10 +31,17 @@ class IdiomasController extends Controller
      */
     public function store(IdiomaRequest $request)
     {
-        Idiomas::create($request->validated());
+        try {
+            Idiomas::create($request->validated());
 
-        return redirect()->route('idioma.index')
-            ->with('success', 'Idioma creado correctamente');
+            return redirect()->route('idioma.index')
+                ->with('success', 'Idioma creado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('idioma.index')
+                ->with('error', 'Ha habido un error inesperado al crear el idioma');
+        }
     }
 
     /**
@@ -57,10 +65,17 @@ class IdiomasController extends Controller
      */
     public function update(IdiomaRequest $request, Idiomas $idioma)
     {
-        $idioma->update($request->validated());
+        try {
+            $idioma->update($request->validated());
 
-        return redirect()->route('idioma.index')
-            ->with('success', 'Idioma actualizado correctamente');
+            return redirect()->route('idioma.index')
+                ->with('success', 'Idioma actualizado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('idioma.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar el idioma');
+        }
     }
 
     /**
@@ -68,8 +83,14 @@ class IdiomasController extends Controller
      */
     public function destroy(Idiomas $idioma)
     {
-        $idioma->delete();
-        return redirect()->route('idioma.index')
-            ->with('success', 'Idioma borrado correctamente');
+        try {
+            $idioma->delete();
+
+            return redirect()->route('idioma.index')
+                ->with('success', 'Idioma borrado correctamente');
+
+        } catch (QueryException $e) {
+            return back()->with('error-borrar', ['Usuarios']);
+        }
     }
 }

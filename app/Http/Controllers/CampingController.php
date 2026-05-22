@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CampingRequest;
-use Illuminate\Database\QueryException;
 use App\Models\Camping;
+use Illuminate\Database\QueryException;
 
 class CampingController extends Controller
 {
@@ -31,10 +31,18 @@ class CampingController extends Controller
      */
     public function store(CampingRequest $request)
     {
-        Camping::create($request->validated());
+        try {
+            Camping::create($request->validated());
 
-        return redirect()->route('camping.index')
-            ->with('success', 'Camping creado correctamente');
+            return redirect()->route('camping.index')
+                ->with('success', 'Camping creado correctamente');
+
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('camping.index')
+                ->with('error', 'Ha habido un error inesperado al crear el camping');
+        }
     }
 
     /**
@@ -58,10 +66,18 @@ class CampingController extends Controller
      */
     public function update(CampingRequest $request, Camping $camping)
     {
-        $camping->update($request->validated());
+        try {
+            $camping->update($request->validated());
 
-        return redirect()->route('camping.index')
-            ->with('success', 'Camping actualizado correctamente');
+            return redirect()->route('camping.index')
+                ->with('success', 'Camping actualizado correctamente');
+
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('camping.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar el camping');
+        }
     }
 
     /**
@@ -76,8 +92,7 @@ class CampingController extends Controller
                 ->with('success', 'Camping borrado correctamente');
 
         } catch (QueryException $e) {
-
-            return back()->with('error','No se puede eliminar porque tiene elementos relacionados');
+            return back()->with('error-borrar', ['Tarifas', 'Usuarios', 'Clientes', 'Parcelas', 'Checkins (indirecto)']);
         }
     }
 }

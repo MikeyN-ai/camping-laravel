@@ -35,12 +35,19 @@ class UsuarioController extends Controller
      */
     public function store(UsuarioRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        Usuario::create($data);
+            Usuario::create($data);
 
-        return redirect()->route('usuario.index')
-            ->with('success', 'Usuario creada correctamente');
+            return redirect()->route('usuario.index')
+                ->with('success', 'Usuario creada correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('usuario.index')
+                ->with('error', 'Ha habido un error inesperado al crear el usuario');
+        }
     }
 
     /**
@@ -67,18 +74,24 @@ class UsuarioController extends Controller
      */
     public function update(UsuarioRequest $request, Usuario $usuario)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Si no cambia contraseña, no la tocamos
-        if (empty($data['password'])) {
-            unset($data['password']);
+            // Si no cambia contraseña, no la tocamos
+            if (empty($data['password'])) {
+                unset($data['password']);
+            }
+
+            $usuario->update($data);
+
+            return redirect()->route('usuario.index')
+                ->with('success', 'Usuario actualizado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('usuario.index')
+                ->with('error', 'Ha habido un error inesperado al actualizar el usuario');
         }
-
-        $usuario->update($data);
-
-        return redirect()
-            ->route('usuario.index')
-            ->with('success', 'Usuario actualizado correctamente');
     }
 
     /**
@@ -86,8 +99,16 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        $usuario->delete();
-        return redirect()->route('usuario.index')
-            ->with('success', 'Usuario borrado correctamente');
+        try {
+            $usuario->delete();
+
+            return redirect()->route('usuario.index')
+                ->with('success', 'Usuario borrado correctamente');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('usuario.index')
+                ->with('error', 'Ha habido un error inesperado al eliminar el usuario');
+        }
     }
 }

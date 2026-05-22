@@ -28,7 +28,7 @@
     @endif
 
     @if (session('error-borrar'))
-        <x-modal-error-borrar :message="session('error-borrar')" />
+        <x-modal-error-borrar :tablas="session('error-borrar')" />
     @endif
 
     @if ($camping->isEmpty())

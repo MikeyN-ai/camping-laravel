@@ -2,9 +2,9 @@
 
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-white bg-danger">
                 <h5 class="modal-title">Confirmar eliminación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body">
@@ -17,11 +17,11 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-secondary btn-3d" data-bs-dismiss="modal">Cancelar</button>
                 <form id="formEliminar" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger">
+                    <button class="btn btn-danger btn-3d">
                         <i class="bi bi-trash"></i>
                         Eliminar
                     </button>
