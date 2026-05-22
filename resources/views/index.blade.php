@@ -5,7 +5,7 @@
 @section('contenido')
     @if (session('success'))
         <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow mt-3 mb-0" role="alert">
-            {{ session('success') }}
+            {{ session('success') || session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 

@@ -11,9 +11,9 @@
         </a>
     </div>
 
-    @if (session('success'))
-        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
-            {{ session('success') }}
+    @if (session('success') || session('error'))
+        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+            {{ session('success') || session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -25,6 +25,10 @@
                 }
             }, 5000);
         </script>
+    @endif
+
+    @if (session('error-borrar'))
+        <x-modal-error-borrar :message="session('error-borrar')" />
     @endif
 
     @if ($camping->isEmpty())
@@ -67,15 +71,18 @@
                                     <a href="{{ route('camping.edit', $c) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{ route('camping.destroy', $c) }}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                        data-bs-target="#modalDelete" data-nombre="{{ $c->nombre }}"
+                                        data-ruta="{{ route('camping.destroy', $c) }}">
                                         <i class="bi bi-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+
             <div class="card-body d-block d-lg-none py-1">
                 @foreach ($camping as $c)
                     <div class="card my-3">
@@ -92,9 +99,12 @@
                             <a href="{{ route('camping.edit', $c) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <a href="{{ route('camping.destroy', $c) }}" class="btn btn-danger btn-3d fs-6 p-2">
+
+                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete" data-nombre="{{ $c->nombre }}"
+                                data-ruta="{{ route('camping.destroy', $c) }}">
                                 <i class="bi bi-trash"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -104,6 +114,8 @@
         <div class="card-footer py-0">
             {{ $camping->links('vendor.pagination.custom') }}
         </div>
-        </div>
+
+        <!-- Modal eliminar -->
+        <x-modal-delete />
     @endif
 @endsection

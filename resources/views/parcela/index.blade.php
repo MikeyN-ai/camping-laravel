@@ -10,9 +10,9 @@
         </a>
     </div>
 
-    @if (session('success'))
-        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
-            {{ session('success') }}
+    @if (session('success') || session('error'))
+        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+            {{ session('success') || session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -24,6 +24,10 @@
                 }
             }, 5000);
         </script>
+    @endif
+
+    @if (session('error-borrar'))
+        <x-modal-error-borrar :message="session('error-borrar')" />
     @endif
 
     @if ($parcela->isEmpty())
@@ -73,9 +77,11 @@
                                     <a href="{{ route('parcela.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{ route('parcela.destroy', $p) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                        data-bs-target="#modalDelete" data-nombre="{{ $p->nombre }}"
+                                        data-ruta="{{ route('parcela.destroy', $p) }}">
                                         <i class="bi bi-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -102,15 +108,17 @@
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('tarifa.show', $p) }}" class="btn btn-primary btn-3d fs-6 p-2">
+                                <a href="{{ route('parcela.show', $p) }}" class="btn btn-primary btn-3d fs-6 p-2">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('tarifa.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <a href="{{ route('parcela.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{ route('tarifa.destroy', $p) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                    data-bs-target="#modalDelete" data-nombre="{{ $p->nombre }}"
+                                    data-ruta="{{ route('parcela.destroy', $p) }}">
                                     <i class="bi bi-trash"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -120,5 +128,7 @@
                 {{ $parcela->links('vendor.pagination.custom') }}
             </div>
         </div>
+        <!-- Modal eliminar -->
+        <x-modal-delete />
     @endif
 @endsection

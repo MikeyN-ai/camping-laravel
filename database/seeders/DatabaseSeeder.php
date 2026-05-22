@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Usuario;
-use App\Models\Tarifa;
-use App\Models\Parcela;
 use App\Models\Checkin;
 use App\Models\Idiomas;
+use App\Models\Parcela;
+use App\Models\Tarifa;
+use App\Models\Usuario;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Idiomas::factory()->create();
+
         $this->call([
             CampingSeeder::class,
             ClienteSeeder::class,
@@ -33,7 +35,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Admin.123'),
         ]);
 
-        Idiomas::factory()->create();
         Tarifa::factory()->create();
         Parcela::factory()->create();
         Checkin::factory()->create();

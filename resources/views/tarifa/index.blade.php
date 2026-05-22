@@ -11,9 +11,9 @@
         </a>
     </div>
 
-    @if (session('success'))
-        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
-            {{ session('success') }}
+    @if (session('success') || session('error'))
+        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+            {{ session('success') || session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -25,6 +25,10 @@
                 }
             }, 5000);
         </script>
+    @endif
+
+    @if (session('error-borrar'))
+        <x-modal-error-borrar :message="session('error-borrar')" />
     @endif
 
     @if ($tarifa->isEmpty())
@@ -71,9 +75,11 @@
                                     <a href="{{ route('tarifa.edit', $t) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{ route('tarifa.destroy', $t) }}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                        data-bs-target="#modalDelete" data-nombre="{{ $t->nombre }}"
+                                        data-ruta="{{ route('tarifa.destroy', $t) }}">
                                         <i class="bi bi-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -99,18 +105,21 @@
                             <a href="{{ route('tarifa.edit', $t) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <a href="{{ route('tarifa.destroy', $t) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete" data-nombre="{{ $t->nombre }}"
+                                data-ruta="{{ route('tarifa.destroy', $t) }}">
                                 <i class="bi bi-trash"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
+                @endforeach
             </div>
-    @endforeach
-    </div>
 
-    <div class="card-footer py-0">
-        {{ $tarifa->links('vendor.pagination.custom') }}
-    </div>
-    </div>
+            <div class="card-footer py-0">
+                {{ $tarifa->links('vendor.pagination.custom') }}
+            </div>
+        </div>
+        <!-- Modal eliminar -->
+        <x-modal-delete />
     @endif
 @endsection

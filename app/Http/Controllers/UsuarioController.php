@@ -37,8 +37,6 @@ class UsuarioController extends Controller
     {
         $data = $request->validated();
 
-        $data['id_camping'] = auth()->user()->id_camping;
-
         Usuario::create($data);
 
         return redirect()->route('usuario.index')
@@ -88,6 +86,8 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        //
+        $usuario->delete();
+        return redirect()->route('usuario.index')
+            ->with('success', 'Usuario borrado correctamente');
     }
 }

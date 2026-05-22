@@ -84,7 +84,9 @@ class ParcelaController extends Controller
      */
     public function destroy(Parcela $parcela)
     {
-        //
+        $parcela->delete();
+        return redirect()->route('parcela.index')
+            ->with('success', 'Parcela borrada correctamente');
     }
 
     public function toggle(Parcela $parcela)

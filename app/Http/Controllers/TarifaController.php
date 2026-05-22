@@ -76,6 +76,8 @@ class TarifaController extends Controller
      */
     public function destroy(Tarifa $tarifa)
     {
-        //
+        $tarifa->delete();
+        return redirect()->route('tarifa.index')
+            ->with('success', 'Tarifa borrada correctamente');
     }
 }

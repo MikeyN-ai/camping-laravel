@@ -12,9 +12,9 @@
         </a>
     </div>
 
-    @if (session('success'))
-        <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow" role="alert">
-            {{ session('success') }}
+    @if (session('success') || session('error'))
+        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+            {{ session('success') || session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -26,6 +26,10 @@
                 }
             }, 5000);
         </script>
+    @endif
+
+    @if (session('error-borrar'))
+        <x-modal-error-borrar :message="session('error-borrar')" />
     @endif
 
     @if ($usuario->isEmpty())
@@ -61,16 +65,18 @@
                                 <td class="align-middle">{{ $u->id }}</td>
                                 <td class="align-middle">{{ $u->usuario }}</td>
                                 <td class="align-middle">{{ $u->correo }}</td>
-                                <td class="align-middle">{{ $u->camping->nombre }}</td>
+                                <td class="align-middle">{{ $u->camping->nombre ?? 'N/A' }}</td>
                                 <td class="align-middle">{{ $u->idioma->idioma }}</td>
                                 <td class="align-middle">{{ $u->rol }}</td>
                                 <td class="d-flex gap-2">
                                     <a href="{{ route('usuario.edit', $u) }}" class="btn btn-warning fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <a href="{{ route('usuario.destroy', $u) }}" class="btn btn-danger fs-6 p-2 btn-3d">
+                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                        data-bs-target="#modalDelete" data-nombre="{{ $u->usuario }}"
+                                        data-ruta="{{ route('usuario.destroy', $u) }}">
                                         <i class="bi bi-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -86,7 +92,7 @@
                             <p><span class="fw-bold">ID : </span> {{ $u->id }}</p>
                             <p><span class="fw-bold">Usuario : </span> {{ $u->usuario }}</p>
                             <p><span class="fw-bold">Correo : </span> {{ $u->correo }}</p>
-                            <p><span class="fw-bold">Camping : </span> {{ $u->camping->nombre }}</p>
+                            <p><span class="fw-bold">Camping : </span> {{ $u->camping->nombre ?? 'N/A' }}</p>
                             <p><span class="fw-bold">Idioma : </span> {{ $u->idioma->idioma }}</p>
                             <p><span class="fw-bold">Rol : </span> {{ $u->rol }}</p>
                         </div>
@@ -94,9 +100,11 @@
                             <a href="{{ route('usuario.edit', $u) }}" class="btn btn-warning btn-3d fs-6 p-2">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <a href="{{ route('usuario.destroy', $u) }}" class="btn btn-danger btn-3d fs-6 p-2">
+                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete" data-nombre="{{ $u->usuario }}"
+                                data-ruta="{{ route('usuario.destroy', $u) }}">
                                 <i class="bi bi-trash"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -106,5 +114,7 @@
                 {{ $usuario->links('vendor.pagination.custom') }}
             </div>
         </div>
+        <!-- Modal eliminar -->
+        <x-modal-delete />
     @endif
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CampingRequest;
+use Illuminate\Database\QueryException;
 use App\Models\Camping;
 
 class CampingController extends Controller
@@ -68,6 +69,15 @@ class CampingController extends Controller
      */
     public function destroy(Camping $camping)
     {
-        //
+        try {
+            $camping->delete();
+
+            return redirect()->route('camping.index')
+                ->with('success', 'Camping borrado correctamente');
+
+        } catch (QueryException $e) {
+
+            return back()->with('error','No se puede eliminar porque tiene elementos relacionados');
+        }
     }
 }
