@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('camping', CampingController::class);
-    Route::resource('idioma', IdiomasController::class);
+    //Route::resource('idioma', IdiomasController::class);
     Route::resource('usuario', UsuarioController::class);
 
 });

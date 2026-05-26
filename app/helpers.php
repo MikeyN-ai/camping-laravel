@@ -46,5 +46,5 @@ function getCampingUsuario () {
 }
 function isAdmin()
 {
-    return Auth::check() && Auth::user()->role === 'admin';
+    return Auth::check() && Auth::user()?->rol === 'admin';
 }

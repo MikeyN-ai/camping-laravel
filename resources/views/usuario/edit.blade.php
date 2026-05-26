@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', 'Crear usuario')
+@section('titulo', 'Editar usuario')
 
 @php
     $rol = ['admin', 'usuario'];

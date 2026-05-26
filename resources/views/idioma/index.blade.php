@@ -3,16 +3,21 @@
 @section('titulo', 'Gestión de idiomas')
 
 @section('contenido')
-
-    <div class="text-end p-3">
-        <a href="{{ route('idioma.create') }}" class="btn btn-dark btn-lg border btn-3d">
-            <i class="bi bi-plus-circle pe-1"></i>
-            Crear
-        </a>
-    </div>
+    @if (isAdmin())
+        <div class="text-end p-3">
+            <a href="{{ route('idioma.create') }}" class="btn btn-dark btn-lg border btn-3d">
+                <i class="bi bi-plus-circle pe-1"></i>
+                Crear
+            </a>
+        </div>
+    @else
+        <div class="pt-5"></div>
+    @endif
 
     @if (session('success') || session('error'))
-        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+        <div id="liveToast"
+            class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow"
+            role="alert">
             {{ session('success') || session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -52,7 +57,8 @@
                             <th>ID</th>
                             <th>Idioma</th>
                             <th>Abreviatura</th>
-                            <th>Acciones</th>
+                            @if (isAdmin())
+                            <th>Acciones</th> @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -61,16 +67,18 @@
                                 <td class="align-middle">{{ $i->id }}</td>
                                 <td class="align-middle">{{ $i->idioma }}</td>
                                 <td class="align-middle">{{ $i->abreviatura }}</td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete" data-nombre="{{ $i->idioma }}"
-                                        data-ruta="{{ route('idioma.destroy', $i) }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </td>
+                                @if (isAdmin())
+                                    <td class="d-flex gap-2">
+                                        <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete" data-nombre="{{ $i->idioma }}"
+                                            data-ruta="{{ route('idioma.destroy', $i) }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
@@ -86,16 +94,17 @@
                             <p><span class="fw-bold">Idioma : </span> {{ $i->idioma }}</p>
                             <p><span class="fw-bold">Abreviatura : </span> {{ $i->abreviatura }}</p>
                         </div>
-                        <div class="card-footer d-flex gap-2 justify-content-end">
-                            <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning btn-3d fs-6 p-2">
-                                <i class="bi bi-pencil"></i>
-                            </a>
-                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete" data-nombre="{{ $i->idioma }}"
-                                data-ruta="{{ route('idioma.destroy', $i) }}">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
+                        @if (isAdmin())
+                            <div class="card-footer d-flex gap-2 justify-content-end">
+                                <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                                    data-nombre="{{ $i->idioma }}" data-ruta="{{ route('idioma.destroy', $i) }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

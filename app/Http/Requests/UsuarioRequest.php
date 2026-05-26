@@ -32,7 +32,8 @@ class UsuarioRequest extends FormRequest
                 Rule::unique('usuarios')
                     ->where(function ($query) {
                         return $query->where('id_camping', $this->id_camping);
-                    }),
+                    })
+                    ->ignore($usuario?->id),
             ],
 
             'usuario' => [
@@ -42,7 +43,8 @@ class UsuarioRequest extends FormRequest
                 Rule::unique('usuarios')
                     ->where(function ($query) {
                         return $query->where('id_camping', $this->id_camping);
-                    }),
+                    })
+                    ->ignore($usuario?->id),
             ],
 
             /*'usuario' => [

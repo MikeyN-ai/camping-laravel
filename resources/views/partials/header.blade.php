@@ -16,8 +16,8 @@
             {{-- Solo visible en escritorio --}}
             <div class="d-none d-lg-flex justify-content-end align-items-center w-100 pe-4">
                 <div class="dropdown">
-                    <button class="btn btn-link text-dark fs-5 text-decoration-none" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-link text-dark fs-5 text-decoration-none" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="bi bi-person-circle pe-1"></i>
                         {{ auth()->user()->usuario }}
                     </button>
@@ -36,65 +36,55 @@
         <div class="collapse navbar-collapse bg-dark m-0 p-0 position-absolute w-100 start-0 top-100 z-3"
             id="navbarTogglerDemo02">
             <div class="list-group border-0 fs-5 d-lg-none">
-                <a href="{{ route('inicio') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('inicio') }}" class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('inicio') || request()->routeIs('inicio') ? 'seleccionado' : '' }}
                     ">
                     <i class="bi bi-house pe-2"></i>
                     Inicio
                 </a>
                 @if (auth()->user()?->rol === 'admin')
-                    <a href="{{ route('camping.index') }}"
-                        class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ setActivo('camping') }}
-                    ">
+                    <a href="{{ route('camping.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                            {{ setActivo('camping') }}
+                        ">
                         <i class="bi bi-signpost-2 pe-2"></i>
                         Campings
                     </a>
                 @endif
-                <a href="{{ route('parcela.index') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('parcela.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('parcela') }}
                      ">
                     <i class="bi bi-houses pe-2"></i>
                     Parcelas
                 </a>
-                <a href="{{ route('cliente.index') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('cliente.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('cliente') }}
                     ">
                     <i class="bi bi-person-badge pe-2"></i>
                     Clientes
                 </a>
-                <a href="{{ route('checkin.index') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('checkin.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('checkin') }}
                     ">
                     <i class="bi bi-clipboard2-check pe-2"></i>
                     Checkins
                 </a>
-                <a href="{{ route('tarifa.index') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('tarifa.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('tarifa') }}
                     ">
                     <i class="bi bi-wallet2 pe-2"></i>
                     Tarifas
                 </a>
 
-                @if (auth()->user()?->rol === 'admin')
-                    <a href="{{ route('idioma.index') }}"
-                        class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('idioma.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
                         {{ setActivo('idioma') }}
                     ">
-                        <i class="bi bi-translate pe-2"></i>
-                        Idioma
-                    </a>
-                @endif
-                @if (auth()->user()?->rol === 'admin')
-                    <a href="{{ route('usuario.index') }}"
-                        class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
-                        {{ setActivo('usuario') }}
-                    ">
+                    <i class="bi bi-translate pe-2"></i>
+                    Idioma
+                </a>
+                @if (isAdmin())
+                    <a href="{{ route('usuario.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                            {{ setActivo('usuario') }}
+                        ">
                         <i class="bi bi-people pe-2"></i>
                         Usuarios
                     </a>
