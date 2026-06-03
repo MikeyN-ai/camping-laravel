@@ -20,10 +20,10 @@ function setActivo($modulo)
  */
 function fechaLarga($fecha, $idioma = 'es')
 {
-    Carbon::setLocale($idioma);
-
     return ucfirst(
-       Carbon::parse($fecha)->isoFormat('dddd, D [de] MMMM [de] YYYY')
+        Carbon::parse($fecha)
+            ->locale($idioma)
+            ->isoFormat('LLLL')
     );
 }
 /**

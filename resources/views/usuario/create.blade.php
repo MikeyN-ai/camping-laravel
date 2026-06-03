@@ -62,7 +62,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_camping'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('id_camping') }}
                                             </p>
                                         @endif
@@ -83,7 +83,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_idioma'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('id_idioma') }}
                                             </p>
                                         @endif
@@ -103,7 +103,7 @@
 
                                         </select>
                                         @if ($errors->has('rol'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('rol') }}
                                             </p>
                                         @endif

@@ -36,7 +36,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_cliente'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('id_cliente') }}
                                             </p>
                                         @endif
@@ -57,7 +57,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_parcela'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('id_parcela') }}
                                             </p>
                                         @endif
@@ -78,7 +78,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_tarifa'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('id_tarifa') }}
                                             </p>
                                         @endif

@@ -37,8 +37,8 @@
                 <div class="bg-primary-subtle px-4 py-3 d-flex justify-content-between align-items-center">
                     <h3 class="fw-semibold">@yield('titulo')</h3>
                     <span class="fs-5">
-                        <small class="d-flex d-md-none">{{ fechaCorta(now()) }}</small>
-                        <small class="d-none d-md-flex">{{ fechaLarga(now()) }}</small>
+                        <small class="d-flex d-md-none">{{ fechaCorta(now(), auth()->user()->idioma->abreviatura) }}</small>
+                        <small class="d-none d-md-flex">{{ fechaLarga(now(), auth()->user()->idioma->abreviatura) }}</small>
                     </span>
                 </div>
 

@@ -34,6 +34,16 @@ class TarifaController extends Controller
         try {
             $data = $request->validated();
 
+            // Ajustar campos contrarios según el tipo solo al enviar
+            if (isset($data['tipo'])) {
+                if ($data['tipo'] === 'por_amperio') {
+                    $data['precio_kilovatio'] = null;
+                    $data['kwh_gratuitos'] = null;
+                } elseif ($data['tipo'] === 'por_kilovatio') {
+                    $data['precio_dia'] = null;
+                }
+            }
+
             $data['id_camping'] = auth()->user()->id_camping;
 
             Tarifa::create($data);
@@ -71,6 +81,16 @@ class TarifaController extends Controller
     {
         try {
             $data = $request->validated();
+
+            // Ajustar campos contrarios según el tipo solo al enviar
+            if (isset($data['tipo'])) {
+                if ($data['tipo'] === 'por_amperio') {
+                    $data['precio_kilovatio'] = null;
+                    $data['kwh_gratuitos'] = null;
+                } elseif ($data['tipo'] === 'por_kilovatio') {
+                    $data['precio_dia'] = null;
+                }
+            }
 
             $data['id_camping'] = auth()->user()->id_camping;
 

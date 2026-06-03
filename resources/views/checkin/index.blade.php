@@ -13,7 +13,7 @@
 
     @if (session('success') || session('error'))
         <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
-            {{ session('success') || session('error') }}
+            {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -62,8 +62,8 @@
                         @foreach ($checkin as $c)
                             <tr>
                                 <td class="align-middle">{{ $c->id }}</td>
-                                <td class="align-middle">{{ fechaCorta($c->fecha_entrada) }}</td>
-                                <td class="align-middle">{{ fechaCorta($c->fecha_salida) }}</td>
+                                <td class="align-middle">{{ fechaCorta($c->fecha_entrada, auth()->user()->idioma->abreviatura) }}</td>
+                                <td class="align-middle">{{ fechaCorta($c->fecha_salida, auth()->user()->idioma->abreviatura) }}</td>
                                 <td class="align-middle">{{ $c->parcela->nombre }}</td>
                                 <td class="align-middle">{{ $c->cliente->nombre . " " . $c->cliente->apellidos }}</td>
                                 <td class="align-middle">{{ $c->tarifa->nombre }}</td>
@@ -89,8 +89,8 @@
                         <div class="card-header"><span class="fw-bold">{{ $c->cliente->nombre }}</span></div>
                         <div class="card-body">
                             <p><span class="fw-bold">ID : </span> {{ $c->id }}</p>
-                            <p><span class="fw-bold">Fecha Entrada : </span> {{ fechaCorta($c->fecha_entrada) }}</p>
-                            <p><span class="fw-bold">Fecha Salida : </span> {{ fechaCorta($c->fecha_salida) }}</p>
+                            <p><span class="fw-bold">Fecha Entrada : </span> {{ fechaCorta($c->fecha_entrada, auth()->user()->idioma->abreviatura) }}</p>
+                            <p><span class="fw-bold">Fecha Salida : </span> {{ fechaCorta($c->fecha_salida, auth()->user()->idioma->abreviatura) }}</p>
                             <p><span class="fw-bold">Parcela : </span> {{ $c->parcela->nombre }}</p>
                             <p><span class="fw-bold">Cliente : </span> {{ $c->cliente->nombre }}</p>
                             <p><span class="fw-bold">Tarifa : </span> {{ $c->tarifa->nombre }}</p>

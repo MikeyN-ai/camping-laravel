@@ -1,6 +1,6 @@
 @extends('plantilla')
 
-@section('titulo', 'Crear tarifa')
+@section('titulo', 'Editar tarifa')
 
 @php
     $tipos = ['por_kilovatio', 'por_amperio'];
@@ -40,7 +40,7 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="tipo" class="form-label fw-bold">Tipo</label>
-                                        <select name="tipo" class="form-select border border-dark-subtle">
+                                        <select id="tipo" name="tipo" class="form-select border border-dark-subtle">
                                             <option disabled selected>Selecciona un tipo</option>
 
                                             @foreach ($tipos as $tipo)
@@ -52,13 +52,13 @@
 
                                         </select>
                                         @if ($errors->has('tipo'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('tipo') }}
                                             </p>
                                         @endif
                                     </div>
 
-                                    <div class="col-12 mb-3">
+                                    <div id="group-precio-dia" class="col-12 mb-3">
                                         <label for="precio_dia" class="form-label fw-bold">Precio Día</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="precio_dia" name="precio_dia"
                                             placeholder="Ex: 8.00" value="{{ old('precio_dia', $tarifa->precio_dia) }}">
@@ -69,7 +69,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-12 mb-3">
+                                    <div id="group-precio-kwh" class="col-12 mb-3">
                                         <label for="precio_kilovatio" class="form-label fw-bold">Precio Kilovatio</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="precio_kilovatio" name="precio_kilovatio"
                                             placeholder="Ex: 0.75" value="{{ old('precio_kilovatio', $tarifa->precio_kilovatio) }}">
@@ -80,7 +80,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-12 mb-3">
+                                    <div id="group-kwh-gratuitos" class="col-12 mb-3">
                                         <label for="kwh_gratuitos" class="form-label fw-bold">KWh gratuitos</label>
                                         <input type="text" class="form-control border border-dark-subtle" id="kwh_gratuitos" name="kwh_gratuitos"
                                             placeholder="Ex: 2.00" value="{{ old('kwh_gratuitos', $tarifa->kwh_gratuitos) }}">
@@ -117,7 +117,7 @@
                                         </select>
 
                                         @if ($errors->has('limite_amperios'))
-                                            <p class="text-warning py-2">
+                                            <p class="text-danger py-2">
                                                 {{ $errors->first('limite_amperios') }}
                                             </p>
                                         @endif
@@ -127,6 +127,34 @@
                                         <button type="submit" class="btn btn-dark w-100 py-2 fs-6">Actualizar</button>
                                     </div>
                                 </div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const tipo = document.querySelector('select[name="tipo"]');
+                                            if (!tipo) return;
+                                            const show = (id, s) => {
+                                                const el = document.getElementById(id);
+                                                if (el) el.style.display = s ? '' : 'none';
+                                            };
+                                            const update = () => {
+                                                const v = tipo.value;
+                                                if (v === 'por_amperio') {
+                                                    show('group-precio-dia', true);
+                                                    show('group-precio-kwh', false);
+                                                    show('group-kwh-gratuitos', false);
+                                                } else if (v === 'por_kilovatio') {
+                                                    show('group-precio-dia', false);
+                                                    show('group-precio-kwh', true);
+                                                    show('group-kwh-gratuitos', true);
+                                                } else {
+                                                    show('group-precio-dia', false);
+                                                    show('group-precio-kwh', false);
+                                                    show('group-kwh-gratuitos', false);
+                                                }
+                                            };
+                                            tipo.addEventListener('change', update);
+                                            update();
+                                        });
+                                    </script>
                             </div>
                         </form>
                     </div>

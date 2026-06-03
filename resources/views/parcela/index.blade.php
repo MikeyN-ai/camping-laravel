@@ -12,7 +12,7 @@
 
     @if (session('success') || session('error'))
         <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
-            {{ session('success') || session('error') }}
+            {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
