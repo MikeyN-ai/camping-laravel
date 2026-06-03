@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4">
-                <div class="card w-100">
+                <div class="card w-100 shadow-lg">
                     <div class="card-header">
                         <h3 class="card-title mb-0 py-1">Editar camping</h3>
                     </div>

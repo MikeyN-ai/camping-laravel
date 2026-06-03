@@ -5,7 +5,7 @@
 @section('contenido')
     @if (session('success'))
         <div id="liveToast" class="alert alert-success alert-dismissible fade show shadow mt-3 mb-0" role="alert">
-            {{ session('success') ? session('success') : session('error')}}
+            {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
 
@@ -44,6 +44,12 @@
                             </div>
 
                             <div class="d-flex justify-content-end gap-2">
+
+                                <a href="{{ route('parcela.show', $p) }}"
+                                    class="btn {{ $p->shelly_on ? 'btn-outline-success' : 'btn-outline-danger' }} p-2 fs-5">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
                                 <form method="POST" action="{{ route('parcela.toggle', $p) }}" class="m-0">
                                     @csrf
                                     <button type="submit"

@@ -4,13 +4,13 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Funcion que permite comprobar si la routa actual concide con la que hemos enviado
- * @param mixed $modulo
+ * Función que permite comprobar si la ruta actual coincide con la que hemos enviado
+ * @param mixed $ruta
  * @return string
  */
-function setActivo($modulo)
+function setActivo($ruta)
 {
-    return request()->routeIs($modulo . '.*') ? 'seleccionado' : '';
+    return request()->routeIs($ruta . '.*') ? 'seleccionado' : '';
 }
 /**
  * Función que permite obtener la fecha larga formateada dependiendo del idioma del usuario
@@ -44,6 +44,10 @@ function fechaCorta($fecha, $idioma = 'es')
 function getCampingUsuario () {
     return auth()->user()?->camping?->id;
 }
+/**
+ * Función que permite comprobar si el usuario actual es admin
+ * @return bool
+ */
 function isAdmin()
 {
     return Auth::check() && Auth::user()?->rol === 'admin';

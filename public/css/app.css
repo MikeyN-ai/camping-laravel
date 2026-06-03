@@ -92,7 +92,7 @@
 }
 
 .altura_menu_lateral {
-    min-height: calc(100vh - 106px);
+    max-height: calc(100vh - 106px);
 }
 
 @media (max-width: 768px) {
