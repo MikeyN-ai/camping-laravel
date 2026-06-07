@@ -12,6 +12,7 @@
 
 .fondo {
     background-color: #e8f1f9 !important;
+    min-height: calc(100vh - 106px);
 }
 
 .logo_app {
@@ -65,34 +66,12 @@
     background: #f8f9fa;
 }
 
-/* Si l'ample de la pantalla es menor o igual a 767px
-@media only screen and (max-width: 767px) {
-
-    #taula thead th {
-        display: none;
-    }
-
-    #taula td {
-        display: block;
-    }
-
-    #taula td::before {
-        content: attr(data-cell) "";
-        font-weight: 700;
-        text-transform: capitalize;
-    }
-
-    #taula td[data-no-colon="true"]::before {
-        content: "";
-    }
-}*/
-
 .login {
     width: 400px !important;
 }
 
 .altura_menu_lateral {
-    max-height: calc(100vh - 106px);
+    min-height: calc(100vh - 106px);
 }
 
 @media (max-width: 768px) {
