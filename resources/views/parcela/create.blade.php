@@ -4,6 +4,7 @@
 
 @section('contenido')
     <div class="container-fluid pb-4">
+        
         <div class="row pt-4 pt-md-5">
             <div class="col-0 col-md-1 col-lg-2 col-xl-3 col-xxl-4 d-none d-md-flex">
 
@@ -22,8 +23,11 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="nombre"
-                                            name="nombre" placeholder="Ex: Parcela 1" value="{{ old('nombre') }}">
+                                        <input type="text" class="form-control border border-dark-subtle
+                                                        @if ($errors->has('nombre'))
+                                                            is-invalid
+                                                        @endif" id="nombre" name="nombre" placeholder="Ex: Parcela 1"
+                                            value="{{ old('nombre') }}">
                                         @if ($errors->has('nombre'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('nombre') }}
@@ -33,8 +37,11 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="shelly" class="form-label fw-bold">Dispositivo Shelly</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="shelly"
-                                            name="shelly" placeholder="Ex: shelly-00001" value="{{ old('shelly') }}">
+                                        <input type="text" class="form-control border border-dark-subtle
+                                                        @if ($errors->has('shelly'))
+                                                            is-invalid
+                                                        @endif" id="shelly" name="shelly" placeholder="Ex: shelly-00001"
+                                            value="{{ old('shelly') }}">
                                         @if ($errors->has('shelly'))
                                             <p class="text-danger py-2">
                                                 {{ $errors->first('shelly') }}
@@ -44,7 +51,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="canal" class="form-label fw-bold">Canal</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="canal"
+                                        <input type="text" class="form-control border border-dark-subtle
+                                                    @if ($errors->has('canal'))
+                                                        is-invalid
+                                                    @endif" id="canal"
                                             name="canal" placeholder="Ex: 0" value="{{ old('canal') }}">
                                         @if ($errors->has('canal'))
                                             <p class="text-danger py-2">
@@ -54,7 +64,10 @@
                                     </div>
 
                                     <div class="col-12 d-flex align-items-center gap-2 py-2">
-                                        <input type="checkbox" class="form-check-input" id="shelly_on" name="shelly_on"
+                                        <input type="checkbox" class="form-check-input
+                                                    @if ($errors->has('shelly_on'))
+                                                        is-invalid
+                                                    @endif" id="shelly_on" name="shelly_on"
                                             value="1" {{ old('shelly_on') ? 'checked' : '' }}>
 
                                         <label class="form-check-label fw-bold" for="shelly_on">
@@ -85,7 +98,7 @@
         const checkbox = document.getElementById('shelly_on');
         const estado = document.getElementById('estadoShelly');
 
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function () {
 
             estado.replaceChildren();
 

@@ -3,6 +3,7 @@
 @section('titulo', 'Gestión de parcelas')
 
 @section('contenido')
+
     <div class="text-end p-3">
         <a href="{{ route('parcela.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
@@ -11,7 +12,9 @@
     </div>
 
     @if (session('success') || session('error'))
-        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+        <div id="liveToast"
+            class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow"
+            role="alert">
             {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -74,7 +77,7 @@
                                     <a href="{{ route('parcela.show', $p) }}" class="btn btn-primary btn-3d fs-6 p-2">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('parcela.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                    <a href="{{ route('parcela.edit', $p) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
@@ -111,12 +114,11 @@
                                 <a href="{{ route('parcela.show', $p) }}" class="btn btn-primary btn-3d fs-6 p-2">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('parcela.edit', $p) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <a href="{{ route('parcela.edit', $p) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                    data-bs-target="#modalDelete" data-nombre="{{ $p->nombre }}"
-                                    data-ruta="{{ route('parcela.destroy', $p) }}">
+                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                                    data-nombre="{{ $p->nombre }}" data-ruta="{{ route('parcela.destroy', $p) }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>

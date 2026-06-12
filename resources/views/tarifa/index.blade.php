@@ -102,7 +102,7 @@
                             <p><span class="fw-bold">Limite Amperios : </span> {{ $t->limite_amperios }}</p>
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
-                            <a href="{{ route('tarifa.edit', $t) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                            <a href="{{ route('tarifa.edit', $t) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"

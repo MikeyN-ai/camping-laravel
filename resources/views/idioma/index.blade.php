@@ -96,7 +96,7 @@
                         </div>
                         @if (isAdmin())
                             <div class="card-footer d-flex gap-2 justify-content-end">
-                                <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <a href="{{ route('idioma.edit', $i) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"

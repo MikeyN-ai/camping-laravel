@@ -25,13 +25,13 @@
                     <input type="text" class="form-control border border-dark-subtle" name="id_camping" id="id_camping" />
                 </div>
                 @if (!empty($error))
-                    <div class="text-danger py-2">
+                    <div class="text-danger py-3">
                         {{ $error }}
                     </div>
                 @else
                     <div class="py-2"></div>
                 @endif
-                <input type="submit" name="enviar" value="Enviar" class="btn btn-dark fs-6 py-2 btn-block w-100">
+                <input type="submit" name="enviar" value="Enviar" class="btn btn-dark fs-6 py-2 w-100">
             </form>
         </div>
     </div>

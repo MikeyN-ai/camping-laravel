@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CampingRequest;
+use Illuminate\Http\Request;
 use App\Models\Camping;
 use Illuminate\Database\QueryException;
 
@@ -11,9 +12,21 @@ class CampingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $camping = Camping::orderBy('id', 'asc')->paginate(10);
+        $camping = Camping::query()
+            ->when($request->filled('nombre'), function ($query) use ($request) {
+                $query->where('nombre', 'like', '%' . $request->nombre . '%');
+            })
+            ->when($request->filled('telefono_contacto'), function ($query) use ($request) {
+                $query->where('telefono_contacto', 'like', '%' . $request->telefono_contacto. '%');
+            })
+            ->when($request->filled('correo_contacto'), function ($query) use ($request) {
+                $query->where('correo_contacto', 'like', '%' . $request->correo_contacto . '%');
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('camping.index', compact('camping'));
     }

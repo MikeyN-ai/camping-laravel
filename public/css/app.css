@@ -74,6 +74,36 @@
     min-height: calc(100vh - 106px);
 }
 
+.btn-custom {
+    border-radius: 0.375rem !important;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-filtrar {
+    background-color: #7bb8e8;
+}
+
+.btn-filtrar:hover {
+    background-color: #6baedc;
+}
+
+.btn-limpiar {
+    background-color: #97a3b3;
+}
+
+.btn-limpiar:hover {
+    background-color: #8895a7;
+}
+
+.btn-borrar {
+    background-color: oklch(70.4% 0.191 22.216);
+}
+
+.btn-editar {
+    background-color: oklch(85.2% 0.199 91.936) !important;
+}
+
 @media (max-width: 768px) {
 
     .logo_app {

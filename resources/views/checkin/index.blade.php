@@ -97,10 +97,10 @@
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('checkin.edit', $c) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                                <a href="{{ route('checkin.edit', $c) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                <button class="btn-custom btn-eliminar fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                     data-bs-target="#modalDelete" data-nombre="{{ 'este checkin' }}"
                                     data-ruta="{{ route('checkin.destroy', $c) }}">
                                     <i class="bi bi-trash"></i>

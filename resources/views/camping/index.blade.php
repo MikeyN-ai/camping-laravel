@@ -4,6 +4,51 @@
 
 @section('contenido')
 
+    <div class="container-fluid p-0 pt-1">
+        <form action="{{ route('camping.index') }}" method="GET" class="rounded bg-white border shadow mt-4 pt-3 mb-1">
+            <div class="row mx-2">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputClient" class="form-label">Nombre</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputNombre"
+                            aria-describedby="nombreHelp" placeholder="Filtrar per nombre ..." maxlength="100" name="nombre"
+                            value="{{ request('nombre') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputTelefon" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputTelefon"
+                            aria-describedby="telefonHelp" placeholder="Filtrar per teléfon ..." maxlength="100"
+                            name="telefono_contacto" value="{{ request('telefono_contacto') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputCorreo" class="form-label">Correo</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputCorreo"
+                            aria-describedby="correoHelp" placeholder="Filtrar per correo..." maxlength="200"
+                            name="correo_contacto" value="{{ request('correo_contacto') }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="row px-2">
+                <div class="col-12 px-4 pb-3">
+                    <div class="d-grid gap-2 mx-auto d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn-custom btn-filtrar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-funnel pe-1" alt="Filtrar"></i>
+                            Filtrar
+                        </button>
+                        <a href="{{ route('camping.index') }}" class="btn-custom btn-limpiar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-trash pe-1" alt="Netejar"></i>
+                            Limpiar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="text-end p-3">
         <a href="{{ route('camping.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
@@ -12,7 +57,9 @@
     </div>
 
     @if (session('success') || session('error'))
-        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+        <div id="liveToast"
+            class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow"
+            role="alert">
             {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -68,7 +115,8 @@
                                 <td class="align-middle">{{ $c->telefono_contacto }}</td>
                                 <td class="align-middle">{{ $c->correo_contacto }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{ route('camping.edit', $c) }}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('camping.edit', $c) }}"
+                                        class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
@@ -96,13 +144,12 @@
                             <p><span class="fw-bold">Correo de Contacto : </span> {{ $c->correo_contacto }}</p>
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
-                            <a href="{{ route('camping.edit', $c) }}" class="btn btn-warning btn-3d fs-6 p-2">
+                            <a href="{{ route('camping.edit', $c) }}" class="btn-custom btn-editar text-dark btn-3d fs-6 p-2">
                                 <i class="bi bi-pencil"></i>
                             </a>
 
-                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete" data-nombre="{{ $c->nombre }}"
-                                data-ruta="{{ route('camping.destroy', $c) }}">
+                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                                data-nombre="{{ $c->nombre }}" data-ruta="{{ route('camping.destroy', $c) }}">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
