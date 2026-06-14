@@ -21,7 +21,11 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="nombre" name="nombre"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('nombre')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="nombre" name="nombre"
                                             placeholder="Ex: CampingTamarit Beach Resort" value="{{ old('nombre') }}">
                                         @if ($errors->has('nombre'))
                                             <p class="text-danger py-2 m-0">
@@ -31,7 +35,11 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="direccion" class="form-label fw-bold">Dirección</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="direccion" name="direccion"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('direccion')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="direccion" name="direccion"
                                             placeholder="Ex: Gran Vía" value="{{ old('direccion') }}">
                                         @if ($errors->has('direccion'))
                                             <p class="text-danger py-2 m-0">
@@ -41,7 +49,10 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="persona_contacto" class="form-label fw-bold">Persona de contacto</label>
-                                        <input type="text" class="form-control border border-dark-subtle"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('persona_contacto')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                             id="persona_contacto" name="persona_contacto" placeholder="Ex: David Serrano Mellinas"
                                             value="{{ old('persona_contacto') }}">
                                         @if ($errors->has('persona_contacto'))
@@ -53,7 +64,10 @@
                                     <div class="col-12 mb-3">
                                         <label for="telefono_contacto" class="form-label fw-bold">Teléfono de
                                             contacto</label>
-                                        <input type="text" class="form-control border border-dark-subtle"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('telefono_contacto')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                             id="telefono_contacto" name="telefono_contacto" placeholder="Ex: 656 56 56 56"
                                             value="{{ old('telefono_contacto') }}">
                                         @if ($errors->has('telefono_contacto'))
@@ -64,7 +78,10 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="correo_contacto" class="form-label fw-bold">Correo de contacto</label>
-                                        <input type="text" class="form-control border border-dark-subtle"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('correo_contacto')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                             id="correo_contacto" name="correo_contacto" placeholder="Ex: example@gmail.com"
                                             value="{{ old('correo_contacto') }}">
                                         @if ($errors->has('correo_contacto'))

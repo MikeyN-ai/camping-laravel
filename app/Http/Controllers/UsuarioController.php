@@ -6,17 +6,32 @@ use App\Http\Requests\UsuarioRequest;
 use App\Models\Camping;
 use App\Models\Idiomas;
 use App\Models\Usuario;
+use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usuario = Usuario::orderBy('id', 'asc')->paginate(10);
+        $usuario = Usuario::query()
+            ->when($request->filled('usuario'), function ($query) use ($request) {
+                $query->where('usuario', 'like', '%' . $request->usuario . '%');
+            })
+            ->when($request->filled('correo'), function ($query) use ($request) {
+                $query->where('correo', 'like', '%' . $request->correo . '%');
+            })
+            ->when($request->filled('id_camping'), function ($query) use ($request) {
+                $query->where('id_camping', $request->id_camping);
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
+            
+        $camping = Camping::orderBy('nombre', 'asc')->get();
 
-        return view('usuario.index', compact('usuario'));
+        return view('usuario.index', compact('usuario', 'camping'));
     }
 
     /**

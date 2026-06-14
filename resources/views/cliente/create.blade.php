@@ -21,10 +21,14 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="nombre"
-                                            name="nombre" value="{{ old('nombre') }}" placeholder="Ex: Fernando">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('nombre')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="nombre" name="nombre" value="{{ old('nombre') }}"
+                                            placeholder="Ex: Fernando">
                                         @if ($errors->has('nombre'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('nombre') }}
                                             </p>
                                         @endif
@@ -32,10 +36,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="apellidos" class="form-label fw-bold">Apellidos</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="apellidos"
-                                            name="apellidos" value="{{ old('apellidos') }}" placeholder="Ex: González Díaz">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('apellidos')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="apellidos" name="apellidos" value="{{ old('apellidos') }}"
+                                            placeholder="Ex: González Díaz">
                                         @if ($errors->has('apellidos'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('apellidos') }}
                                             </p>
                                         @endif
@@ -43,10 +51,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="correo" class="form-label fw-bold">Correo</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="correo"
-                                            name="correo" value="{{ old('correo') }}" placeholder="Ex: example@gmail.com">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('correo')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="correo" name="correo" value="{{ old('correo') }}"
+                                            placeholder="Ex: example@gmail.com">
                                         @if ($errors->has('correo'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('correo') }}
                                             </p>
                                         @endif
@@ -54,10 +66,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="nif" class="form-label fw-bold">NIF</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="nif"
-                                            name="nif" value="{{ old('nif') }}" placeholder="Ex: 21949869A">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('nif')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="nif" name="nif" value="{{ old('nif') }}"
+                                            placeholder="Ex: 21949869A">
                                         @if ($errors->has('nif'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('nif') }}
                                             </p>
                                         @endif
@@ -65,10 +81,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="telefono" class="form-label fw-bold">Teléfono</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="telefono"
-                                            name="telefono" value="{{ old('telefono') }}" placeholder="Ex: 656 56 56 67">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('telefono')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="telefono" name="telefono" value="{{ old('telefono') }}"
+                                            placeholder="Ex: 656 56 56 67">
                                         @if ($errors->has('telefono'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('telefono') }}
                                             </p>
                                         @endif
@@ -76,10 +96,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="matricula" class="form-label fw-bold">Matrícula</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="matricula"
-                                            name="matricula" value="{{ old('matricula') }}"  placeholder="Ex: 8324JDL">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('matricula')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="matricula" name="matricula" value="{{ old('matricula') }}"
+                                            placeholder="Ex: 8324JDL">
                                         @if ($errors->has('matricula'))
-               v                             <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('matricula') }}
                                             </p>
                                         @endif

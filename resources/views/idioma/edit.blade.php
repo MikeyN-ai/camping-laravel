@@ -23,10 +23,14 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="idioma" class="form-label fw-bold">Idioma</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="idioma" name="idioma"
-                                            placeholder="Ex: Inglés" value="{{ old('idioma', $idioma->idioma) }}">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('idioma')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="idioma" name="idioma" placeholder="Ex: Inglés"
+                                            value="{{ old('idioma', $idioma->idioma) }}">
                                         @if ($errors->has('idioma'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('idioma') }}
                                             </p>
                                         @endif
@@ -34,10 +38,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="abreviatura" class="form-label fw-bold">Abreviatura</label>
-                                        <input type="text" class="form-control border border-dark-subtle"
-                                            id="abreviatura" name="abreviatura" placeholder="Ex: EN" value="{{ old('abreviatura', $idioma->abreviatura) }}">
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('abreviatura')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="abreviatura" name="abreviatura" placeholder="Ex: EN"
+                                            value="{{ old('abreviatura', $idioma->abreviatura) }}">
                                         @if ($errors->has('abreviatura'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('abreviatura') }}
                                             </p>
                                         @endif

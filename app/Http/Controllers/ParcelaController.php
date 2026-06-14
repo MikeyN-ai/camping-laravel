@@ -6,15 +6,28 @@ use App\Http\Requests\ParcelaRequest;
 use App\Models\Checkin;
 use App\Models\Parcela;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 class ParcelaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $parcela = Parcela::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
+        $parcela = Parcela::where('id_camping', getCampingUsuario())
+            ->when($request->filled('nombre'), function ($query) use ($request) {
+                $query->where('nombre', 'like', '%' . $request->nombre . '%');
+            })
+            ->when($request->filled('shelly'), function ($query) use ($request) {
+                $query->whereRaw("(shelly LIKE ? OR shelly IS NOT NULL AND shelly LIKE ?)", ['%' . $request->shelly . '%', '%' . $request->shelly . '%']);
+            })
+            ->when($request->filled('shelly_on'), function ($query) use ($request) {
+                $query->where('shelly_on', $request->shelly_on);
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('parcela.index', compact('parcela'));
     }

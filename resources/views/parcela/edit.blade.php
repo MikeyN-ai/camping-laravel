@@ -25,11 +25,14 @@
                                     <div class="row">
                                         <div class="col-12 mb-3">
                                             <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                            <input type="text" class="form-control border border-dark-subtle"
+                                            <input type="text"
+                                                class="form-control
+                                                    @if ($errors->has('nombre')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                                 id="nombre" name="nombre" placeholder="Ex: Parcela 1"
                                                 value="{{ old('nombre', $parcela->nombre) }}">
                                             @if ($errors->has('nombre'))
-                                                <p class="text-danger py-2">
+                                                <p class="text-danger py-2 m-0">
                                                     {{ $errors->first('nombre') }}
                                                 </p>
                                             @endif
@@ -37,11 +40,14 @@
 
                                         <div class="col-12 mb-3">
                                             <label for="shelly" class="form-label fw-bold">Dispositivo Shelly</label>
-                                            <input type="text" class="form-control border border-dark-subtle"
+                                            <input type="text"
+                                                class="form-control
+                                                    @if ($errors->has('shelly')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                                 id="shelly" name="shelly" placeholder="Ex: shelly-00001"
                                                 value="{{ old('shelly', $parcela->shelly) }}">
                                             @if ($errors->has('shelly'))
-                                                <p class="text-danger py-2">
+                                                <p class="text-danger py-2 m-0">
                                                     {{ $errors->first('shelly') }}
                                                 </p>
                                             @endif
@@ -49,11 +55,14 @@
 
                                         <div class="col-12 mb-3">
                                             <label for="canal" class="form-label fw-bold">Canal</label>
-                                            <input type="text" class="form-control border border-dark-subtle"
+                                            <input type="text"
+                                                class="form-control
+                                                    @if ($errors->has('canal')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                                 id="canal" name="canal" placeholder="Ex: 0"
                                                 value="{{ old('canal', $parcela->canal) }}">
                                             @if ($errors->has('canal'))
-                                                <p class="text-danger py-2">
+                                                <p class="text-danger py-2 m-0">
                                                     {{ $errors->first('canal') }}
                                                 </p>
                                             @endif

@@ -23,7 +23,10 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="id_cliente" class="form-label fw-bold">Cliente</label>
-                                        <select class="form-select border border-dark-subtle" id="id_cliente"
+                                        <select class="form-select
+                                                    @if ($errors->has('id_cliente')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="id_cliente"
                                             name="id_cliente">
                                             <option value="" class="text-dark" disabled selected>
                                                 Selecciona un cliente
@@ -36,7 +39,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_cliente'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('id_cliente') }}
                                             </p>
                                         @endif
@@ -44,7 +47,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="id_parcela" class="form-label fw-bold">Parcela</label>
-                                        <select class="form-select border border-dark-subtle" id="id_parcela"
+                                        <select class="form-select
+                                                    @if ($errors->has('id_parcela')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="id_parcela"
                                             name="id_parcela">
                                             <option value="" class="text-dark" disabled selected>
                                                 Selecciona una parcela
@@ -57,7 +63,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_parcela'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('id_parcela') }}
                                             </p>
                                         @endif
@@ -65,7 +71,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="id_tarifa" class="form-label fw-bold">Tarifa</label>
-                                        <select class="form-select border border-dark-subtle" id="id_tarifa"
+                                        <select class="form-select
+                                                    @if ($errors->has('id_tarifa')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="id_tarifa"
                                             name="id_tarifa">
                                             <option value="" class="text-dark" disabled selected>
                                                 Selecciona una tarifa
@@ -78,7 +87,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_tarifa'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('id_tarifa') }}
                                             </p>
                                         @endif
@@ -86,10 +95,13 @@
 
                                     <div class="col-6 mb-3">
                                         <label for="fecha_entrada" class="form-label fw-bold">Fecha entrada</label>
-                                        <input type="date" class="form-control border border-dark-subtle"
+                                        <input type="date"
+                                            class="form-control
+                                                    @if ($errors->has('fecha_entrada')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                             id="fecha_entrada" name="fecha_entrada" value="{{ old('fecha_entrada', $checkin->fecha_entrada) }}">
                                         @if ($errors->has('fecha_entrada'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('fecha_entrada') }}
                                             </p>
                                         @endif
@@ -97,10 +109,13 @@
 
                                     <div class="col-6 mb-3">
                                         <label for="fecha_salida" class="form-label fw-bold">Fecha salida</label>
-                                        <input type="date" class="form-control border border-dark-subtle"
+                                        <input type="date"
+                                            class="form-control
+                                                    @if ($errors->has('fecha_salida')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                             id="fecha_salida" name="fecha_salida" value="{{ old('fecha_salida', $checkin->fecha_salida) }}">
                                         @if ($errors->has('fecha_salida'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('fecha_salida') }}
                                             </p>
                                         @endif

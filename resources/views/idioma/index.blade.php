@@ -69,10 +69,10 @@
                                 <td class="align-middle">{{ $i->abreviatura }}</td>
                                 @if (isAdmin())
                                     <td class="d-flex gap-2">
-                                        <a href="{{ route('idioma.edit', $i) }}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                        <a href="{{ route('idioma.edit', $i) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                        <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                             data-bs-target="#modalDelete" data-nombre="{{ $i->idioma }}"
                                             data-ruta="{{ route('idioma.destroy', $i) }}">
                                             <i class="bi bi-trash"></i>
@@ -96,10 +96,10 @@
                         </div>
                         @if (isAdmin())
                             <div class="card-footer d-flex gap-2 justify-content-end">
-                                <a href="{{ route('idioma.edit', $i) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
+                                <a href="{{ route('idioma.edit', $i) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                                <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
                                     data-nombre="{{ $i->idioma }}" data-ruta="{{ route('idioma.destroy', $i) }}">
                                     <i class="bi bi-trash"></i>
                                 </button>

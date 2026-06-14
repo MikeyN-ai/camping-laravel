@@ -5,15 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TarifaRequest;
 use App\Models\Tarifa;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 class TarifaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tarifa = Tarifa::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
+        $tarifa = Tarifa::where('id_camping', getCampingUsuario())
+            ->when($request->filled('nombre'), function ($query) use ($request) {
+                $query->where('nombre', 'like', '%' . $request->nombre . '%');
+            })
+            ->when($request->filled('tipo'), function ($query) use ($request) {
+                $query->where('tipo', $request->tipo);
+            })
+            ->when($request->filled('limite_watts'), function ($query) use ($request) {
+                $query->where('limite_watts', $request->limite_watts);
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('tarifa.index', compact('tarifa'));
     }

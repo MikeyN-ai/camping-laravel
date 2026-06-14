@@ -4,6 +4,53 @@
 
 @section('contenido')
 
+    <div class="container-fluid p-0 pt-1">
+        <form action="{{ route('tarifa.index') }}" method="GET" class="rounded bg-white border shadow mt-4 pt-3 mb-1">
+            <div class="row mx-2">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputNombre"
+                            aria-describedby="nombreHelp" placeholder="Filtrar por nombre..." maxlength="100" name="nombre"
+                            value="{{ request('nombre') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputTipo" class="form-label">Tipo</label>
+                        <select class="form-select border border-dark-subtle" id="inputTipo" name="tipo">
+                            <option value="">Todos</option>
+                            <option value="por_amperio" {{ request('tipo') == 'por_amperio' ? 'selected' : '' }}>Por Amperio</option>
+                            <option value="por_kilovatio" {{ request('tipo') == 'por_kilovatio' ? 'selected' : '' }}>Por Kilovatio</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputLimiteWatts" class="form-label">Límite Watts</label>
+                        <input type="number" class="form-control border border-dark-subtle" id="inputLimiteWatts"
+                            aria-describedby="limiteWattsHelp" placeholder="Filtrar por límite..." name="limite_watts"
+                            value="{{ request('limite_watts') }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="row px-2">
+                <div class="col-12 px-4 pb-3">
+                    <div class="d-grid gap-2 mx-auto d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn-custom btn-filtrar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-funnel pe-1" alt="Filtrar"></i>
+                            Filtrar
+                        </button>
+                        <a href="{{ route('tarifa.index') }}" class="btn-custom btn-limpiar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-trash pe-1" alt="Limpiar"></i>
+                            Limpiar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="text-end p-3">
         <a href="{{ route('tarifa.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
@@ -72,10 +119,10 @@
                                 <td class="align-middle">{{ $t->limite_watts }}</td>
                                 <td class="align-middle">{{ $t->limite_amperios }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{ route('tarifa.edit', $t) }}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('tarifa.edit', $t) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                         data-bs-target="#modalDelete" data-nombre="{{ $t->nombre }}"
                                         data-ruta="{{ route('tarifa.destroy', $t) }}">
                                         <i class="bi bi-trash"></i>
@@ -102,10 +149,10 @@
                             <p><span class="fw-bold">Limite Amperios : </span> {{ $t->limite_amperios }}</p>
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
-                            <a href="{{ route('tarifa.edit', $t) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
+                            <a href="{{ route('tarifa.edit', $t) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                            <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                 data-bs-target="#modalDelete" data-nombre="{{ $t->nombre }}"
                                 data-ruta="{{ route('tarifa.destroy', $t) }}">
                                 <i class="bi bi-trash"></i>

@@ -81,7 +81,7 @@
 }
 
 .btn-filtrar {
-    background-color: #7bb8e8;
+    background-color: #589dd1;
 }
 
 .btn-filtrar:hover {
@@ -89,19 +89,23 @@
 }
 
 .btn-limpiar {
-    background-color: #97a3b3;
+    background-color: oklch(60.009% 0.21143 25.657);
 }
 
 .btn-limpiar:hover {
-    background-color: #8895a7;
+    background-color: oklch(63.7% 0.237 25.331);
 }
 
 .btn-borrar {
-    background-color: oklch(70.4% 0.191 22.216);
+    background-color: oklch(59.849% 0.19027 22.326);
 }
 
 .btn-editar {
-    background-color: oklch(85.2% 0.199 91.936) !important;
+    background-color: oklch(90.5% 0.182 98.111) !important;
+}
+
+.btn-ver {
+    background-color: oklch(75.917% 0.11881 225.79);
 }
 
 @media (max-width: 768px) {

@@ -29,10 +29,14 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="nombre" name="nombre"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('nombre')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="nombre" name="nombre"
                                             placeholder="Ex: Temporada alta" value="{{ old('nombre', $tarifa->nombre) }}">
                                         @if ($errors->has('nombre'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('nombre') }}
                                             </p>
                                         @endif
@@ -40,7 +44,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="tipo" class="form-label fw-bold">Tipo</label>
-                                        <select id="tipo" name="tipo" class="form-select border border-dark-subtle">
+                                        <select id="tipo" name="tipo"
+                                            class="form-select
+                                                    @if ($errors->has('tipo')) is-invalid
+                                                    @else border border-dark-subtle @endif">
                                             <option disabled selected>Selecciona un tipo</option>
 
                                             @foreach ($tipos as $tipo)
@@ -52,7 +59,7 @@
 
                                         </select>
                                         @if ($errors->has('tipo'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('tipo') }}
                                             </p>
                                         @endif
@@ -60,10 +67,14 @@
 
                                     <div id="group-precio-dia" class="col-12 mb-3">
                                         <label for="precio_dia" class="form-label fw-bold">Precio Día</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="precio_dia" name="precio_dia"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('precio_dia')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="precio_dia" name="precio_dia"
                                             placeholder="Ex: 8.00" value="{{ old('precio_dia', $tarifa->precio_dia) }}">
                                         @if ($errors->has('precio_dia'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('precio_dia') }}
                                             </p>
                                         @endif
@@ -71,10 +82,14 @@
 
                                     <div id="group-precio-kwh" class="col-12 mb-3">
                                         <label for="precio_kilovatio" class="form-label fw-bold">Precio Kilovatio</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="precio_kilovatio" name="precio_kilovatio"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('precio_kilovatio')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="precio_kilovatio" name="precio_kilovatio"
                                             placeholder="Ex: 0.75" value="{{ old('precio_kilovatio', $tarifa->precio_kilovatio) }}">
                                         @if ($errors->has('precio_kilovatio'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('precio_kilovatio') }}
                                             </p>
                                         @endif
@@ -82,10 +97,14 @@
 
                                     <div id="group-kwh-gratuitos" class="col-12 mb-3">
                                         <label for="kwh_gratuitos" class="form-label fw-bold">KWh gratuitos</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="kwh_gratuitos" name="kwh_gratuitos"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('kwh_gratuitos')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="kwh_gratuitos" name="kwh_gratuitos"
                                             placeholder="Ex: 2.00" value="{{ old('kwh_gratuitos', $tarifa->kwh_gratuitos) }}">
                                         @if ($errors->has('kwh_gratuitos'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('kwh_gratuitos') }}
                                             </p>
                                         @endif
@@ -93,10 +112,14 @@
 
                                     <div class="col-6 mb-3">
                                         <label for="limite_watts" class="form-label fw-bold">Limite de watts</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="limite_watts" name="limite_watts"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('limite_watts')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="limite_watts" name="limite_watts"
                                             placeholder="Ex: 2450" value="{{ old('limite_watts', $tarifa->limite_watts) }}">
                                         @if ($errors->has('limite_watts'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('limite_watts') }}
                                             </p>
                                         @endif
@@ -104,7 +127,10 @@
 
                                     <div class="col-6 mb-3">
                                         <label for="limite_amperios" class="form-label fw-bold">Limite amperios</label>
-                                        <select name="limite_amperios" class="form-select border border-dark-subtle">
+                                        <select name="limite_amperios"
+                                            class="form-select
+                                                    @if ($errors->has('limite_amperios')) is-invalid
+                                                    @else border border-dark-subtle @endif">
                                             <option disabled selected>Selecciona la cantidad de amperios</option>
 
                                             @foreach ($amperios as $amp )
@@ -117,7 +143,7 @@
                                         </select>
 
                                         @if ($errors->has('limite_amperios'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('limite_amperios') }}
                                             </p>
                                         @endif

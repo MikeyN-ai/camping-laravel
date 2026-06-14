@@ -4,6 +4,69 @@
 
 @section('contenido')
 
+    <div class="container-fluid p-0 pt-1">
+        <form action="{{ route('cliente.index') }}" method="GET" class="rounded bg-white border shadow mt-4 pt-3 mb-1">
+            <div class="row mx-2">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputNombre"
+                            aria-describedby="nombreHelp" placeholder="Filtrar por nombre..." maxlength="100" name="nombre"
+                            value="{{ request('nombre') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputCorreo" class="form-label">Correo</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputCorreo"
+                            aria-describedby="correoHelp" placeholder="Filtrar por correo..." maxlength="200" name="correo"
+                            value="{{ request('correo') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputNif" class="form-label">NIF</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputNif"
+                            aria-describedby="nifHelp" placeholder="Filtrar por NIF..." maxlength="100" name="nif"
+                            value="{{ request('nif') }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputTelefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputTelefono"
+                            aria-describedby="telefonoHelp" placeholder="Filtrar por teléfono..." maxlength="100" name="telefono"
+                            value="{{ request('telefono') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputMatricula" class="form-label">Matrícula</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputMatricula"
+                            aria-describedby="matriculaHelp" placeholder="Filtrar por matrícula..." maxlength="100" name="matricula"
+                            value="{{ request('matricula') }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="row px-2">
+                <div class="col-12 px-4 pb-3">
+                    <div class="d-grid gap-2 mx-auto d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn-custom btn-filtrar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-funnel pe-1" alt="Filtrar"></i>
+                            Filtrar
+                        </button>
+                        <a href="{{ route('cliente.index') }}" class="btn-custom btn-limpiar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-trash pe-1" alt="Limpiar"></i>
+                            Limpiar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="text-end p-3">
         <a href="{{ route('cliente.create') }}" class="btn btn-dark btn-lg border btn-3d">
             <i class="bi bi-plus-circle pe-1"></i>
@@ -68,10 +131,10 @@
                                 <td class="align-middle">{{ $c->telefono }}</td>
                                 <td class="align-middle">{{ $c->matricula }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{ route('cliente.edit', $c) }}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('cliente.edit', $c) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                         data-bs-target="#modalDelete" data-nombre="{{ $c->nombre . ' ' . $c->apellidos }}"
                                         data-ruta="{{ route('cliente.destroy', $c) }}">
                                         <i class="bi bi-trash"></i>
@@ -97,10 +160,10 @@
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('cliente.edit', $c) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
+                                <a href="{{ route('cliente.edit', $c) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                     data-bs-target="#modalDelete" data-nombre="{{ $c->nombre . ' ' . $c->apellidos }}"
                                     data-ruta="{{ route('cliente.destroy', $c) }}">
                                     <i class="bi bi-trash"></i>

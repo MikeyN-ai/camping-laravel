@@ -7,18 +7,44 @@ use App\Models\Checkin;
 use App\Models\Cliente;
 use App\Models\Parcela;
 use App\Models\Tarifa;
+use Illuminate\Http\Request;
 
 class CheckinController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $parcela = Parcela::where('id_camping', getCampingUsuario())->get();
-        $checkin = Checkin::whereIn('id_parcela', $parcela->pluck('id'))->orderBy('id', 'asc')->paginate(10);
+        $cliente = Cliente::where('id_camping', getCampingUsuario())->orderBy('nombre', 'asc')->get();
+        $tarifa = Tarifa::where('id_camping', getCampingUsuario())->orderBy('nombre', 'asc')->get();
+        
+        $checkin = Checkin::whereIn('id_parcela', $parcela->pluck('id'))
+            ->when($request->filled('fecha_entrada') || $request->filled('fecha_salida'), function ($query) use ($request) {
+                if ($request->filled('fecha_entrada') && $request->filled('fecha_salida')) {
+                    $query->where('fecha_entrada', '<=', $request->fecha_salida)
+                          ->where('fecha_salida', '>=', $request->fecha_entrada);
+                } elseif ($request->filled('fecha_entrada')) {
+                    $query->where('fecha_salida', '>=', $request->fecha_entrada);
+                } else {
+                    $query->where('fecha_entrada', '<=', $request->fecha_salida);
+                }
+            })
+            ->when($request->filled('id_parcela'), function ($query) use ($request) {
+                $query->where('id_parcela', $request->id_parcela);
+            })
+            ->when($request->filled('id_cliente'), function ($query) use ($request) {
+                $query->where('id_cliente', $request->id_cliente);
+            })
+            ->when($request->filled('id_tarifa'), function ($query) use ($request) {
+                $query->where('id_tarifa', $request->id_tarifa);
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
 
-        return view('checkin.index', compact('checkin'));
+        return view('checkin.index', compact('checkin', 'parcela', 'cliente', 'tarifa'));
     }
 
     /**

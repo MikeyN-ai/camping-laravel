@@ -27,10 +27,14 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label for="usuario" class="form-label fw-bold">Usuario</label>
-                                        <input type="text" class="form-control border border-dark-subtle" id="usuario"
+                                        <input type="text"
+                                            class="form-control
+                                                    @if ($errors->has('usuario')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="usuario"
                                             name="usuario" placeholder="Ex: editor" value="{{ old('usuario') }}">
                                         @if ($errors->has('usuario'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('usuario') }}
                                             </p>
                                         @endif
@@ -38,10 +42,14 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="correo" class="form-label fw-bold">Correo</label>
-                                        <input type="email" class="form-control border border-dark-subtle" id="correo"
+                                        <input type="email"
+                                            class="form-control
+                                                    @if ($errors->has('correo')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="correo"
                                             name="correo" placeholder="Ex: example@gmail.com" value="{{ old('correo') }}">
                                         @if ($errors->has('correo'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('correo') }}
                                             </p>
                                         @endif
@@ -49,7 +57,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="id_camping" class="form-label fw-bold">Camping</label>
-                                        <select class="form-select border border-dark-subtle" id="id_camping"
+                                        <select class="form-select
+                                                    @if ($errors->has('id_camping')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="id_camping"
                                             name="id_camping">
                                             <option value="" class="text-dark" disabled selected>
                                                 Selecciona un camping
@@ -62,7 +73,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_camping'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('id_camping') }}
                                             </p>
                                         @endif
@@ -70,7 +81,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="id_idioma" class="form-label fw-bold">Idioma</label>
-                                        <select class="form-select border border-dark-subtle" id="id_idioma"
+                                        <select class="form-select
+                                                    @if ($errors->has('id_idioma')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="id_idioma"
                                             name="id_idioma">
                                             <option value="" class="text-dark" disabled selected>
                                                 Selecciona un idioma
@@ -83,7 +97,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('id_idioma'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('id_idioma') }}
                                             </p>
                                         @endif
@@ -91,7 +105,10 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="rol" class="form-label fw-bold">Rol</label>
-                                        <select name="rol" class="form-select border border-dark-subtle">
+                                        <select name="rol"
+                                            class="form-select
+                                                    @if ($errors->has('rol')) is-invalid
+                                                    @else border border-dark-subtle @endif">
                                             <option disabled selected>Selecciona un rol</option>
 
                                             @foreach ($rol as $r)
@@ -103,7 +120,7 @@
 
                                         </select>
                                         @if ($errors->has('rol'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('rol') }}
                                             </p>
                                         @endif
@@ -111,11 +128,15 @@
 
                                     <div class="col-12 mb-3">
                                         <label for="password" class="form-label fw-bold">Contraseña</label>
-                                        <input type="password" class="form-control border border-dark-subtle" id="password"
+                                        <input type="password"
+                                            class="form-control
+                                                    @if ($errors->has('password')) is-invalid
+                                                    @else border border-dark-subtle @endif"
+                                            id="password"
                                             name="password" placeholder="Ingrese su contraseña"
                                             value="{{ old('password') }}">
                                         @if ($errors->has('password'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('password') }}
                                             </p>
                                         @endif
@@ -126,12 +147,15 @@
                                             Confirmar contraseña
                                         </label>
 
-                                        <input type="password" class="form-control border border-dark-subtle"
+                                        <input type="password"
+                                            class="form-control
+                                                    @if ($errors->has('password_confirmation')) is-invalid
+                                                    @else border border-dark-subtle @endif"
                                             id="password_confirmation" name="password_confirmation"
                                             placeholder="Repite la contraseña">
 
                                         @if ($errors->has('password_confirmation'))
-                                            <p class="text-danger py-2">
+                                            <p class="text-danger py-2 m-0">
                                                 {{ $errors->first('password_confirmation') }}
                                             </p>
                                         @endif

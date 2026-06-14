@@ -5,15 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cliente = Cliente::where('id_camping', getCampingUsuario())->orderBy('id', 'asc')->paginate(10);
+        $cliente = Cliente::where('id_camping', getCampingUsuario())
+            ->when($request->filled('nombre'), function ($query) use ($request) {
+                $query->where('nombre', 'like', '%' . $request->nombre . '%');
+            })
+            ->when($request->filled('correo'), function ($query) use ($request) {
+                $query->where('correo', 'like', '%' . $request->correo . '%');
+            })
+            ->when($request->filled('nif'), function ($query) use ($request) {
+                $query->where('nif', 'like', '%' . $request->nif . '%');
+            })
+            ->when($request->filled('telefono'), function ($query) use ($request) {
+                $query->where('telefono', 'like', '%' . $request->telefono . '%');
+            })
+            ->when($request->filled('matricula'), function ($query) use ($request) {
+                $query->where('matricula', 'like', '%' . $request->matricula . '%');
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('cliente.index', compact('cliente'));
     }

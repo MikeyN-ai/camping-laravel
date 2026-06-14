@@ -4,6 +4,55 @@
 
 @section('contenido')
 
+    <div class="container-fluid p-0 pt-1">
+        <form action="{{ route('usuario.index') }}" method="GET" class="rounded bg-white border shadow mt-4 pt-3 mb-1">
+            <div class="row mx-2">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputUsuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputUsuario"
+                            aria-describedby="usuarioHelp" placeholder="Filtrar por usuario..." maxlength="100" name="usuario"
+                            value="{{ request('usuario') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputCorreo" class="form-label">Correo</label>
+                        <input type="text" class="form-control border border-dark-subtle" id="inputCorreo"
+                            aria-describedby="correoHelp" placeholder="Filtrar por correo..." maxlength="200" name="correo"
+                            value="{{ request('correo') }}" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="mb-3">
+                        <label for="inputCamping" class="form-label">Camping</label>
+                        <select class="form-select border border-dark-subtle" id="inputCamping" name="id_camping">
+                            <option value="">Todos</option>
+                            @foreach ($camping as $c)
+                                <option value="{{ $c->id }}" {{ request('id_camping') == $c->id ? 'selected' : '' }}>
+                                    {{ $c->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row px-2">
+                <div class="col-12 px-4 pb-3">
+                    <div class="d-grid gap-2 mx-auto d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn-custom btn-filtrar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-funnel pe-1" alt="Filtrar"></i>
+                            Filtrar
+                        </button>
+                        <a href="{{ route('usuario.index') }}" class="btn-custom btn-limpiar py-1 px-2 text-white btn-3d">
+                            <i class="bi bi-trash pe-1" alt="Limpiar"></i>
+                            Limpiar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <div class="text-end p-3">
         <a href="{{ route('usuario.create') }}" class="btn btn-dark btn-lg border btn-3d">
@@ -69,10 +118,10 @@
                                 <td class="align-middle">{{ $u->idioma->idioma }}</td>
                                 <td class="align-middle">{{ $u->rol }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="{{ route('usuario.edit', $u) }}" class="btn btn-warning fs-6 p-2 btn-3d">
+                                    <a href="{{ route('usuario.edit', $u) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                         data-bs-target="#modalDelete" data-nombre="{{ $u->usuario }}"
                                         data-ruta="{{ route('usuario.destroy', $u) }}">
                                         <i class="bi bi-trash"></i>
@@ -97,10 +146,10 @@
                             <p><span class="fw-bold">Rol : </span> {{ $u->rol }}</p>
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
-                            <a href="{{ route('usuario.edit', $u) }}" class="btn-custom btn-editar fs-6 p-2 btn-3d">
+                            <a href="{{ route('usuario.edit', $u) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <button class="btn btn-danger fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                            <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
                                 data-bs-target="#modalDelete" data-nombre="{{ $u->usuario }}"
                                 data-ruta="{{ route('usuario.destroy', $u) }}">
                                 <i class="bi bi-trash"></i>
