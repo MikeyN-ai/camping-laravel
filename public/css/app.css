@@ -26,6 +26,7 @@
 .seleccionado {
     background-color: #4c5257 !important;
     font-size: bold;
+    cursor: default;
 }
 
 .btn-3d {
