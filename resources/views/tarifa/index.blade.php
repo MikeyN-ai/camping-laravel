@@ -20,8 +20,10 @@
                         <label for="inputTipo" class="form-label">Tipo</label>
                         <select class="form-select border border-dark-subtle" id="inputTipo" name="tipo">
                             <option value="">Todos</option>
-                            <option value="por_amperio" {{ request('tipo') == 'por_amperio' ? 'selected' : '' }}>Por Amperio</option>
-                            <option value="por_kilovatio" {{ request('tipo') == 'por_kilovatio' ? 'selected' : '' }}>Por Kilovatio</option>
+                            <option value="por_amperio" {{ request('tipo') == 'por_amperio' ? 'selected' : '' }}>Por Amperio
+                            </option>
+                            <option value="por_kilovatio" {{ request('tipo') == 'por_kilovatio' ? 'selected' : '' }}>Por
+                                Kilovatio</option>
                         </select>
                     </div>
                 </div>
@@ -59,7 +61,9 @@
     </div>
 
     @if (session('success') || session('error'))
-        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+        <div id="liveToast"
+            class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow"
+            role="alert">
             {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -118,15 +122,18 @@
                                 <td class="align-middle">{{ $t->kwh_gratuitos ?? 'N/A' }}</td>
                                 <td class="align-middle">{{ $t->limite_watts }}</td>
                                 <td class="align-middle">{{ $t->limite_amperios }}</td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('tarifa.edit', $t) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete" data-nombre="{{ $t->nombre }}"
-                                        data-ruta="{{ route('tarifa.destroy', $t) }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('tarifa.edit', $t) }}"
+                                            class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete" data-nombre="{{ $t->nombre }}"
+                                            data-ruta="{{ route('tarifa.destroy', $t) }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -114,16 +114,18 @@
                                 <td class="align-middle">{{ $c->persona_contacto }}</td>
                                 <td class="align-middle">{{ $c->telefono_contacto }}</td>
                                 <td class="align-middle">{{ $c->correo_contacto }}</td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('camping.edit', $c) }}"
-                                        class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete" data-nombre="{{ $c->nombre }}"
-                                        data-ruta="{{ route('camping.destroy', $c) }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('camping.edit', $c) }}"
+                                            class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete" data-nombre="{{ $c->nombre }}"
+                                            data-ruta="{{ route('camping.destroy', $c) }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -148,8 +150,9 @@
                                 <i class="bi bi-pencil"></i>
                             </a>
 
-                            <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
-                                data-nombre="{{ $c->nombre }}" data-ruta="{{ route('camping.destroy', $c) }}">
+                            <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete" data-nombre="{{ $c->nombre }}"
+                                data-ruta="{{ route('camping.destroy', $c) }}">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>

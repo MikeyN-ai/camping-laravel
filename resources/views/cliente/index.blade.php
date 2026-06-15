@@ -37,16 +37,16 @@
                     <div class="mb-3">
                         <label for="inputTelefono" class="form-label">Teléfono</label>
                         <input type="text" class="form-control border border-dark-subtle" id="inputTelefono"
-                            aria-describedby="telefonoHelp" placeholder="Filtrar por teléfono..." maxlength="100" name="telefono"
-                            value="{{ request('telefono') }}" />
+                            aria-describedby="telefonoHelp" placeholder="Filtrar por teléfono..." maxlength="100"
+                            name="telefono" value="{{ request('telefono') }}" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="mb-3">
                         <label for="inputMatricula" class="form-label">Matrícula</label>
                         <input type="text" class="form-control border border-dark-subtle" id="inputMatricula"
-                            aria-describedby="matriculaHelp" placeholder="Filtrar por matrícula..." maxlength="100" name="matricula"
-                            value="{{ request('matricula') }}" />
+                            aria-describedby="matriculaHelp" placeholder="Filtrar por matrícula..." maxlength="100"
+                            name="matricula" value="{{ request('matricula') }}" />
                     </div>
                 </div>
             </div>
@@ -75,7 +75,9 @@
     </div>
 
     @if (session('success') || session('error'))
-        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+        <div id="liveToast"
+            class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow"
+            role="alert">
             {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -130,15 +132,18 @@
                                 <td class="align-middle">{{ $c->nif }}</td>
                                 <td class="align-middle">{{ $c->telefono }}</td>
                                 <td class="align-middle">{{ $c->matricula }}</td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('cliente.edit', $c) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete" data-nombre="{{ $c->nombre . ' ' . $c->apellidos }}"
-                                        data-ruta="{{ route('cliente.destroy', $c) }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('cliente.edit', $c) }}"
+                                            class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete" data-nombre="{{ $c->nombre . ' ' . $c->apellidos }}"
+                                            data-ruta="{{ route('cliente.destroy', $c) }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -160,7 +165,7 @@
                         </div>
                         <div class="card-footer d-flex gap-2 justify-content-end">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('cliente.edit', $c) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
+                                <a href=" {{ route('cliente.edit', $c) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"

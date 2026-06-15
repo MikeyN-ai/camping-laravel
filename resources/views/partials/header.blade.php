@@ -35,54 +35,54 @@
 
         <div class="collapse navbar-collapse bg-dark m-0 p-0 position-absolute w-100 start-0 top-100 z-3"
             id="navbarTogglerDemo02">
-            <div class="list-group border-0 fs-5 d-lg-none">
-                <a href="{{ route('inicio') }}" class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-4 ps-4 menu_lateral
+            <div class="list-group border-0 fs-5 px-2 py-1 d-lg-none">
+                <a href="{{ route('inicio') }}" class="list-group-item list-group-item-action bg-dark border-0 rounded-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                         {{ setActivo('inicio') || request()->routeIs('inicio') ? 'seleccionado' : '' }}
                     ">
                     <i class="bi bi-house pe-2"></i>
                     Inicio
                 </a>
                 @if (auth()->user()?->rol === 'admin')
-                    <a href="{{ route('camping.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                    <a href="{{ route('camping.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                             {{ setActivo('camping') }}
                         ">
                         <i class="bi bi-signpost-2 pe-2"></i>
                         Campings
                     </a>
                 @endif
-                <a href="{{ route('parcela.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('parcela.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                         {{ setActivo('parcela') }}
                      ">
                     <i class="bi bi-houses pe-2"></i>
                     Parcelas
                 </a>
-                <a href="{{ route('cliente.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('cliente.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                         {{ setActivo('cliente') }}
                     ">
                     <i class="bi bi-person-badge pe-2"></i>
                     Clientes
                 </a>
-                <a href="{{ route('checkin.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('checkin.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                         {{ setActivo('checkin') }}
                     ">
                     <i class="bi bi-clipboard2-check pe-2"></i>
                     Checkins
                 </a>
-                <a href="{{ route('tarifa.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('tarifa.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                         {{ setActivo('tarifa') }}
                     ">
                     <i class="bi bi-wallet2 pe-2"></i>
                     Tarifas
                 </a>
 
-                <a href="{{ route('idioma.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                <a href="{{ route('idioma.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                         {{ setActivo('idioma') }}
                     ">
                     <i class="bi bi-translate pe-2"></i>
                     Idioma
                 </a>
                 @if (isAdmin())
-                    <a href="{{ route('usuario.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral
+                    <a href="{{ route('usuario.index') }}" class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3
                             {{ setActivo('usuario') }}
                         ">
                         <i class="bi bi-people pe-2"></i>
@@ -90,7 +90,7 @@
                     </a>
                 @endif
                 <a href="{{ route('logout') }}"
-                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-4 ps-4 menu_lateral ">
+                    class="list-group-item list-group-item-action bg-dark border-0 text-white py-3 my-1 ps-4 menu_lateral rounded-3 ">
                     <i class="bi bi-box-arrow-right pe-2"></i>
                     Cerrar sesión
                 </a>

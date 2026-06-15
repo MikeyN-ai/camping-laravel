@@ -19,16 +19,17 @@ class CheckinController extends Controller
         $parcela = Parcela::where('id_camping', getCampingUsuario())->get();
         $cliente = Cliente::where('id_camping', getCampingUsuario())->orderBy('nombre', 'asc')->get();
         $tarifa = Tarifa::where('id_camping', getCampingUsuario())->orderBy('nombre', 'asc')->get();
-        
+
         $checkin = Checkin::whereIn('id_parcela', $parcela->pluck('id'))
             ->when($request->filled('fecha_entrada') || $request->filled('fecha_salida'), function ($query) use ($request) {
                 if ($request->filled('fecha_entrada') && $request->filled('fecha_salida')) {
-                    $query->where('fecha_entrada', '<=', $request->fecha_salida)
-                          ->where('fecha_salida', '>=', $request->fecha_entrada);
+                    // incluir solo checkins totalmente contenidos en el rango del filtro
+                    $query->where('fecha_entrada', '>=', $request->fecha_entrada)
+                          ->where('fecha_salida', '<=', $request->fecha_salida);
                 } elseif ($request->filled('fecha_entrada')) {
-                    $query->where('fecha_salida', '>=', $request->fecha_entrada);
+                    $query->where('fecha_entrada', '>=', $request->fecha_entrada);
                 } else {
-                    $query->where('fecha_entrada', '<=', $request->fecha_salida);
+                    $query->where('fecha_salida', '<=', $request->fecha_salida);
                 }
             })
             ->when($request->filled('id_parcela'), function ($query) use ($request) {

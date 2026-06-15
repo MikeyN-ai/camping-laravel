@@ -11,8 +11,8 @@
                     <div class="mb-3">
                         <label for="inputUsuario" class="form-label">Usuario</label>
                         <input type="text" class="form-control border border-dark-subtle" id="inputUsuario"
-                            aria-describedby="usuarioHelp" placeholder="Filtrar por usuario..." maxlength="100" name="usuario"
-                            value="{{ request('usuario') }}" />
+                            aria-describedby="usuarioHelp" placeholder="Filtrar por usuario..." maxlength="100"
+                            name="usuario" value="{{ request('usuario') }}" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
@@ -62,7 +62,9 @@
     </div>
 
     @if (session('success') || session('error'))
-        <div id="liveToast" class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow" role="alert">
+        <div id="liveToast"
+            class="alert {{ session('success') ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show shadow"
+            role="alert">
             {{ session('success') ? session('success') : session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -117,15 +119,18 @@
                                 <td class="align-middle">{{ $u->camping->nombre ?? 'N/A' }}</td>
                                 <td class="align-middle">{{ $u->idioma->idioma }}</td>
                                 <td class="align-middle">{{ $u->rol }}</td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('usuario.edit', $u) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete" data-nombre="{{ $u->usuario }}"
-                                        data-ruta="{{ route('usuario.destroy', $u) }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('usuario.edit', $u) }}"
+                                            class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete" data-nombre="{{ $u->usuario }}"
+                                            data-ruta="{{ route('usuario.destroy', $u) }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

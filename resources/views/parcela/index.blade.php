@@ -19,8 +19,8 @@
                     <div class="mb-3">
                         <label for="inputDispositivo" class="form-label">Dispositivo Shelly</label>
                         <input type="text" class="form-control border border-dark-subtle" id="inputDispositivo"
-                            aria-describedby="dispositivoHelp" placeholder="Filtrar por dispositivo..." maxlength="100" name="shelly"
-                            value="{{ request('shelly') }}" />
+                            aria-describedby="dispositivoHelp" placeholder="Filtrar por dispositivo..." maxlength="100"
+                            name="shelly" value="{{ request('shelly') }}" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
@@ -120,18 +120,22 @@
                                         <span class="badge text-bg-secondary">Apagado</span>
                                     @endif
                                 </td>
-                                <td class="d-flex gap-2">
-                                    <a href="{{ route('parcela.show', $p) }}" class="btn-custom btn-ver text-dark btn-3d fs-6 p-2">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('parcela.edit', $p) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete" data-nombre="{{ $p->nombre }}"
-                                        data-ruta="{{ route('parcela.destroy', $p) }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('parcela.show', $p) }}"
+                                            class="btn-custom btn-ver text-dark btn-3d fs-6 p-2">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{{ route('parcela.edit', $p) }}"
+                                            class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete" data-nombre="{{ $p->nombre }}"
+                                            data-ruta="{{ route('parcela.destroy', $p) }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -164,8 +168,9 @@
                                 <a href="{{ route('parcela.edit', $p) }}" class="btn-custom btn-editar text-dark fs-6 p-2 btn-3d">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal" data-bs-target="#modalDelete"
-                                    data-nombre="{{ $p->nombre }}" data-ruta="{{ route('parcela.destroy', $p) }}">
+                                <button class="btn-custom btn-borrar text-white fs-6 p-2 btn-3d" data-bs-toggle="modal"
+                                    data-bs-target="#modalDelete" data-nombre="{{ $p->nombre }}"
+                                    data-ruta="{{ route('parcela.destroy', $p) }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>

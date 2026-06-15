@@ -78,6 +78,7 @@
     border-radius: 0.375rem !important;
     border: none;
     text-decoration: none;
+    text-align: center;
 }
 
 .btn-filtrar {
