@@ -81,7 +81,7 @@
     @endif
 
     @if ($parcela->isEmpty())
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mb-5">
             <div class="card tarjeta_vacio bg-primary-subtle py-4 py-md-5 shadow">
                 <div class="card-body text-center">
                     <i class="bi bi-house mb-3 text-info icono_sin_datos"></i>

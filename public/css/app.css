@@ -10,8 +10,22 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+:root {
+    --seleccionado-ml: #4c5257;
+    --filtrar: #589dd1;
+    --filtrar-hover: #6baedc;
+    --limpiar: oklch(60.009% 0.21143 25.657);
+    --limpiar-hover: oklch(63.7% 0.237 25.331);
+    --borrar: oklch(59.849% 0.19027 22.326);
+    --editar: oklch(90.5% 0.182 98.111);
+    --ver: oklch(75.917% 0.11881 225.79);
+    --seleccionado-border: rgb(210, 210, 210);
+    --dropdown: #f8f9fa;
+    --fondo: #e8f1f9;
+}
+
 .fondo {
-    background-color: #e8f1f9 !important;
+    background-color: var(--fondo) !important;
     min-height: calc(100vh - 106px);
 }
 
@@ -20,13 +34,14 @@
 }
 
 .menu_lateral:hover {
-    background-color: #4c5257 !important;
+    background-color: var(--seleccionado-ml) !important;
 }
 
 .seleccionado {
-    background-color: #4c5257 !important;
+    background-color: var(--seleccionado-ml) !important;
     font-size: bold;
     cursor: default;
+    border-left: 5px solid var(--seleccionado-border) !important;
 }
 
 .btn-3d {
@@ -64,7 +79,7 @@
 }
 
 .dropdown-item:hover {
-    background: #f8f9fa;
+    background: var(--dropdown);
 }
 
 .login {
@@ -83,31 +98,31 @@
 }
 
 .btn-filtrar {
-    background-color: #589dd1;
+    background-color: var(--filtrar);
 }
 
 .btn-filtrar:hover {
-    background-color: #6baedc;
+    background-color: var(--filtrar-hover);
 }
 
 .btn-limpiar {
-    background-color: oklch(60.009% 0.21143 25.657);
+    background-color: var(--limpiar);
 }
 
 .btn-limpiar:hover {
-    background-color: oklch(63.7% 0.237 25.331);
+    background-color: var(--limpiar-hover);
 }
 
 .btn-borrar {
-    background-color: oklch(59.849% 0.19027 22.326);
+    background-color: var(--borrar);
 }
 
 .btn-editar {
-    background-color: oklch(90.5% 0.182 98.111) !important;
+    background-color: var(--editar) !important;
 }
 
 .btn-ver {
-    background-color: oklch(75.917% 0.11881 225.79);
+    background-color: var(--ver);
 }
 
 @media (max-width: 768px) {
